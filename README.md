@@ -120,7 +120,7 @@ Open http://127.0.0.1:8000. Without a key, the built-in example lessons still wo
 | `SESSION_SECRET` | Signs session cookies |
 | `PUBLIC_DEPLOY=1` | Public mode: the AI needs a signed-in family; `/admin` only for `ADMIN_EMAILS` |
 | `ADMIN_EMAILS` | The Google accounts that open the admin dashboard (`/admin`) when they sign in. There is no admin password. |
-| `TEACHER_VOICE=resemble`, `RESEMBLE_API_KEY`, `RESEMBLE_TEACHER_VOICE` | Optional cloud teacher voice (Resemble AI); off by default, Piper otherwise |
+| `TEACHER_VOICE` and its voice settings | Optional cloud teacher voice; off by default (Piper, offline) |
 | `SHOWCASE_DIR` | Videos, slide images and `manifest.json` for the Showcase screen (`/showcase`) |
 | `PLANNER_MODEL=glimmer`, `FIREWORKS_API_KEY`, `GLIMMER_MODEL_PATH` | Race the fine-tuned Glimmer |
 | `PLANS_PER_FAMILY_DAY`, `PLANS_PER_DAY` | Daily limits on new problems |
