@@ -129,7 +129,8 @@ article img{ max-width:100%; }
     var v = m.videos || [];
     $('videoGrid').innerHTML = v.length ? v.map(function(x){
       return '<div class="vcard"><video controls preload="metadata" playsinline' + (x.poster ? ' poster="' + MEDIA + esc(x.poster) + '"' : '') + ' src="' + MEDIA + esc(x.file) + '"></video>' +
-             '<div class="meta"><b>' + esc(x.title) + '</b><p>' + esc(x.note || '') + '</p></div></div>';
+             '<div class="meta"><b>' + esc(x.title) + '</b><p>' + esc(x.note || '') + '</p>' +
+             (/^https:\/\/(youtu\.be|www\.youtube\.com)\//.test(x.youtube || '') ? '<p><a href="' + esc(x.youtube) + '" target="_blank" rel="noopener">▶ Watch on YouTube</a></p>' : '') + '</div></div>';
     }).join('') : '<p class="empty">The demo video is coming soon.</p>';
     deck(m.slides);
   }).catch(function(){
