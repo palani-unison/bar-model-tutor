@@ -96,6 +96,20 @@ def test_report_a_problem_reaches_the_dashboard_and_export(monkeypatch):
     assert not any(x["question"] == "kept?" for x in rows)  # a solved question isn't kept in the plan log
 
 
+def test_report_a_problem_with_a_non_string_question_does_not_crash(monkeypatch):
+    _google(monkeypatch, "parent@example.com", sub="40")
+    parent = TestClient(app)
+    parent.post("/api/auth/google", json={"credential": "x"})
+    r = parent.post("/api/flags", json={"reason": "other", "note": "", "spec": {"question": 123}})
+    assert r.status_code == 200
+
+    _google(monkeypatch, "owner@example.com", sub="41")
+    owner = TestClient(app)
+    owner.post("/api/auth/google", json={"credential": "x"})
+    rows = owner.get("/admin/export.json").json()
+    assert [x for x in rows if x["id"] == f"flag-{r.json()['id']}"][0]["question"] == "123"
+
+
 def test_flags_and_plan_events_go_with_the_account(monkeypatch):
     _google(monkeypatch, "parent@example.com", sub="30")
     parent = TestClient(app)

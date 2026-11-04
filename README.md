@@ -100,7 +100,7 @@ Standard tier only, never Contributor models. Names, emails and progress are nev
 | Spoken answers (TTS → real-time ASR) | 20/20 numbers understood |
 | Adversarial child questions to the tutor | 0 unsafe replies shown out of 124 |
 | Voice-turn rules (who talks when: a clear number ends the turn, silence, tap to stop) | covered by unit tests in `tests/test_lesson_ws.py` |
-| Unit and integration tests | 757 passing (`pytest -q`) |
+| Unit and integration tests | 759 passing (`pytest -q`) |
 
 The tutor declines a problem rather than show an answer it couldn't verify.
 

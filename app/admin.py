@@ -95,7 +95,8 @@ def report_problem(body: FlagBody, request: Request):
     parent_id, child_id = _who(request.cookies)
     if access.public() and parent_id is None:
         raise HTTPException(401, access.SIGN_IN_FIRST)
-    question = (body.question or (body.spec or {}).get("question") or "").strip()
+    asked = body.question or (body.spec or {}).get("question") or ""
+    question = (asked if isinstance(asked, str) else str(asked)).strip()
     if not question and not body.note.strip():
         raise HTTPException(400, "Please say what went wrong.")
     if parent_id is not None:

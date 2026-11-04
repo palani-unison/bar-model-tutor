@@ -7,7 +7,7 @@ import pytest
 
 from agent.spec_v2 import Solution
 from agent.verify import VerifyResult
-from agent.verify_v2 import question_numbers, solution_or_none, verify_spec_v2
+from agent.verify_v2 import _check_board, question_numbers, solution_or_none, verify_spec_v2
 
 ROOT = Path(__file__).resolve().parent.parent
 EXAMPLES = sorted((ROOT / "specs" / "examples" / "v2").glob("*.json"))
@@ -516,6 +516,21 @@ def test_constant_difference_board_needs_the_difference_as_one_piece():
     dad_now = spec["stages"][0]["bars"][0]
     dad_now["segments"] = [{"expr": "u"}, {"expr": "9"}, {"expr": "u"}]  # the 32 is split up: no piece shows it
     _fails(spec, "end bar 'dad_n' with the difference (32) as its own segment")
+
+
+def test_constant_difference_board_with_tied_bars_reports_an_error():
+    """Two bars with the same total must fail the board check, not crash the sort."""
+    def stage(sid):
+        return {"id": sid, "label": sid, "bars": [
+            {"id": f"a_{sid}", "quantity": "x", "label": "Ann", "segments": [{"expr": "u"}]},
+            {"id": f"b_{sid}", "quantity": "y", "label": "Ben", "segments": [{"expr": "u"}]}]}
+
+    spec = {"board": "constant_difference", "template": "bar-stages", "question": "q",
+            "units": [{"name": "u", "meaning": "1 unit"}], "stages": [stage("s1"), stage("s2")]}
+    solution = Solution(quantities={}, units={"u": 5.0},
+                        segments={"a_s1": [5.0], "b_s1": [5.0], "a_s2": [8.0], "b_s2": [3.0]})
+    errors = _check_board(spec, solution)
+    assert any("end bar" in e and "difference (0)" in e for e in errors), errors
 
 
 def test_ratio_change_board_keeps_the_unchanged_person_the_same():

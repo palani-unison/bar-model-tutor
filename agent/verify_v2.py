@@ -589,7 +589,8 @@ def _check_board(spec: dict, solution: Solution | None) -> list[str]:
         for st in stages:
             if len(st["bars"]) < 2:
                 return [f"board 'constant_difference': stage {st['id']!r} needs both people's bars"]
-            totals = sorted((sum(_counted_values(b, solution)), b) for b in st["bars"])
+            totals = sorted(((sum(_counted_values(b, solution)), b) for b in st["bars"]),
+                              key=lambda t: t[0])  # bars may tie; dicts don't compare
             (small, _), (big, long_bar) = totals[0], totals[-1]
             diff = big - small
             diffs.append(diff)

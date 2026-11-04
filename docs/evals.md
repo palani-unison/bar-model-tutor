@@ -20,7 +20,7 @@ are in [testing.md](testing.md). Companion docs: [how-it-works.md](how-it-works.
 
 | Tool | Measures | Live model? | Command |
 |---|---|---|---|
-| `pytest` (754 tests) | Verifier rules, planner routing, lessons, socket, accounts | No, faked | `pytest -q` |
+| `pytest` (759 tests) | Verifier rules, planner routing, lessons, socket, accounts | No, faked | `pytest -q` |
 | `evals/run_evals.py --suite text` | Typed question → correct answer, or a decline | Yes | see §4 |
 | `--suite photo` | Worksheet photo → read → correct answer | Yes | see §5 |
 | `--suite lesson` | Lessons played by simulated children | No | see §6 |
@@ -35,7 +35,7 @@ are in [testing.md](testing.md). Companion docs: [how-it-works.md](how-it-works.
 
 ## 3. Unit and integration tests (pytest)
 
-`pytest -q` runs 754 tests with no network and no API key. Model calls are faked. A shared fixture in
+`pytest -q` runs 759 tests with no network and no API key. Model calls are faked. A shared fixture in
 `tests/conftest.py` turns off the live independent check, so a mocked planner never feeds the checker.
 
 | Area | Main files |
@@ -45,6 +45,7 @@ are in [testing.md](testing.md). Companion docs: [how-it-works.md](how-it-works.
 | Golden examples verify and play | `test_v2_examples.py`, `test_render_v2.py` |
 | Lessons, checkpoints, pacing, board tasks | `test_lesson_v2.py`, `test_lesson.py`, `test_pacing_lesson.py`, `test_board_task.py`, `test_learner.py` |
 | The live lesson socket and voice turns | `test_lesson_ws.py` (a clear number ends the turn, 3 s silence, an empty turn) |
+| Teacher voice (cloud TTS fallback) | `test_teacher_voice.py` |
 | "Check my bar model" | `test_review.py` |
 | Accounts, access, admin, badges, history | `test_accounts.py`, `test_access.py`, `test_admin.py`, `test_badges.py`, `test_my_lessons.py` |
 | App shell | `test_pwa.py`, `test_showcase.py` |
