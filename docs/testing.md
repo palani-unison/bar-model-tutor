@@ -16,9 +16,9 @@ python tests/e2e_board_browser.py                  # board tasks on a phone and 
 
 `--limit` defaults to 100, so pass a higher limit to run the whole public set (107).
 
-## 2. Unit and integration tests — 755 passed
+## 2. Unit and integration tests — 757 passed
 
-Command: `pytest -q` → **755 passed** (Nov 4). No network and no API key:
+Command: `pytest -q` → **757 passed** (Nov 4). No network and no API key:
 model calls are faked.
 
 Largest files: `test_lesson_v2.py` (lesson steps and checkpoints for v2), `test_verify_v2.py` (each verifier

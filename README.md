@@ -8,6 +8,9 @@ by voice or by typing; code checks each answer against a verified bar model befo
 
 Meta Global AI Developer Hackathon, Indie track.
 
+**Try it:** https://jinboost--barmodel.modal.run (parents sign in with Google; the example lessons need no account) ·
+**Showcase** (videos, slides, docs): https://jinboost--barmodel.modal.run/showcase
+
 > **Not a chatbot, not a homework solver**
 > - The child answers at every step; code checks each answer against a verified bar model.
 > - The answer appears only after the child gets it or has used two hints. That rule is enforced in code.
@@ -96,7 +99,7 @@ Standard tier only, never Contributor models. Names, emails and progress are nev
 | Spoken answers (TTS → real-time ASR) | 20/20 numbers understood |
 | Adversarial child questions to the tutor | 0 unsafe replies shown out of 124 |
 | Voice-turn rules (who talks when: a clear number ends the turn, silence, tap to stop) | covered by unit tests in `tests/test_lesson_ws.py` |
-| Unit and integration tests | 755 passing (`pytest -q`) |
+| Unit and integration tests | 757 passing (`pytest -q`) |
 
 The tutor declines a problem rather than show an answer it couldn't verify.
 
@@ -117,6 +120,7 @@ Open http://127.0.0.1:8000. Without a key, the built-in example lessons still wo
 | `SESSION_SECRET` | Signs session cookies |
 | `PUBLIC_DEPLOY=1` | Public mode: the AI needs a signed-in family; `/admin` only for `ADMIN_EMAILS` |
 | `ADMIN_EMAILS` | The Google accounts that open the admin dashboard (`/admin`) when they sign in. There is no admin password. |
+| `TEACHER_VOICE=resemble`, `RESEMBLE_API_KEY`, `RESEMBLE_TEACHER_VOICE` | Optional cloud teacher voice (Resemble AI); off by default, Piper otherwise |
 | `SHOWCASE_DIR` | Videos, slide images and `manifest.json` for the Showcase screen (`/showcase`) |
 | `PLANNER_MODEL=glimmer`, `FIREWORKS_API_KEY`, `GLIMMER_MODEL_PATH` | Race the fine-tuned Glimmer |
 | `PLANS_PER_FAMILY_DAY`, `PLANS_PER_DAY` | Daily limits on new problems |

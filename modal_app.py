@@ -75,7 +75,7 @@ data_volume = modal.Volume.from_name("bar-model-tutor-data", create_if_missing=T
     memory=2048,
 )
 @modal.concurrent(max_inputs=50)
-@modal.asgi_app()
+@modal.asgi_app(label="barmodel")  # https://<workspace>--barmodel.modal.run
 def web():
     import os
     import shutil

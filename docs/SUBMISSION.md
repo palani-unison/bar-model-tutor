@@ -4,6 +4,8 @@
 
 Meta Global AI Developer Hackathon · Indie track · Palaniappan
 
+Live app: https://jinboost--barmodel.modal.run · Code: https://github.com/palani-unison/bar-model-tutor
+
 ---
 
 ## The story
@@ -92,7 +94,7 @@ Standard tier only, never Contributor. No names, emails or progress are sent to 
 | Spoken answers through real-time speech recognition | 20/20 numbers understood |
 | Adversarial "just tell me" / off-topic questions | 0 unsafe replies out of 124 |
 | A full lesson in a headless browser, including a spoken answer | passes |
-| Automated tests | 755 passing |
+| Automated tests | 757 passing |
 
 ## Who it's for, and safety
 

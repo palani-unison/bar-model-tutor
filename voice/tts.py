@@ -60,13 +60,39 @@ def speak_wav(text: str) -> bytes:
     return buf.getvalue()
 
 
+def _resemble_wav(text: str) -> bytes | None:
+    """An optional cloud teacher voice (TEACHER_VOICE=resemble): Resemble AI, voice RESEMBLE_TEACHER_VOICE.
+
+    Off by default: the app's teacher is Piper, offline. When on, only the teacher's line is sent to Resemble
+    (no names or progress). Any failure falls back to Piper, so a lesson never goes silent.
+    """
+    import base64
+    import json
+    import os
+    import urllib.request
+
+    key, voice = os.environ.get("RESEMBLE_API_KEY", ""), os.environ.get("RESEMBLE_TEACHER_VOICE", "")
+    base = os.environ.get("RESEMBLE_SYNTHESIS_BASE", "https://f.cluster.resemble.ai").rstrip("/")
+    if os.environ.get("TEACHER_VOICE", "piper") != "resemble" or not key or not voice:
+        return None
+    req = urllib.request.Request(f"{base}/synthesize", method="POST",
+                                 data=json.dumps({"voice_uuid": voice, "data": text, "output_format": "wav"}).encode(),
+                                 headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"})
+    try:
+        with urllib.request.urlopen(req, timeout=20) as res:
+            audio = json.loads(res.read()).get("audio_content")
+        return base64.b64decode(audio) if audio else None
+    except Exception:  # noqa: BLE001 — Piper takes over
+        return None
+
+
 def speak_compressed(text: str) -> tuple[bytes, str]:
     """(audio bytes, MIME type) for one line: MP3 at 48 kbps when ffmpeg is on PATH, else the WAV.
 
     Measured Nov 2: a 10 s line is 445 KB as WAV (593 KB base64) and 61 KB as MP3; encoding takes
     30-50 ms. MP3 plays everywhere, including iPad Safari. (Opus was smaller but took up to 94 ms.)
     """
-    wav = speak_wav(text)
+    wav = _resemble_wav(text) or speak_wav(text)
     try:
         mp3 = subprocess.run(["ffmpeg", "-v", "error", "-i", "pipe:0", "-ac", "1", "-f", "mp3", "-b:a", "48k", "pipe:1"],
                              input=wav, capture_output=True, check=True, timeout=10).stdout

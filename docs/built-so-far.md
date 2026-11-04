@@ -90,7 +90,7 @@ Not in the hackathon version: the iPad co-solve room, the parent coach mode, and
 | `evals/run_evals.py`, `suites.py`, `harness.py` | Eval suites: text, photo, lesson, tutor, voice, review. One JSON per run in `evals/results/`. |
 | `evals/dataset/` | The public problem set (107). |
 | `evals/page_eval.py`, `voice_latency.py`, `e2e_browser.py` | Real scanned pages, spoken-answer latency, a headless browser lesson. |
-| `tests/` | 755 offline tests (`pytest -q`), plus Playwright scripts for board tasks and pacing. |
+| `tests/` | 757 offline tests (`pytest -q`), plus Playwright scripts for board tasks and pacing. |
 
 ## 4. Known gaps
 

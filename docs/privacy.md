@@ -84,4 +84,5 @@ only as a signed-in child's own lesson in `lessons`, once they start it.
   microphone is on, what the child types in a lesson, and a photo of their drawing when they ask
   "Check my bar model".
 - To Fireworks AI (only when the fine-tuned Glimmer planner is on; it is off in the live app): the plain question text.
+- To Resemble AI (only when the optional cloud teacher voice is on; it is off in the live app): the teacher's lines.
 - **Never sent:** names, nicknames, hero names, emails, or progress.
