@@ -4,7 +4,7 @@
 
 Meta Global AI Developer Hackathon · Indie track · Palaniappan
 
-Live app: https://jinboost--barmodel.modal.run · Code: https://github.com/palani-unison/bar-model-tutor · Demo: https://youtu.be/c7rB2QAUgUM
+Live app: https://jinboost--barmodel.modal.run · Code: https://github.com/palani-unison/bar-model-tutor · Demo: https://www.youtube.com/watch?v=c7rB2QAUgUM
 
 ---
 

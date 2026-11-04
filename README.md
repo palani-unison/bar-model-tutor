@@ -10,7 +10,7 @@ Meta Global AI Developer Hackathon, Indie track.
 
 **Try it:** https://jinboost--barmodel.modal.run (parents sign in with Google; the example lessons need no account) ·
 **Showcase** (videos, slides, docs): https://jinboost--barmodel.modal.run/showcase ·
-**Demo video (3 min):** https://youtu.be/c7rB2QAUgUM
+**Demo video (3 min):** https://www.youtube.com/watch?v=c7rB2QAUgUM
 
 > **Not a chatbot, not a homework solver**
 > - The child answers at every step; code checks each answer against a verified bar model.
