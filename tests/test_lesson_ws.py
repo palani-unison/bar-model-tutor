@@ -112,6 +112,22 @@ def test_stable_partial_is_checked_once(monkeypatch):
     assert [e.get("how") for e in session.ws.sent if e["type"] == "heard"] == ["stable partial"]
 
 
+def test_a_number_still_being_said_is_not_checked_early(monkeypatch):
+    session, asyncio = _waiting_session(monkeypatch)
+
+    async def go():
+        session._on_partial("twenty")  # the child pauses before "four"
+        await asyncio.sleep(0.15)
+        session._on_partial("one hundred and")
+        await asyncio.sleep(0.15)
+        await session._on_final("twenty four")
+
+    asyncio.run(go())
+    assert [e.get("how") for e in session.ws.sent if e["type"] == "heard"] == ["final"]
+    assert len([e for e in session.ws.sent if e["type"] == "verdict"]) == 1
+    assert lesson_ws._UNFINISHED_NUMBER.search("it is twenty") and not lesson_ws._UNFINISHED_NUMBER.search("twenty four")
+
+
 def test_changing_partial_waits_and_final_corrects_a_hint(monkeypatch):
     session, asyncio = _waiting_session(monkeypatch)
 

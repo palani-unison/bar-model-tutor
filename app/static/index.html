@@ -1707,7 +1707,7 @@ window.Sound = (function(){
   }
   var AGREE = [  // docs/terms.md "What you agree to", items 1-3
     'I am the child’s parent or legal guardian, and I am 18 or over.',
-    'I agree that my child’s questions, photos, voice (while the microphone is on) and typed answers are sent to Meta’s AI services, and question text to Fireworks AI, to run the lessons.',
+    'I agree that my child’s questions, photos, voice (while the microphone is on) and typed answers are sent to Meta’s AI services (and question text to Fireworks AI if our fine-tuned planner is switched on) to run the lessons.',
     'I will supervise my child’s use, and I understand the AI can make mistakes.'
   ];
   function obConsent(){
@@ -1716,7 +1716,7 @@ window.Sound = (function(){
     var q = obShell(1, '<h2>Before we start: how this tutor uses AI 🤝</h2>' +
       '<ul class="terms-sum">' +
       '<li>This is a <b>prototype</b> made for the Meta hackathon, not a finished product.</li>' +
-      '<li>It uses <b>Meta AI</b> models (Muse Spark, and Meta speech recognition) and our own fine-tuned <b>Muse Glimmer</b>, hosted on <b>Fireworks AI</b>.</li>' +
+      '<li>It uses <b>Meta AI</b> models (Muse Spark, and Meta speech recognition) Our own fine-tuned <b>Muse Glimmer</b>, hosted on <b>Fireworks AI</b>, can also plan lessons; it is currently switched off.</li>' +
       '<li>To run a lesson, your child’s <b>questions, photos, voice</b> (only while the mic is on) and <b>typed answers</b> are sent to them.</li>' +
       '<li>We <b>don’t</b> send them your name, email, your child’s name or their progress.</li>' +
       '<li>AI can make mistakes. Every number the tutor shows is <b>checked by code</b> first.</li>' +

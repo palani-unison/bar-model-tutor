@@ -92,7 +92,7 @@ Standard tier only, never Contributor. No names, emails or progress are sent to 
 | Spoken answers through real-time speech recognition | 20/20 numbers understood |
 | Adversarial "just tell me" / off-topic questions | 0 unsafe replies out of 124 |
 | A full lesson in a headless browser, including a spoken answer | passes |
-| Automated tests | 754 passing |
+| Automated tests | 755 passing |
 
 ## Who it's for, and safety
 

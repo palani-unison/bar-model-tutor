@@ -180,6 +180,10 @@ class Preparation:
 
 # ---------------------------------------------------------------- voice timing
 STABLE_PARTIAL_S = 0.6  # a partial holding a number this long at a checkpoint is checked without waiting for the final
+# A spoken number that may still be growing: "twenty..." (four), "one hundred..." (and five), "two point..." (five).
+# A partial ending like this is never checked early; the next partial or the final decides.
+_UNFINISHED_NUMBER = re.compile(
+    r"\b(?:twenty|thirty|forty|fourty|fifty|sixty|seventy|eighty|ninety|hundred|thousand|point|and|dot)[\s,.-]*$", re.I)
 # Turn-taking: the child taps the mic for each turn. A clear number answer at a checkpoint is checked at once (the
 # stable partial above, or a final); anything else (a question, "I don't know", a long thought with pauses) ends
 # after TURN_SILENCE_S with no new words from the recogniser. The recogniser finds sentence ends after ~0.4 s,
@@ -756,7 +760,8 @@ class LessonSession:
             self.stable_task = None
         lesson = self.lesson
         if (self.handled is None and lesson is not None and lesson.waiting is not None
-                and lesson.waiting.kind == "number" and numbers_in(text)):  # "Ali has three... and Ben one": wait
+                and lesson.waiting.kind == "number" and numbers_in(text)  # "Ali has three... and Ben one": wait
+                and not _UNFINISHED_NUMBER.search(text)):  # "twenty..." may be "twenty four": wait for the rest
             self.stable_task = asyncio.create_task(self._stable(text))
 
     async def _stable(self, text: str) -> None:

@@ -231,7 +231,8 @@ svg#board text.q{ font-family:"Patrick Hand",sans-serif; }
 .stars span{ color:var(--star-off); transition:color .3s, transform .3s; display:inline-block; }
 .stars span.won{ color:var(--accent); transform:scale(1.15); }
 :root[data-skin="play"] .stars span.won{ color:#eab308; -webkit-text-stroke:1px #0f172a; }
-.status-chip{ font-size:13px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0; flex:1; }
+.status-chip{ font-size:13px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0; flex:1 0 auto; }
+@media (max-width:420px){ .tb-lesson .stars{ letter-spacing:-2px; font-size:0.82em; flex:0 0 auto; } .tb-lesson{ gap:4px; } }
 .twin-tag{ display:inline-block; padding:1px 8px; border-radius:16px; font-size:13px; background:var(--ask-bg); color:var(--ask-ink); border:1px solid var(--ask-border); white-space:nowrap; }
 .speed-ib{ width:auto; min-width:52px; height:36px; padding:0 10px; font-size:15px; font-weight:700; border:var(--bw) solid var(--line); border-radius:18px; }
 
