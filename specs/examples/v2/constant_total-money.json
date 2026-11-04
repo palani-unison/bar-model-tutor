@@ -1,0 +1,65 @@
+{
+  "version": 2,
+  "title": "Constant total: a gift between two people",
+  "level": "P5",
+  "heuristic": "constant_total",
+  "template": "bar-stages",
+  "board": "before_after",
+  "question": "Nurul and Owen had $96 altogether. After Nurul gave Owen $14, Owen had 3 times as much money as Nurul. How much money did Nurul have at first?",
+  "units": [{"name": "u", "meaning": "1 unit"}],
+  "quantities": [
+    {"id": "nurul_before", "label": "Nurul's money at first"},
+    {"id": "owen_before", "label": "Owen's money at first"},
+    {"id": "nurul_after", "label": "Nurul's money in the end"},
+    {"id": "owen_after", "label": "Owen's money in the end"}
+  ],
+  "relations": [
+    {"eq": "nurul_before + owen_before = 96", "from": "Nurul and Owen had $96 altogether"},
+    {"eq": "nurul_after = nurul_before - 14", "from": "Nurul gave Owen $14"},
+    {"eq": "owen_after = owen_before + 14", "from": "Nurul gave Owen $14"},
+    {"eq": "owen_after = 3*nurul_after", "from": "Owen had 3 times as much money as Nurul"}
+  ],
+  "asked": {"expr": "nurul_before", "label": "Nurul's money at first"},
+  "answer": 38,
+  "stages": [
+    {"id": "before", "label": "At first", "bars": [
+      {"id": "nurul_b", "quantity": "nurul_before", "label": "Nurul", "segments": [{"expr": "u"}, {"expr": "14"}]},
+      {"id": "owen_b", "quantity": "owen_before", "label": "Owen", "segments": [{"expr": "2*u"}, {"expr": "u - 14"}]}
+    ]},
+    {"id": "after", "label": "In the end", "bars": [
+      {"id": "nurul_a", "quantity": "nurul_after", "label": "Nurul", "segments": [
+        {"expr": "u"},
+        {"expr": "14", "style": "removed", "label": "gave $14"}
+      ]},
+      {"id": "owen_a", "quantity": "owen_after", "label": "Owen", "segments": [
+        {"expr": "2*u"},
+        {"expr": "u - 14"},
+        {"expr": "14", "style": "added", "label": "+$14"}
+      ]}
+    ]}
+  ],
+  "timeline": [
+    {"do": "write_question", "say": "Nurul and Owen had $96 altogether. After Nurul gave Owen $14, Owen had 3 times as much money as Nurul. How much money did Nurul have at first?"},
+    {"do": "highlight", "text": "$96 altogether", "say": "Nurul and Owen had $96 altogether."},
+    {"do": "highlight", "text": "Nurul gave Owen $14", "say": "Nurul gave Owen $14, so the total stays $96."},
+    {"do": "highlight", "text": "Owen had 3 times as much money as Nurul", "say": "Then Owen had 3 times as much money as Nurul."},
+    {"do": "draw_stage", "stage": "after", "say": "Let's draw the end first, because we know the most about it."},
+    {"do": "draw_bar", "bar": "nurul_a", "say": "Nurul ends with 1 unit. The dashed part is the $14 she gave."},
+    {"do": "draw_bar", "bar": "owen_a", "say": "Owen ends with 3 units, including the $14 he got."},
+    {"do": "divide_units", "bar": "owen_a", "say": "Owen has 2 units, and the $14 completes his third unit."},
+    {"do": "move_part", "from": "nurul_a", "from_segment": 1, "to": "owen_a", "to_segment": 2, "say": "The $14 moved from Nurul to Owen."},
+    {"do": "bracket", "bars": ["nurul_a", "owen_a"], "side": "right", "text": "$96", "say": "The total is still $96, so 4 units make $96."},
+    {"do": "draw_stage", "stage": "before", "say": "Now let's draw what they had at first."},
+    {"do": "draw_bar", "bar": "nurul_b", "say": "At first, Nurul had her 1 unit and the $14."},
+    {"do": "draw_bar", "bar": "owen_b", "say": "Owen had $14 less than his 3 units."},
+    {"do": "question_mark", "bar": "nurul_b", "say": "We want Nurul's money at first."},
+    {"do": "pause", "seconds": 2.0, "say": "Pause and think. How many units make $96?"},
+    {"do": "write", "text": "Total units = 1 + 3 = 4", "say": "In the end, 1 unit plus 3 units is 4 units."},
+    {"do": "write", "text": "4 units = 96", "say": "4 units are $96."},
+    {"do": "write", "text": "1 unit = 96 ÷ 4 = 24", "say": "So 1 unit is 96 divided by 4, which is 24."},
+    {"do": "label_unit", "bar": "nurul_a", "text": "$24", "say": "Nurul had $24 in the end."},
+    {"do": "write", "text": "24 + 14 = 38", "say": "At first she also had the $14 she gave. 24 plus 14 is 38."},
+    {"do": "write", "text": "Check: 3 × 24 + 24 = 96 ✓", "say": "Let's check: Owen's 72 and Nurul's 24 still make $96 altogether. It works!"},
+    {"do": "answer", "text": "Nurul had $38 at first.", "say": "So, Nurul had $38 at first. Well done!"}
+  ]
+}

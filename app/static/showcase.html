@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Showcase · Bar Model Tutor</title>
+<meta name="description" content="Bar Model Tutor: demo videos, the pitch deck and the project docs.">
+<link rel="icon" href="/pwa/icon-192.png">
+<style>
+:root{
+  --bg:#fbfaf5; --surface:#ffffff; --ink:#1f2a44; --mute:#5d6680; --line:#e6e2d6;
+  --blue:#2f5d9b; --orange:#e8792b; --green:#5b9a3c; --shadow:0 6px 24px rgba(31,42,68,.08);
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#14171f; --surface:#1c2030; --ink:#eef0f6; --mute:#a3abc2; --line:#2b3145; --blue:#7fa7e6; --orange:#f39a55; --green:#8cc56d; --shadow:none; }
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; background:var(--bg); color:var(--ink); font:17px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif; }
+a{ color:var(--blue); }
+header{ max-width:1100px; margin:0 auto; padding:22px 16px 6px; display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+header img{ width:44px; height:44px; border-radius:12px; }
+header h1{ font-size:24px; margin:0; letter-spacing:-.01em; }
+header h1 span{ color:var(--orange); }
+header .back{ margin-left:auto; font-size:15px; text-decoration:none; padding:8px 14px; border-radius:999px; border:1px solid var(--line); background:var(--surface); color:var(--ink); }
+.tag{ max-width:1100px; margin:0 auto; padding:0 16px; color:var(--mute); }
+nav.tabs{ max-width:1100px; margin:14px auto 0; padding:0 16px; display:flex; gap:8px; position:sticky; top:0; background:var(--bg); z-index:5; padding-top:8px; padding-bottom:8px; }
+nav.tabs button{ font:inherit; font-size:16px; padding:9px 18px; min-height:44px; border-radius:999px; border:1px solid var(--line); background:var(--surface); color:var(--ink); cursor:pointer; }
+nav.tabs button[aria-selected="true"]{ background:var(--ink); color:var(--bg); border-color:var(--ink); }
+main{ max-width:1100px; margin:0 auto; padding:10px 16px 60px; }
+section[hidden]{ display:none; }
+h2{ font-size:20px; margin:18px 0 12px; }
+.empty{ color:var(--mute); padding:24px; border:1px dashed var(--line); border-radius:16px; text-align:center; }
+
+/* videos */
+.videos{ display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap:18px; }
+.vcard{ background:var(--surface); border:1px solid var(--line); border-radius:18px; overflow:hidden; box-shadow:var(--shadow); }
+.vcard video{ display:block; width:100%; aspect-ratio:16/9; background:#000; }
+.vcard .meta{ padding:12px 16px 16px; }
+.vcard b{ font-size:17px; }
+.vcard p{ margin:4px 0 0; color:var(--mute); font-size:15px; }
+
+/* slides */
+.carousel{ position:relative; background:var(--surface); border:1px solid var(--line); border-radius:18px; overflow:hidden; box-shadow:var(--shadow); }
+.track{ display:flex; transition:transform .35s ease; touch-action:pan-y; }
+.track img{ flex:0 0 100%; width:100%; aspect-ratio:16/9; object-fit:contain; background:#fff; user-select:none; -webkit-user-drag:none; }
+.arrow{ position:absolute; top:50%; transform:translateY(-50%); width:48px; height:48px; border-radius:50%; border:0; background:rgba(31,42,68,.72); color:#fff; font-size:24px; cursor:pointer; display:grid; place-items:center; }
+.arrow:disabled{ opacity:.25; cursor:default; }
+.arrow.prev{ left:10px; } .arrow.next{ right:10px; }
+.slidebar{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-top:12px; }
+.dots{ display:flex; gap:6px; flex-wrap:wrap; }
+.dots button{ width:12px; height:12px; padding:0; border-radius:50%; border:0; background:var(--line); cursor:pointer; }
+.dots button[aria-current="true"]{ background:var(--orange); width:28px; border-radius:6px; }
+.count{ color:var(--mute); font-size:15px; font-variant-numeric:tabular-nums; }
+.slidebar .grow{ flex:1; }
+.btn{ font:inherit; font-size:15px; padding:8px 14px; min-height:44px; display:inline-flex; align-items:center; border-radius:999px; border:1px solid var(--line); background:var(--surface); color:var(--ink); cursor:pointer; text-decoration:none; }
+.thumbs{ display:grid; grid-template-columns:repeat(auto-fill, minmax(120px, 1fr)); gap:8px; margin-top:14px; }
+.thumbs button{ padding:0; border:2px solid transparent; border-radius:8px; overflow:hidden; cursor:pointer; background:none; }
+.thumbs button[aria-current="true"]{ border-color:var(--orange); }
+.thumbs img{ display:block; width:100%; aspect-ratio:16/9; object-fit:cover; }
+.carousel:fullscreen{ display:flex; align-items:center; background:#000; border-radius:0; }
+.carousel:fullscreen .track img{ height:100vh; background:#000; }
+
+/* docs */
+.docs{ display:grid; grid-template-columns:220px 1fr; gap:22px; align-items:start; }
+.doclist{ display:flex; flex-direction:column; gap:4px; position:sticky; top:72px; }
+.doclist button{ text-align:left; font:inherit; font-size:15px; padding:9px 12px; border-radius:10px; border:0; background:none; color:var(--ink); cursor:pointer; }
+.doclist button[aria-current="true"]{ background:var(--surface); box-shadow:inset 3px 0 0 var(--orange); font-weight:600; }
+article{ background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:8px 28px 28px; min-width:0; box-shadow:var(--shadow); }
+article table{ border-collapse:collapse; width:100%; font-size:15px; display:block; overflow-x:auto; }
+article th, article td{ border-bottom:1px solid var(--line); padding:6px 8px; text-align:left; vertical-align:top; }
+article pre{ background:var(--bg); padding:12px; border-radius:10px; overflow-x:auto; font-size:13px; line-height:1.4; }
+article code{ font-size:.9em; }
+article blockquote{ margin:12px 0; padding:4px 16px; border-left:4px solid var(--orange); background:var(--bg); border-radius:0 10px 10px 0; }
+article img{ max-width:100%; }
+.mermaid{ background:#fff; border-radius:10px; padding:10px; overflow-x:auto; }
+@media (max-width:760px){
+  .docs{ grid-template-columns:1fr; }
+  .doclist{ position:static; flex-direction:row; overflow-x:auto; gap:6px; padding-bottom:4px; }
+  .doclist button{ white-space:nowrap; border:1px solid var(--line); background:var(--surface); }
+  article{ padding:4px 16px 20px; }
+  .arrow{ width:40px; height:40px; font-size:20px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <img src="/pwa/icon-192.png" alt="">
+  <h1>Bar Model Tutor <span>· Showcase</span></h1>
+  <a class="back" href="/">Open the app →</a>
+</header>
+<p class="tag">It doesn't solve the homework. It draws it with you. Videos, the deck and the docs for the Meta Global AI Developer Hackathon.</p>
+<nav class="tabs" role="tablist" aria-label="Showcase sections">
+  <button role="tab" id="tab-videos" aria-controls="videos" aria-selected="true">🎬 Videos</button>
+  <button role="tab" id="tab-slides" aria-controls="slides" aria-selected="false">🖼️ Slides</button>
+  <button role="tab" id="tab-docs" aria-controls="docs" aria-selected="false">📄 Docs</button>
+</nav>
+<main>
+  <section id="videos" role="tabpanel" aria-labelledby="tab-videos">
+    <div class="videos" id="videoGrid"><p class="empty">Loading…</p></div>
+  </section>
+  <section id="slides" role="tabpanel" aria-labelledby="tab-slides" hidden>
+    <div id="deck"><p class="empty">Loading…</p></div>
+  </section>
+  <section id="docs" role="tabpanel" aria-labelledby="tab-docs" hidden>
+    <div class="docs">
+      <div class="doclist" id="docList" role="list"></div>
+      <article id="doc" aria-live="polite"><p class="empty">Pick a document.</p></article>
+    </div>
+  </section>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  function esc(t){ return String(t == null ? '' : t).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  var MEDIA = '/showcase-media/';
+
+  // ---- tabs (the hash keeps the tab on reload and makes links shareable: #slides, #docs/testing)
+  var tabs = ['videos', 'slides', 'docs'];
+  function show(name, push){
+    tabs.forEach(function(t){ $(t).hidden = t !== name; $('tab-' + t).setAttribute('aria-selected', String(t === name)); });
+    if(push !== false && location.hash.split('/')[0] !== '#' + name) history.replaceState(null, '', '#' + name);
+    if(name === 'docs' && !current) openDoc((location.hash.split('/')[1]) || 'story');
+  }
+  tabs.forEach(function(t){ $('tab-' + t).addEventListener('click', function(){ show(t); }); });
+
+  // ---- media from the manifest
+  fetch(MEDIA + 'manifest.json').then(function(r){ if(!r.ok) throw 0; return r.json(); }).then(function(m){
+    var v = m.videos || [];
+    $('videoGrid').innerHTML = v.length ? v.map(function(x){
+      return '<div class="vcard"><video controls preload="metadata" playsinline' + (x.poster ? ' poster="' + MEDIA + esc(x.poster) + '"' : '') + ' src="' + MEDIA + esc(x.file) + '"></video>' +
+             '<div class="meta"><b>' + esc(x.title) + '</b><p>' + esc(x.note || '') + '</p></div></div>';
+    }).join('') : '<p class="empty">The demo video is coming soon.</p>';
+    deck(m.slides);
+  }).catch(function(){
+    $('videoGrid').innerHTML = '<p class="empty">The videos are on the live app.</p>';
+    $('deck').innerHTML = '<p class="empty">The slides are on the live app.</p>';
+  });
+
+  function deck(s){
+    if(!s || !(s.images || []).length){ $('deck').innerHTML = '<p class="empty">The slides are coming soon.</p>'; return; }
+    var n = s.images.length, i = 0;
+    $('deck').innerHTML =
+      '<div class="carousel" id="car" tabindex="0" aria-roledescription="carousel" aria-label="' + esc(s.title || 'Slides') + '">' +
+        '<div class="track" id="track">' + s.images.map(function(src, k){ return '<img src="' + MEDIA + esc(src) + '" alt="Slide ' + (k + 1) + ' of ' + n + '"' + (k > 1 ? ' loading="lazy"' : '') + ' draggable="false">'; }).join('') + '</div>' +
+        '<button class="arrow prev" id="prev" aria-label="Previous slide">‹</button><button class="arrow next" id="next" aria-label="Next slide">›</button>' +
+      '</div>' +
+      '<div class="slidebar"><div class="dots" id="dots">' + s.images.map(function(_, k){ return '<button aria-label="Slide ' + (k + 1) + '" data-k="' + k + '"></button>'; }).join('') + '</div>' +
+        '<span class="count" id="count"></span><span class="grow"></span>' +
+        '<button class="btn" id="fs" type="button">⛶ Full screen</button>' +
+        (s.download ? '<a class="btn" href="' + MEDIA + esc(s.download) + '" download>⬇ PowerPoint</a>' : '') + '</div>' +
+      '<div class="thumbs" id="thumbs">' + s.images.map(function(src, k){ return '<button data-k="' + k + '" aria-label="Go to slide ' + (k + 1) + '"><img src="' + MEDIA + esc(src) + '" alt="" loading="lazy"></button>'; }).join('') + '</div>';
+    function go(k){
+      i = Math.max(0, Math.min(n - 1, k));
+      $('track').style.transform = 'translateX(' + (-100 * i) + '%)';
+      $('prev').disabled = i === 0; $('next').disabled = i === n - 1;
+      $('count').textContent = (i + 1) + ' / ' + n;
+      [].forEach.call(document.querySelectorAll('#dots button, #thumbs button'), function(b){ b.setAttribute('aria-current', String(+b.dataset.k === i)); });
+    }
+    $('prev').onclick = function(){ go(i - 1); }; $('next').onclick = function(){ go(i + 1); };
+    [].forEach.call(document.querySelectorAll('#dots button, #thumbs button'), function(b){ b.onclick = function(){ go(+b.dataset.k); }; });
+    $('car').addEventListener('keydown', function(e){ if(e.key === 'ArrowLeft') go(i - 1); if(e.key === 'ArrowRight') go(i + 1); });
+    document.addEventListener('keydown', function(e){ if($('slides').hidden || e.target.closest('input,textarea')) return; if(e.key === 'ArrowLeft') go(i - 1); if(e.key === 'ArrowRight') go(i + 1); });
+    var x0 = null;
+    $('track').addEventListener('pointerdown', function(e){ x0 = e.clientX; });
+    $('track').addEventListener('pointerup', function(e){ if(x0 === null) return; var dx = e.clientX - x0; x0 = null; if(Math.abs(dx) > 40) go(i + (dx < 0 ? 1 : -1)); });
+    $('fs').onclick = function(){ var c = $('car'); if(document.fullscreenElement) document.exitFullscreen(); else if(c.requestFullscreen) c.requestFullscreen(); };
+    go(0);
+  }
+
+  // ---- docs: Markdown from the repo, rendered here
+  var current = null, mermaidReady = null;
+  fetch('/showcase/docs').then(function(r){ return r.json(); }).then(function(list){
+    $('docList').innerHTML = list.map(function(d){ return '<button role="listitem" data-doc="' + esc(d.name) + '">' + esc(d.title) + '</button>'; }).join('');
+    [].forEach.call($('docList').querySelectorAll('button'), function(b){ b.onclick = function(){ openDoc(b.dataset.doc); }; });
+    if(!$('docs').hidden) openDoc((location.hash.split('/')[1]) || 'story');
+  });
+  var LINKS = { 'README.md':'readme', 'docs/SUBMISSION.md':'story', 'SUBMISSION.md':'story', 'how-it-works.md':'how-it-works', 'docs/how-it-works.md':'how-it-works',
+                'testing.md':'testing', 'docs/testing.md':'testing', 'built-so-far.md':'built', 'docs/built-so-far.md':'built', 'spec-v2.md':'spec', 'docs/spec-v2.md':'spec',
+                'privacy.md':'privacy', 'docs/privacy.md':'privacy', 'terms.md':'terms', 'docs/terms.md':'terms', '../README.md':'readme' };
+  function openDoc(name){
+    current = name;
+    [].forEach.call($('docList').querySelectorAll('button'), function(b){ b.setAttribute('aria-current', String(b.dataset.doc === name)); });
+    history.replaceState(null, '', '#docs/' + name);
+    $('doc').innerHTML = '<p class="empty">Loading…</p>';
+    fetch('/showcase/doc/' + encodeURIComponent(name)).then(function(r){ if(!r.ok) throw 0; return r.text(); }).then(function(md){
+      if(current !== name) return;
+      $('doc').innerHTML = window.marked ? marked.parse(md) : '<pre>' + esc(md) + '</pre>';
+      [].forEach.call($('doc').querySelectorAll('a[href]'), function(a){
+        var h = a.getAttribute('href'), key = LINKS[h.split('#')[0]];
+        if(key){ a.href = '#docs/' + key; a.onclick = function(e){ e.preventDefault(); openDoc(key); window.scrollTo(0, 0); }; }
+        else if(/^https?:/.test(h)){ a.target = '_blank'; a.rel = 'noopener'; }
+      });
+      var charts = $('doc').querySelectorAll('code.language-mermaid');
+      if(charts.length){
+        [].forEach.call(charts, function(c){ var d = document.createElement('div'); d.className = 'mermaid'; d.textContent = c.textContent; c.parentNode.replaceWith(d); });
+        mermaidReady = mermaidReady || new Promise(function(ok){ var s = document.createElement('script'); s.src = 'https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js'; s.onload = ok; document.head.appendChild(s); });
+        mermaidReady.then(function(){ window.mermaid.initialize({ startOnLoad:false, theme:'neutral' }); window.mermaid.run({ querySelector:'#doc .mermaid' }); });
+      }
+    }).catch(function(){ $('doc').innerHTML = '<p class="empty">This document could not be loaded.</p>'; });
+  }
+
+  var start = location.hash.slice(1).split('/')[0];
+  show(tabs.indexOf(start) >= 0 ? start : 'videos', false);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,262 @@
+{
+  "suite": "lesson",
+  "ran_at": "2026-11-02T10:35:18.001596+00:00",
+  "n": 29,
+  "lessons_ok": 28,
+  "mean_checkpoints": 2.59,
+  "rows": [
+    {
+      "id": "mult-stickers",
+      "checkpoints": [
+        "units",
+        "unit",
+        "answer"
+      ],
+      "issues": []
+    },
+    {
+      "id": "mult-rice-beans",
+      "checkpoints": [
+        "units",
+        "unit"
+      ],
+      "issues": []
+    },
+    {
+      "id": "mult-car-money",
+      "checkpoints": [
+        "units",
+        "unit"
+      ],
+      "issues": []
+    },
+    {
+      "id": "mult-dog-decimal",
+      "checkpoints": [
+        "units",
+        "unit",
+        "answer"
+      ],
+      "issues": []
+    },
+    {
+      "id": "ratio-two",
+      "checkpoints": [
+        "units",
+        "unit",
+        "answer"
+      ],
+      "issues": []
+    },
+    {
+      "id": "ratio-hall",
+      "checkpoints": [
+        "units",
+        "unit",
+        "answer"
+      ],
+      "issues": []
+    },
+    {
+      "id": "ratio-three",
+      "checkpoints": [
+        "units",
+        "unit",
+        "answer"
+      ],
+      "issues": []
+    },
+    {
+      "id": "ratio-string",
+      "checkpoints": [
+        "units",
+        "unit",
+        "answer"
+      ],
+      "issues": []
+    },
+    {
+      "id": "more-total",
+      "checkpoints": [
+        "units",
+        "unit",
+        "answer"
+      ],
+      "issues": []
+    },
+    {
+      "id": "fewer-total",
+      "checkpoints": [
+        "units",
+        "unit"
+      ],
+      "issues": []
+    },
+    {
+      "id": "more-money",
+      "checkpoints": [
+        "units",
+        "unit"
+      ],
+      "issues": [
+        "all_correct: unit answer 2 shown before asking (write)",
+        "all_wrong: unit answer 2 shown before asking (write)",
+        "dont_know: unit answer 2 shown before asking (write)"
+      ]
+    },
+    {
+      "id": "more-three-boxes",
+      "checkpoints": [
+        "units",
+        "unit"
+      ],
+      "issues": []
+    },
+    {
+      "id": "times-diff",
+      "checkpoints": [
+        "units",
+        "unit"
+      ],
+      "issues": []
+    },
+    {
+      "id": "times-diff-cards",
+      "checkpoints": [
+        "units",
+        "unit",
+        "answer"
+      ],
+      "issues": []
+    },
+    {
+      "id": "times-diff-heavier",
+      "checkpoints": [
+        "units",
+        "unit"
+      ],
+      "issues": []
+    },
+    {
+      "id": "twice-diff",
+      "checkpoints": [
+        "units",
+        "unit"
+      ],
+      "issues": []
+    },
+    {
+      "id": "fraction-left",
+      "checkpoints": [
+        "units",
+        "unit",
+        "answer"
+      ],
+      "issues": []
+    },
+    {
+      "id": "mult-stamps-small",
+      "checkpoints": [
+        "units",
+        "unit"
+      ],
+      "issues": []
+    },
+    {
+      "id": "times-diff-beads",
+      "checkpoints": [
+        "units",
+        "unit"
+      ],
+      "issues": []
+    },
+    {
+      "id": "ratio-choir",
+      "checkpoints": [
+        "units",
+        "unit",
+        "answer"
+      ],
+      "issues": []
+    },
+    {
+      "id": "ratio-three-money",
+      "checkpoints": [
+        "units",
+        "unit",
+        "answer"
+      ],
+      "issues": []
+    },
+    {
+      "id": "more-pens",
+      "checkpoints": [
+        "units",
+        "unit",
+        "answer"
+      ],
+      "issues": []
+    },
+    {
+      "id": "more-money-decimal",
+      "checkpoints": [
+        "units",
+        "unit"
+      ],
+      "issues": []
+    },
+    {
+      "id": "times-diff-pages",
+      "checkpoints": [
+        "units",
+        "unit",
+        "answer"
+      ],
+      "issues": []
+    },
+    {
+      "id": "mult-concert-big",
+      "checkpoints": [
+        "units",
+        "unit"
+      ],
+      "issues": []
+    },
+    {
+      "id": "mult-tank-litres",
+      "checkpoints": [
+        "units",
+        "unit",
+        "answer"
+      ],
+      "issues": []
+    },
+    {
+      "id": "three-boxes-fewer",
+      "checkpoints": [
+        "units",
+        "unit",
+        "answer"
+      ],
+      "issues": []
+    },
+    {
+      "id": "decline-fraction-spent",
+      "checkpoints": [
+        "units",
+        "unit",
+        "answer"
+      ],
+      "issues": []
+    },
+    {
+      "id": "marbles-01-0",
+      "checkpoints": [
+        "units",
+        "unit",
+        "answer"
+      ],
+      "issues": []
+    }
+  ]
+}

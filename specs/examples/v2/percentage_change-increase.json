@@ -1,0 +1,53 @@
+{
+  "version": 2,
+  "title": "Percentage increase: find the price before",
+  "level": "P6",
+  "heuristic": "percentage_change",
+  "template": "bar-stages",
+  "board": "percentage",
+  "question": "The price of a scooter increased by 20%. The new price is $360. What was the price before the increase?",
+  "units": [{"name": "u", "meaning": "1 unit"}],
+  "quantities": [
+    {"id": "old_price", "label": "Price before the increase"},
+    {"id": "increase", "label": "Increase in price"},
+    {"id": "new_price", "label": "New price"}
+  ],
+  "relations": [
+    {"eq": "increase = 20/100*old_price", "from": "increased by 20%"},
+    {"eq": "new_price = old_price + increase", "from": "The price of a scooter increased by 20%"},
+    {"eq": "new_price = 360", "from": "The new price is $360"}
+  ],
+  "asked": {"expr": "old_price", "label": "Price before the increase"},
+  "answer": 300,
+  "stages": [
+    {"id": "before", "label": "Before", "bars": [
+      {"id": "old_bar", "quantity": "old_price", "label": "Old price", "segments": [{"expr": "5*u"}]}
+    ]},
+    {"id": "after", "label": "After", "bars": [
+      {"id": "new_bar", "quantity": "new_price", "label": "New price", "segments": [
+        {"expr": "5*u"},
+        {"expr": "u", "style": "added", "label": "+20%"}
+      ]}
+    ]}
+  ],
+  "timeline": [
+    {"do": "write_question", "say": "The price of a scooter increased by 20%. The new price is $360. What was the price before the increase?"},
+    {"do": "highlight", "text": "increased by 20%", "say": "The price went up by 20% of the old price."},
+    {"do": "draw_stage", "stage": "before", "say": "Let's draw the old price first."},
+    {"do": "draw_bar", "bar": "old_bar", "say": "20% is one fifth, so the old price is 5 equal units."},
+    {"do": "divide_units", "bar": "old_bar", "say": "Let's mark the 5 units. Each unit is 20% of the old price."},
+    {"do": "draw_stage", "stage": "after", "say": "Now let's draw the new price."},
+    {"do": "draw_bar", "bar": "new_bar", "say": "The new price has 1 more unit added, so it is 6 units."},
+    {"do": "divide_units", "bar": "new_bar", "say": "Let's mark all 6 units."},
+    {"do": "highlight", "text": "$360", "say": "The new price is $360."},
+    {"do": "bracket", "bar": "new_bar", "segments": [0, 1], "side": "bottom", "text": "$360", "say": "All 6 units are worth $360."},
+    {"do": "question_mark", "bar": "old_bar", "say": "We want the old price."},
+    {"do": "pause", "seconds": 2.0, "say": "Pause and think. What is 1 unit worth?"},
+    {"do": "write", "text": "6 units = 360", "say": "6 units are worth $360."},
+    {"do": "write", "text": "1 unit = 360 ÷ 6 = 60", "say": "So 1 unit is 360 divided by 6, which is 60."},
+    {"do": "label_unit", "bar": "old_bar", "text": "$60", "say": "Each unit is $60."},
+    {"do": "write", "text": "5 units = 5 × 60 = 300", "say": "The old price is 5 units. 5 times 60 is 300."},
+    {"do": "write", "text": "Check: 300 + 60 = 360 ✓", "say": "Let's check: $300 plus the $60 increase makes $360. It works!"},
+    {"do": "answer", "text": "The price before the increase was $300.", "say": "So, the price before the increase was $300. Well done!"}
+  ]
+}

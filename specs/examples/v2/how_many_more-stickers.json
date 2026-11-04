@@ -1,0 +1,44 @@
+{
+  "version": 2,
+  "title": "How many more: the difference between two bars",
+  "level": "P4",
+  "heuristic": "how_many_more",
+  "template": "bar",
+  "board": "comparison",
+  "question": "Kavya has 4 times as many stickers as Lily. They have 175 stickers altogether. How many more stickers does Kavya have than Lily?",
+  "units": [{"name": "u", "meaning": "1 unit"}],
+  "quantities": [
+    {"id": "kavya", "label": "Kavya's stickers"},
+    {"id": "lily", "label": "Lily's stickers"}
+  ],
+  "relations": [
+    {"eq": "kavya = 4*lily", "from": "Kavya has 4 times as many stickers as Lily"},
+    {"eq": "kavya + lily = 175", "from": "They have 175 stickers altogether"}
+  ],
+  "asked": {"expr": "kavya - lily", "label": "How many more stickers Kavya has than Lily"},
+  "answer": 105,
+  "stages": [
+    {"id": "all", "label": "Stickers", "bars": [
+      {"id": "kavya_bar", "quantity": "kavya", "label": "Kavya", "segments": [{"expr": "u"}, {"expr": "3*u", "label": "more"}]},
+      {"id": "lily_bar", "quantity": "lily", "label": "Lily", "segments": [{"expr": "u"}]}
+    ]}
+  ],
+  "timeline": [
+    {"do": "write_question", "say": "Kavya has 4 times as many stickers as Lily. They have 175 stickers altogether. How many more stickers does Kavya have than Lily?"},
+    {"do": "highlight", "text": "4 times as many stickers as Lily", "say": "Kavya has 4 times as many stickers as Lily."},
+    {"do": "draw_bar", "bar": "lily_bar", "say": "Lily's bar is 1 unit."},
+    {"do": "draw_bar", "bar": "kavya_bar", "say": "Kavya has 4 times as many, so her bar is 4 units."},
+    {"do": "divide_units", "bar": "kavya_bar", "say": "Let's mark Kavya's 4 equal units."},
+    {"do": "highlight", "text": "175 stickers altogether", "say": "Together they have 175 stickers."},
+    {"do": "bracket", "bars": ["kavya_bar", "lily_bar"], "side": "right", "text": "175", "say": "Both bars together make 175 stickers."},
+    {"do": "question_mark", "bar": "kavya_bar", "segments": [1, 1], "say": "Kavya has 3 more units than Lily. That is what we want."},
+    {"do": "pause", "seconds": 2.0, "say": "Pause and think. How many units are there altogether?"},
+    {"do": "write", "text": "Total units = 4 + 1 = 5", "say": "4 units plus 1 unit is 5 units."},
+    {"do": "write", "text": "5 units = 175", "say": "5 units are 175 stickers."},
+    {"do": "write", "text": "1 unit = 175 ÷ 5 = 35", "say": "So 1 unit is 175 divided by 5, which is 35."},
+    {"do": "label_unit", "bar": "lily_bar", "text": "35", "say": "Lily has 1 unit, which is 35 stickers."},
+    {"do": "write", "text": "3 units = 3 × 35 = 105", "say": "Kavya has 3 more units. 3 times 35 is 105."},
+    {"do": "write", "text": "Check: 4 × 35 + 35 = 175 ✓", "say": "Let's check: 140 and 35 make 175 altogether. It works!"},
+    {"do": "answer", "text": "Kavya has 105 more stickers than Lily.", "say": "So, Kavya has 105 more stickers than Lily. Well done!"}
+  ]
+}

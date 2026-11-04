@@ -1,0 +1,52 @@
+{
+  "version": 2,
+  "title": "Fraction of the remainder",
+  "level": "P5",
+  "heuristic": "remainder",
+  "template": "bar",
+  "board": "remainder",
+  "question": "Mrs Lee had some money. She spent 2/5 of it on a bag and 1/3 of the remainder on a book. She had $60 left. How much money did she have at first?",
+  "units": [{"name": "u", "meaning": "1 unit"}],
+  "quantities": [
+    {"id": "money", "label": "Mrs Lee's money at first"},
+    {"id": "bag", "label": "Cost of the bag"},
+    {"id": "remainder", "label": "Money left after the bag"},
+    {"id": "book", "label": "Cost of the book"},
+    {"id": "left", "label": "Money left at the end"}
+  ],
+  "relations": [
+    {"eq": "bag = 2/5*money", "from": "spent 2/5 of it on a bag"},
+    {"eq": "remainder = money - bag", "from": "the remainder"},
+    {"eq": "book = 1/3*remainder", "from": "1/3 of the remainder on a book"},
+    {"eq": "left = remainder - book", "from": "She had $60 left"},
+    {"eq": "left = 60", "from": "She had $60 left"}
+  ],
+  "asked": {"expr": "money", "label": "Mrs Lee's money at first"},
+  "answer": 150,
+  "stages": [
+    {"id": "all", "label": "Mrs Lee's money", "bars": [
+      {"id": "money_bar", "quantity": "money", "label": "Money", "segments": [
+        {"expr": "2*u", "style": "marked", "label": "bag"},
+        {"expr": "u", "style": "marked", "label": "book"},
+        {"expr": "2*u", "label": "left"}
+      ]}
+    ]}
+  ],
+  "timeline": [
+    {"do": "write_question", "say": "Mrs Lee had some money. She spent 2/5 of it on a bag and 1/3 of the remainder on a book. She had $60 left. How much money did she have at first?"},
+    {"do": "highlight", "text": "2/5 of it on a bag", "say": "She spent 2/5 of her money on a bag."},
+    {"do": "draw_bar", "bar": "money_bar", "say": "Let's draw her money as 5 equal units."},
+    {"do": "divide_units", "bar": "money_bar", "say": "2 of the 5 units went on the bag, leaving 3 units."},
+    {"do": "highlight", "text": "1/3 of the remainder", "say": "Then she spent 1/3 of the remainder, which is 1 of the 3 units."},
+    {"do": "highlight", "text": "$60 left", "say": "She had $60 left. That is the last 2 units."},
+    {"do": "bracket", "bar": "money_bar", "segments": [2, 2], "side": "bottom", "text": "$60", "say": "These 2 units are $60."},
+    {"do": "question_mark", "bar": "money_bar", "say": "We want all her money at first."},
+    {"do": "pause", "seconds": 2.0, "say": "Pause and think. What is 1 unit worth?"},
+    {"do": "write", "text": "2 units = $60", "say": "2 units are worth $60."},
+    {"do": "write", "text": "1 unit = 60 ÷ 2 = 30", "say": "So 1 unit is 60 divided by 2, which is 30."},
+    {"do": "label_unit", "bar": "money_bar", "text": "$30", "say": "Each unit is $30."},
+    {"do": "write", "text": "5 units = 5 × 30 = 150", "say": "She had 5 units at first. 5 times 30 is 150."},
+    {"do": "write", "text": "Check: 150 - 60 - 30 = 60 ✓", "say": "Let's check: $150 less $60 for the bag and $30 for the book leaves $60."},
+    {"do": "answer", "text": "She had $150 at first.", "say": "So, Mrs Lee had $150 at first. Well done!"}
+  ]
+}

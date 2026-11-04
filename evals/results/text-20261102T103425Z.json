@@ -1,0 +1,2829 @@
+{
+  "suite": "text",
+  "ran_at": "2026-11-02T10:34:25.820705+00:00",
+  "n": 32,
+  "correct": 29,
+  "declined": 3,
+  "wrong": 0,
+  "declined_as_designed": 3,
+  "answer_accuracy": 0.906,
+  "precision_when_answered": 1.0,
+  "checker_agreed": 29,
+  "p50_seconds": 8.0,
+  "p90_seconds": 16.3,
+  "mean_attempts": 1.24,
+  "rows": [
+    {
+      "id": "mult-stickers",
+      "problem_type": "multiples",
+      "expected": 200,
+      "may_decline": false,
+      "answer": 200.0,
+      "attempts": 1,
+      "check": "agreed",
+      "log": [
+        "attempt 0 model=muse-spark-1.3 -> OK (5 units, 1 unit = 50)",
+        "independent check (muse-spark-1.2) agreed: 200"
+      ],
+      "spec": {
+        "level": "P3-P4",
+        "model": {
+          "answer": 200,
+          "asked": "siti",
+          "bars": [
+            {
+              "id": "raju",
+              "label": "Raju",
+              "units": 1
+            },
+            {
+              "id": "siti",
+              "label": "Siti",
+              "units": 4
+            }
+          ],
+          "total": 250
+        },
+        "problem_type": "multiples",
+        "question": "Siti has 4 times as many stickers as Raju. They have 250 stickers altogether. How many stickers does Siti have?",
+        "timeline": [
+          {
+            "do": "write_question",
+            "say": "Siti has 4 times as many stickers as Raju. They have 250 stickers altogether. How many stickers does Siti have?"
+          },
+          {
+            "do": "draw_bar",
+            "id": "raju",
+            "say": "Let's draw Raju's bar first, one unit."
+          },
+          {
+            "do": "draw_bar",
+            "id": "siti",
+            "say": "Now draw Siti's bar, four times as long."
+          },
+          {
+            "do": "divide_units",
+            "id": "siti",
+            "say": "Let's divide Siti's bar into four equal units."
+          },
+          {
+            "do": "bracket_total",
+            "say": "Both bars together make 250 stickers.",
+            "text": "250"
+          },
+          {
+            "do": "question_mark",
+            "id": "siti",
+            "say": "We want to find Siti's stickers."
+          },
+          {
+            "do": "pause",
+            "say": "Pause and think. How many units altogether?",
+            "seconds": 2.0
+          },
+          {
+            "do": "write",
+            "say": "Five units are worth 250.",
+            "text": "5 units = 250"
+          },
+          {
+            "do": "write",
+            "say": "One unit is 250 divide 5, that is 50.",
+            "text": "1 unit = 250 ÷ 5 = 50"
+          },
+          {
+            "do": "label_unit",
+            "id": "raju",
+            "say": "One unit equals 50 stickers.",
+            "text": "50"
+          },
+          {
+            "do": "answer",
+            "say": "Siti has 200 stickers. Well done!",
+            "text": "Siti has 200 stickers."
+          }
+        ],
+        "title": "Bar Model: Multiples"
+      },
+      "outcome": "correct",
+      "seconds": 6.7
+    },
+    {
+      "id": "mult-rice-beans",
+      "problem_type": "multiples",
+      "expected": 3,
+      "may_decline": false,
+      "answer": 3.0,
+      "attempts": 2,
+      "check": "agreed",
+      "log": [
+        "attempt 0 model=muse-spark-1.3 -> FAILED: timeline[9] answer narration does not state the answer 3",
+        "attempt 1 model=muse-spark-1.3 -> OK (6 units, 1 unit = 3)",
+        "independent check (muse-spark-1.2) agreed: 3"
+      ],
+      "spec": {
+        "level": "P3-P4",
+        "model": {
+          "answer": 3,
+          "asked": "beans",
+          "bars": [
+            {
+              "id": "beans",
+              "label": "Beans",
+              "units": 1
+            },
+            {
+              "id": "rice",
+              "label": "Rice",
+              "units": 5
+            }
+          ],
+          "total": 18
+        },
+        "problem_type": "part-whole",
+        "question": "A bag of rice is 5 times as heavy as a bag of beans. Together they weigh 18 kg. How heavy is the bag of beans?",
+        "timeline": [
+          {
+            "do": "write_question",
+            "say": "A bag of rice is 5 times as heavy as a bag of beans. Together they weigh 18 kg. How heavy is the bag of beans?"
+          },
+          {
+            "do": "draw_bar",
+            "id": "beans",
+            "say": "Let's draw Beans bar first. One unit."
+          },
+          {
+            "do": "draw_bar",
+            "id": "rice",
+            "say": "Rice is five times heavier. Draw five units."
+          },
+          {
+            "do": "bracket_total",
+            "say": "Both bags weigh eighteen kilograms together.",
+            "text": "18"
+          },
+          {
+            "do": "pause",
+            "say": "Pause and think. How many units altogether?",
+            "seconds": 2.0
+          },
+          {
+            "do": "write",
+            "say": "Six units are worth eighteen kilograms.",
+            "text": "6 units = 18"
+          },
+          {
+            "do": "write",
+            "say": "One unit is eighteen divided by six, three.",
+            "text": "1 unit = 18 ÷ 6 = 3"
+          },
+          {
+            "do": "label_unit",
+            "id": "beans",
+            "say": "So one unit is three kilograms.",
+            "text": "3"
+          },
+          {
+            "do": "question_mark",
+            "id": "beans",
+            "say": "We need Beans weight. Mark with question."
+          },
+          {
+            "do": "answer",
+            "say": "The bag of beans is 3 kilograms. Well done!",
+            "text": "The bag of beans is 3 kg."
+          }
+        ],
+        "title": "Bar Model: Part-Whole"
+      },
+      "outcome": "correct",
+      "seconds": 20.9
+    },
+    {
+      "id": "mult-car-money",
+      "problem_type": "multiples",
+      "expected": 12000,
+      "may_decline": false,
+      "answer": 12000.0,
+      "attempts": 2,
+      "check": "agreed",
+      "log": [
+        "attempt 0 model=muse-spark-1.3 -> FAILED: timeline[9] answer narration does not state the answer 12000",
+        "attempt 1 model=muse-spark-1.3 -> OK (4 units, 1 unit = 12000)",
+        "independent check (muse-spark-1.2) agreed: 12000"
+      ],
+      "spec": {
+        "level": "P3-P4",
+        "model": {
+          "answer": 12000,
+          "asked": "motorcycle",
+          "bars": [
+            {
+              "id": "motorcycle",
+              "label": "Motorcycle",
+              "units": 1
+            },
+            {
+              "id": "car",
+              "label": "Car",
+              "units": 3
+            }
+          ],
+          "total": 48000
+        },
+        "problem_type": "multiples",
+        "question": "Mr Tan's car costs 3 times as much as his motorcycle. Together they cost $48,000. How much does the motorcycle cost?",
+        "timeline": [
+          {
+            "do": "write_question",
+            "say": "Mr Tan's car costs 3 times as much as his motorcycle. Together they cost $48,000. How much does the motorcycle cost?"
+          },
+          {
+            "do": "draw_bar",
+            "id": "motorcycle",
+            "say": "Let's draw motorcycle bar first. It has 1 unit."
+          },
+          {
+            "do": "draw_bar",
+            "id": "car",
+            "say": "Car costs 3 times more. Draw 3 units."
+          },
+          {
+            "do": "bracket_total",
+            "say": "Together they make 48000.",
+            "text": "48000"
+          },
+          {
+            "do": "question_mark",
+            "id": "motorcycle",
+            "say": "We do not know motorcycle cost yet."
+          },
+          {
+            "do": "pause",
+            "say": "Pause and think. How many units altogether?",
+            "seconds": 2.0
+          },
+          {
+            "do": "write",
+            "say": "4 units make 48000 altogether.",
+            "text": "4 units = 48000"
+          },
+          {
+            "do": "write",
+            "say": "1 unit is 12000. Good thinking.",
+            "text": "1 unit = 48000 ÷ 4 = 12000"
+          },
+          {
+            "do": "label_unit",
+            "id": "motorcycle",
+            "say": "1 unit is 12000. Nice work!",
+            "text": "12000"
+          },
+          {
+            "do": "answer",
+            "say": "The motorcycle costs 12000 dollars. Well done!",
+            "text": "The motorcycle costs $12000."
+          }
+        ],
+        "title": "Bar Model: Multiples"
+      },
+      "outcome": "correct",
+      "seconds": 14.7
+    },
+    {
+      "id": "mult-dog-decimal",
+      "problem_type": "multiples",
+      "expected": 20.25,
+      "may_decline": false,
+      "answer": 20.25,
+      "attempts": 1,
+      "check": "agreed",
+      "log": [
+        "attempt 0 model=muse-spark-1.3 -> OK (10 units, 1 unit = 2.25)",
+        "independent check (muse-spark-1.2) agreed: 20.25"
+      ],
+      "spec": {
+        "level": "P3-P4",
+        "model": {
+          "answer": 20.25,
+          "asked": "dog",
+          "bars": [
+            {
+              "id": "kitten",
+              "label": "Kitten",
+              "units": 1
+            },
+            {
+              "id": "dog",
+              "label": "Dog",
+              "units": 9
+            }
+          ],
+          "total": 22.5
+        },
+        "problem_type": "multiples",
+        "question": "A dog is 9 times as heavy as a kitten. Together they weigh 22.5 kg. How heavy is the dog?",
+        "timeline": [
+          {
+            "do": "write_question",
+            "say": "A dog is 9 times as heavy as a kitten. Together they weigh 22.5 kg. How heavy is the dog?"
+          },
+          {
+            "do": "draw_bar",
+            "id": "kitten",
+            "say": "Let's draw Kitten's bar first. Kitten has 1 unit."
+          },
+          {
+            "do": "draw_bar",
+            "id": "dog",
+            "say": "Dog is 9 times as heavy, so draw 9 units."
+          },
+          {
+            "do": "divide_units",
+            "id": "dog",
+            "say": "Split Dog's bar into 9 equal units."
+          },
+          {
+            "do": "bracket_total",
+            "say": "Together they weigh 22.5 kilograms.",
+            "text": "22.5"
+          },
+          {
+            "do": "question_mark",
+            "id": "dog",
+            "say": "We want to find how heavy the dog is."
+          },
+          {
+            "do": "pause",
+            "say": "Pause and think. How many units altogether?",
+            "seconds": 2.0
+          },
+          {
+            "do": "write",
+            "say": "10 units are worth 22.5.",
+            "text": "10 units = 22.5"
+          },
+          {
+            "do": "write",
+            "say": "Find 1 unit by dividing.",
+            "text": "1 unit = 22.5 ÷ 10 = 2.25"
+          },
+          {
+            "do": "label_unit",
+            "id": "kitten",
+            "say": "One unit is 2.25 kilograms.",
+            "text": "2.25"
+          },
+          {
+            "do": "write",
+            "say": "Dog has 9 units, so multiply.",
+            "text": "9 units = 9 × 2.25 = 20.25"
+          },
+          {
+            "do": "answer",
+            "say": "The dog is 20.25 kilograms. Well done!",
+            "text": "The dog is 20.25 kg."
+          }
+        ],
+        "title": "Bar Model: Multiples"
+      },
+      "outcome": "correct",
+      "seconds": 6.3
+    },
+    {
+      "id": "ratio-two",
+      "problem_type": "ratio",
+      "expected": 90,
+      "may_decline": false,
+      "answer": 90.0,
+      "attempts": 1,
+      "check": "agreed",
+      "log": [
+        "attempt 0 model=muse-spark-1.3 -> OK (5 units, 1 unit = 30)",
+        "independent check (muse-spark-1.2) agreed: 90"
+      ],
+      "spec": {
+        "level": "P3-P4",
+        "model": {
+          "answer": 90,
+          "asked": "bala",
+          "bars": [
+            {
+              "id": "ann",
+              "label": "Ann",
+              "units": 2
+            },
+            {
+              "id": "bala",
+              "label": "Bala",
+              "units": 3
+            }
+          ],
+          "total": 150
+        },
+        "problem_type": "ratio",
+        "question": "Ann and Bala share 150 stickers in the ratio 2 : 3. How many stickers does Bala get?",
+        "timeline": [
+          {
+            "do": "write_question",
+            "say": "Ann and Bala share 150 stickers in the ratio 2 : 3. How many stickers does Bala get?"
+          },
+          {
+            "do": "draw_bar",
+            "id": "ann",
+            "say": "Let's draw Ann's bar first. Ann has 2 units."
+          },
+          {
+            "do": "divide_units",
+            "id": "ann",
+            "say": "Split Ann's bar into 2 equal units."
+          },
+          {
+            "do": "draw_bar",
+            "id": "bala",
+            "say": "Now draw Bala's bar. Bala has 3 units."
+          },
+          {
+            "do": "divide_units",
+            "id": "bala",
+            "say": "Split Bala's bar into 3 equal units."
+          },
+          {
+            "do": "bracket_total",
+            "say": "Both bars make 150 stickers together.",
+            "text": "150"
+          },
+          {
+            "do": "question_mark",
+            "id": "bala",
+            "say": "We do not know Bala yet. Mark with question."
+          },
+          {
+            "do": "pause",
+            "say": "Pause and think. How much is one unit?",
+            "seconds": 2.0
+          },
+          {
+            "do": "write",
+            "say": "5 units are worth 150 stickers.",
+            "text": "5 units = 150"
+          },
+          {
+            "do": "write",
+            "say": "One unit is 30 stickers. Nice!",
+            "text": "1 unit = 150 ÷ 5 = 30"
+          },
+          {
+            "do": "write",
+            "say": "Bala has 3 units. Count 3 times 30.",
+            "text": "3 units = 3 × 30 = 90"
+          },
+          {
+            "do": "answer",
+            "say": "So, Bala gets 90 stickers. Well done!",
+            "text": "Bala gets 90 stickers."
+          }
+        ],
+        "title": "Bar Model: Ratio"
+      },
+      "outcome": "correct",
+      "seconds": 11.2
+    },
+    {
+      "id": "ratio-hall",
+      "problem_type": "ratio",
+      "expected": 200,
+      "may_decline": false,
+      "answer": 200.0,
+      "attempts": 1,
+      "check": "agreed",
+      "log": [
+        "attempt 0 model=muse-spark-1.3 -> OK (9 units, 1 unit = 40)",
+        "independent check (muse-spark-1.2) agreed: 200"
+      ],
+      "spec": {
+        "level": "P3-P4",
+        "model": {
+          "answer": 200,
+          "asked": "girls",
+          "bars": [
+            {
+              "id": "boys",
+              "label": "Boys",
+              "units": 4
+            },
+            {
+              "id": "girls",
+              "label": "Girls",
+              "units": 5
+            }
+          ],
+          "total": 360
+        },
+        "problem_type": "ratio",
+        "question": "The ratio of boys to girls in a hall is 4 : 5. There are 360 children in the hall. How many girls are there?",
+        "timeline": [
+          {
+            "do": "write_question",
+            "say": "The ratio of boys to girls in a hall is 4 : 5. There are 360 children in the hall. How many girls are there?"
+          },
+          {
+            "do": "draw_bar",
+            "id": "boys",
+            "say": "Let's draw Boys bar first. Boys has 4 units."
+          },
+          {
+            "do": "draw_bar",
+            "id": "girls",
+            "say": "Now draw Girls bar. Girls has 5 units."
+          },
+          {
+            "do": "bracket_total",
+            "say": "Together they make 360 children.",
+            "text": "360"
+          },
+          {
+            "do": "question_mark",
+            "id": "girls",
+            "say": "We want girls. Mark with question mark."
+          },
+          {
+            "do": "pause",
+            "say": "Pause and think. How many units altogether?",
+            "seconds": 2.0
+          },
+          {
+            "do": "write",
+            "say": "9 units are worth 360.",
+            "text": "9 units = 360"
+          },
+          {
+            "do": "write",
+            "say": "1 unit is 40 children.",
+            "text": "1 unit = 360 ÷ 9 = 40"
+          },
+          {
+            "do": "write",
+            "say": "5 units make 200 girls.",
+            "text": "5 units = 5 × 40 = 200"
+          },
+          {
+            "do": "answer",
+            "say": "So, there are 200 girls. Well done!",
+            "text": "There are 200 girls."
+          }
+        ],
+        "title": "Bar Model: Ratio"
+      },
+      "outcome": "correct",
+      "seconds": 8.0
+    },
+    {
+      "id": "ratio-three",
+      "problem_type": "ratio",
+      "expected": 150,
+      "may_decline": false,
+      "answer": 150.0,
+      "attempts": 1,
+      "check": "agreed",
+      "log": [
+        "attempt 0 model=muse-spark-1.3 -> OK (8 units, 1 unit = 30)",
+        "independent check (muse-spark-1.2) agreed: 150"
+      ],
+      "spec": {
+        "level": "P3-P4",
+        "model": {
+          "answer": 150,
+          "asked": "chong",
+          "bars": [
+            {
+              "id": "ali",
+              "label": "Ali",
+              "units": 1
+            },
+            {
+              "id": "ben",
+              "label": "Ben",
+              "units": 2
+            },
+            {
+              "id": "chong",
+              "label": "Chong",
+              "units": 5
+            }
+          ],
+          "total": 240
+        },
+        "problem_type": "ratio",
+        "question": "Ali, Ben and Chong share $240 in the ratio 1 : 2 : 5. How much money does Chong get?",
+        "timeline": [
+          {
+            "do": "write_question",
+            "say": "Ali, Ben and Chong share $240 in the ratio 1 : 2 : 5. How much money does Chong get?"
+          },
+          {
+            "do": "draw_bar",
+            "id": "ali",
+            "say": "Let's draw Ali's bar first. Ali has 1 unit."
+          },
+          {
+            "do": "draw_bar",
+            "id": "ben",
+            "say": "Next, Ben's bar has 2 units."
+          },
+          {
+            "do": "divide_units",
+            "id": "ben",
+            "say": "Divide Ben's bar into 2 equal units."
+          },
+          {
+            "do": "draw_bar",
+            "id": "chong",
+            "say": "Chong's bar has 5 units."
+          },
+          {
+            "do": "divide_units",
+            "id": "chong",
+            "say": "Divide Chong's bar into 5 equal units."
+          },
+          {
+            "do": "question_mark",
+            "id": "chong",
+            "say": "Chong's amount is unknown. Let's mark it."
+          },
+          {
+            "do": "bracket_total",
+            "say": "All bars make 240 dollars together.",
+            "text": "240"
+          },
+          {
+            "do": "pause",
+            "say": "Pause and think. How many units altogether?",
+            "seconds": 2.0
+          },
+          {
+            "do": "write",
+            "say": "8 units are worth 240 dollars.",
+            "text": "8 units = 240"
+          },
+          {
+            "do": "label_unit",
+            "id": "ali",
+            "say": "1 unit is 30 dollars.",
+            "text": "30"
+          },
+          {
+            "do": "write",
+            "say": "Chong has 5 units, that is 150 dollars.",
+            "text": "5 units = 5 x 30 = 150"
+          },
+          {
+            "do": "answer",
+            "say": "So, Chong gets 150 dollars. Well done!",
+            "text": "Chong gets $150."
+          }
+        ],
+        "title": "Bar Model: Ratio"
+      },
+      "outcome": "correct",
+      "seconds": 17.3
+    },
+    {
+      "id": "ratio-string",
+      "problem_type": "ratio",
+      "expected": 36,
+      "may_decline": false,
+      "answer": 36.0,
+      "attempts": 1,
+      "check": "agreed",
+      "log": [
+        "attempt 0 model=muse-spark-1.3 -> OK (7 units, 1 unit = 12)",
+        "independent check (muse-spark-1.2) agreed: 36"
+      ],
+      "spec": {
+        "level": "P3-P4",
+        "model": {
+          "answer": 36,
+          "asked": "shorter",
+          "bars": [
+            {
+              "id": "shorter",
+              "label": "Shorter",
+              "units": 3
+            },
+            {
+              "id": "longer",
+              "label": "Longer",
+              "units": 4
+            }
+          ],
+          "total": 84
+        },
+        "problem_type": "ratio",
+        "question": "A string 84 cm long is cut into two pieces in the ratio 3 : 4. How long is the shorter piece?",
+        "timeline": [
+          {
+            "do": "write_question",
+            "say": "A string 84 cm long is cut into two pieces in the ratio 3 : 4. How long is the shorter piece?"
+          },
+          {
+            "do": "draw_bar",
+            "id": "shorter",
+            "say": "Let's draw shorter piece first. It has 3 units."
+          },
+          {
+            "do": "draw_bar",
+            "id": "longer",
+            "say": "Now draw longer piece. It has 4 units."
+          },
+          {
+            "do": "bracket_total",
+            "say": "Both pieces come from 84 cm altogether.",
+            "text": "84"
+          },
+          {
+            "do": "question_mark",
+            "id": "shorter",
+            "say": "We need to find shorter piece length."
+          },
+          {
+            "do": "pause",
+            "say": "Pause and think. How many units altogether?",
+            "seconds": 2.0
+          },
+          {
+            "do": "write",
+            "say": "7 units are worth 84 cm.",
+            "text": "7 units = 84"
+          },
+          {
+            "do": "write",
+            "say": "1 unit is 12 cm.",
+            "text": "1 unit = 84 ÷ 7 = 12"
+          },
+          {
+            "do": "write",
+            "say": "3 units make 36 cm.",
+            "text": "3 units = 3 × 12 = 36"
+          },
+          {
+            "do": "answer",
+            "say": "So, shorter piece is 36 cm. Well done!",
+            "text": "The shorter piece is 36 cm."
+          }
+        ],
+        "title": "Bar Model: Ratio"
+      },
+      "outcome": "correct",
+      "seconds": 9.3
+    },
+    {
+      "id": "more-total",
+      "problem_type": "comparison",
+      "expected": 60,
+      "may_decline": false,
+      "answer": 60.0,
+      "attempts": 1,
+      "check": "agreed",
+      "log": [
+        "attempt 0 model=muse-spark-1.3 -> OK (2 units, 1 unit = 40)",
+        "independent check (muse-spark-1.2) agreed: 60"
+      ],
+      "spec": {
+        "level": "P3-P4",
+        "model": {
+          "answer": 60,
+          "asked": "ali",
+          "bars": [
+            {
+              "id": "ben",
+              "label": "Ben",
+              "units": 1
+            },
+            {
+              "extra": 20,
+              "id": "ali",
+              "label": "Ali",
+              "units": 1
+            }
+          ],
+          "total": 100
+        },
+        "problem_type": "comparison",
+        "question": "Ali has 20 more marbles than Ben. Together they have 100 marbles. How many marbles does Ali have?",
+        "timeline": [
+          {
+            "do": "write_question",
+            "say": "Ali has 20 more marbles than Ben. Together they have 100 marbles. How many marbles does Ali have?"
+          },
+          {
+            "do": "draw_bar",
+            "id": "ben",
+            "say": "Let's draw Ben's bar first. Ben has one unit."
+          },
+          {
+            "do": "draw_bar",
+            "id": "ali",
+            "say": "Now draw Ali's bar, same size plus twenty more."
+          },
+          {
+            "do": "bracket_total",
+            "say": "Both bars together make one hundred.",
+            "text": "100"
+          },
+          {
+            "do": "question_mark",
+            "id": "ali",
+            "say": "We do not know Ali. Put a question mark."
+          },
+          {
+            "do": "pause",
+            "say": "Pause and think. What is left after taking away twenty?",
+            "seconds": 2.0
+          },
+          {
+            "do": "write",
+            "say": "Two units equal eighty after taking away twenty.",
+            "text": "2 units = 100 - 20 = 80"
+          },
+          {
+            "do": "label_unit",
+            "id": "ben",
+            "say": "One unit is forty. Good work!",
+            "text": "40"
+          },
+          {
+            "do": "write",
+            "say": "Forty plus twenty makes sixty for Ali.",
+            "text": "40 + 20 = 60"
+          },
+          {
+            "do": "answer",
+            "say": "So, Ali has 60 marbles. Well done!",
+            "text": "Ali has 60 marbles."
+          }
+        ],
+        "title": "Bar Model: Comparison"
+      },
+      "outcome": "correct",
+      "seconds": 8.0
+    },
+    {
+      "id": "fewer-total",
+      "problem_type": "comparison",
+      "expected": 35,
+      "may_decline": false,
+      "answer": 35.0,
+      "attempts": 1,
+      "check": "agreed",
+      "log": [
+        "attempt 0 model=muse-spark-1.3 -> OK (2 units, 1 unit = 35)",
+        "independent check (muse-spark-1.2) agreed: 35"
+      ],
+      "spec": {
+        "level": "P3-P4",
+        "model": {
+          "answer": 35,
+          "asked": "jiahui",
+          "bars": [
+            {
+              "id": "jiahui",
+              "label": "Jia Hui",
+              "units": 1
+            },
+            {
+              "extra": 15,
+              "id": "mei",
+              "label": "Mei",
+              "units": 1
+            }
+          ],
+          "total": 85
+        },
+        "problem_type": "comparison",
+        "question": "Jia Hui has 15 fewer beads than Mei. They have 85 beads altogether. How many beads does Jia Hui have?",
+        "timeline": [
+          {
+            "do": "write_question",
+            "say": "Jia Hui has 15 fewer beads than Mei. They have 85 beads altogether. How many beads does Jia Hui have?"
+          },
+          {
+            "do": "draw_bar",
+            "id": "jiahui",
+            "say": "Let's draw Jia Hui's bar first. She has less."
+          },
+          {
+            "do": "draw_bar",
+            "id": "mei",
+            "say": "Now draw Mei's bar. Same unit plus fifteen more."
+          },
+          {
+            "do": "bracket_total",
+            "say": "Together both bars make eighty-five beads.",
+            "text": "85"
+          },
+          {
+            "do": "question_mark",
+            "id": "jiahui",
+            "say": "We want Jia Hui's beads. Mark with question."
+          },
+          {
+            "do": "pause",
+            "say": "Pause and think. How to find one unit?",
+            "seconds": 2.0
+          },
+          {
+            "do": "write",
+            "say": "Two units equal eighty-five minus fifteen, seventy.",
+            "text": "2 units = 85 - 15 = 70"
+          },
+          {
+            "do": "label_unit",
+            "id": "jiahui",
+            "say": "One unit is seventy divided by two, thirty-five.",
+            "text": "35"
+          },
+          {
+            "do": "answer",
+            "say": "So, Jia Hui has 35 beads. Well done!",
+            "text": "Jia Hui has 35 beads."
+          }
+        ],
+        "title": "Bar Model: Comparison"
+      },
+      "outcome": "correct",
+      "seconds": 7.9
+    },
+    {
+      "id": "more-money",
+      "problem_type": "comparison",
+      "expected": 2,
+      "may_decline": false,
+      "answer": 2.0,
+      "attempts": 1,
+      "check": "agreed",
+      "log": [
+        "attempt 0 model=muse-spark-1.3 -> OK (2 units, 1 unit = 2)",
+        "independent check (muse-spark-1.2) agreed: 2"
+      ],
+      "spec": {
+        "level": "P3-P4",
+        "model": {
+          "answer": 2,
+          "asked": "pencil",
+          "bars": [
+            {
+              "id": "pencil",
+              "label": "Pencil",
+              "units": 1
+            },
+            {
+              "extra": 3,
+              "id": "pen",
+              "label": "Pen",
+              "units": 1
+            }
+          ],
+          "total": 7
+        },
+        "problem_type": "comparison",
+        "question": "A pen costs $3 more than a pencil. Together they cost $7. How much does the pencil cost?",
+        "timeline": [
+          {
+            "do": "write_question",
+            "say": "A pen costs $3 more than a pencil. Together they cost $7. How much does the pencil cost?"
+          },
+          {
+            "do": "draw_bar",
+            "id": "pencil",
+            "say": "Let's draw the pencil bar first, one unit."
+          },
+          {
+            "do": "draw_bar",
+            "id": "pen",
+            "say": "Pen costs three dollars more, same unit plus extra."
+          },
+          {
+            "do": "bracket_total",
+            "say": "Together they cost seven dollars in total.",
+            "text": "7"
+          },
+          {
+            "do": "question_mark",
+            "id": "pencil",
+            "say": "We want the pencil price, mark it unknown."
+          },
+          {
+            "do": "pause",
+            "say": "Pause and think. What is two units worth?",
+            "seconds": 2.0
+          },
+          {
+            "do": "write",
+            "say": "Two units are worth four dollars.",
+            "text": "2 units = 7 - 3 = 4"
+          },
+          {
+            "do": "label_unit",
+            "id": "pencil",
+            "say": "One unit is two dollars.",
+            "text": "2"
+          },
+          {
+            "do": "answer",
+            "say": "So, the pencil costs 2 dollars. Well done!",
+            "text": "The pencil costs $2."
+          }
+        ],
+        "title": "Bar Model: Comparison"
+      },
+      "outcome": "correct",
+      "seconds": 8.1
+    },
+    {
+      "id": "more-three-boxes",
+      "problem_type": "comparison",
+      "expected": 25,
+      "may_decline": false,
+      "answer": 25.0,
+      "attempts": 1,
+      "check": "agreed",
+      "log": [
+        "attempt 0 model=muse-spark-1.3 -> OK (3 units, 1 unit = 25)",
+        "independent check (muse-spark-1.2) agreed: 25"
+      ],
+      "spec": {
+        "level": "P3-P4",
+        "model": {
+          "answer": 25,
+          "asked": "box_b",
+          "bars": [
+            {
+              "id": "box_b",
+              "label": "Box B",
+              "units": 1
+            },
+            {
+              "extra": 12,
+              "id": "box_a",
+              "label": "Box A",
+              "units": 1
+            },
+            {
+              "extra": 6,
+              "id": "box_c",
+              "label": "Box C",
+              "units": 1
+            }
+          ],
+          "total": 93
+        },
+        "problem_type": "part-whole",
+        "question": "Box A has 12 more apples than Box B. Box C has 6 more apples than Box B. There are 93 apples altogether. How many apples are in Box B?",
+        "timeline": [
+          {
+            "do": "write_question",
+            "say": "Box A has 12 more apples than Box B. Box C has 6 more apples than Box B. There are 93 apples altogether. How many apples are in Box B?"
+          },
+          {
+            "do": "draw_bar",
+            "id": "box_b",
+            "say": "Let's draw Box B first. It has one unit."
+          },
+          {
+            "do": "draw_bar",
+            "id": "box_a",
+            "say": "Box A has same unit plus 12 more."
+          },
+          {
+            "do": "draw_bar",
+            "id": "box_c",
+            "say": "Box C has same unit plus 6 more."
+          },
+          {
+            "do": "bracket_total",
+            "say": "All three boxes make 93 altogether.",
+            "text": "93"
+          },
+          {
+            "do": "question_mark",
+            "id": "box_b",
+            "say": "We want Box B. Which part is unknown?"
+          },
+          {
+            "do": "pause",
+            "say": "Pause and think. What is one unit?",
+            "seconds": 2.0
+          },
+          {
+            "do": "write",
+            "say": "Extra apples add to 18.",
+            "text": "12 + 6 = 18"
+          },
+          {
+            "do": "write",
+            "say": "Three units are worth 75 apples.",
+            "text": "93 - 18 = 75"
+          },
+          {
+            "do": "write",
+            "say": "One unit is 75 divide 3, 25.",
+            "text": "75 ÷ 3 = 25"
+          },
+          {
+            "do": "label_unit",
+            "id": "box_b",
+            "say": "One unit means 25 apples.",
+            "text": "25"
+          },
+          {
+            "do": "answer",
+            "say": "So, Box B has 25 apples. Well done!",
+            "text": "Box B has 25 apples."
+          }
+        ],
+        "title": "Bar Model: Part-Whole"
+      },
+      "outcome": "correct",
+      "seconds": 8.1
+    },
+    {
+      "id": "times-diff",
+      "problem_type": "comparison",
+      "expected": 20,
+      "may_decline": false,
+      "answer": 20.0,
+      "attempts": 1,
+      "check": "agreed",
+      "log": [
+        "attempt 0 model=muse-spark-1.3 -> OK (4 units, 1 unit = 20)",
+        "independent check (muse-spark-1.2) agreed: 20"
+      ],
+      "spec": {
+        "level": "P3-P4",
+        "model": {
+          "answer": 20,
+          "asked": "ben",
+          "bars": [
+            {
+              "id": "ben",
+              "label": "Ben",
+              "units": 1
+            },
+            {
+              "id": "ali",
+              "label": "Ali",
+              "units": 3
+            }
+          ],
+          "difference": {
+            "less": "ben",
+            "more": "ali",
+            "value": 40
+          }
+        },
+        "problem_type": "multiples",
+        "question": "Ali has 3 times as many marbles as Ben. Ali has 40 more marbles than Ben. How many marbles does Ben have?",
+        "timeline": [
+          {
+            "do": "write_question",
+            "say": "Ali has 3 times as many marbles as Ben. Ali has 40 more marbles than Ben. How many marbles does Ben have?"
+          },
+          {
+            "do": "draw_bar",
+            "id": "ben",
+            "say": "Let's draw Ben's bar first. Ben has 1 unit."
+          },
+          {
+            "do": "draw_bar",
+            "id": "ali",
+            "say": "Ali has 3 times. Draw 3 units for Ali."
+          },
+          {
+            "do": "bracket_difference",
+            "say": "This extra part is 40 marbles.",
+            "text": "40"
+          },
+          {
+            "do": "question_mark",
+            "id": "ben",
+            "say": "We need Ben's marbles. Mark with question."
+          },
+          {
+            "do": "pause",
+            "say": "Pause and think. How much is 1 unit?",
+            "seconds": 2.0
+          },
+          {
+            "do": "divide_units",
+            "id": "ali",
+            "say": "Ali's bar shows 3 equal units."
+          },
+          {
+            "do": "write",
+            "say": "2 extra units are 40.",
+            "text": "2 units = 40"
+          },
+          {
+            "do": "write",
+            "say": "1 unit is 40 divide 2 equals 20.",
+            "text": "1 unit = 40 ÷ 2 = 20"
+          },
+          {
+            "do": "label_unit",
+            "id": "ben",
+            "say": "One unit is 20 marbles.",
+            "text": "20"
+          },
+          {
+            "do": "answer",
+            "say": "So, Ben has 20 marbles. Well done!",
+            "text": "Ben has 20 marbles."
+          }
+        ],
+        "title": "Bar Model: Multiples"
+      },
+      "outcome": "correct",
+      "seconds": 6.7
+    },
+    {
+      "id": "times-diff-cards",
+      "problem_type": "comparison",
+      "expected": 80,
+      "may_decline": false,
+      "answer": 80.0,
+      "attempts": 1,
+      "check": "agreed",
+      "log": [
+        "attempt 0 model=muse-spark-1.3 -> OK (6 units, 1 unit = 16)",
+        "independent check (muse-spark-1.2) agreed: 80"
+      ],
+      "spec": {
+        "level": "P3-P4",
+        "model": {
+          "answer": 80,
+          "asked": "peter",
+          "bars": [
+            {
+              "id": "sam",
+              "label": "Sam",
+              "units": 1
+            },
+            {
+              "id": "peter",
+              "label": "Peter",
+              "units": 5
+            }
+          ],
+          "difference": {
+            "less": "sam",
+            "more": "peter",
+            "value": 64
+          }
+        },
+        "problem_type": "multiples",
+        "question": "Peter has 5 times as many cards as Sam. Peter has 64 more cards than Sam. How many cards does Peter have?",
+        "timeline": [
+          {
+            "do": "write_question",
+            "say": "Peter has 5 times as many cards as Sam. Peter has 64 more cards than Sam. How many cards does Peter have?"
+          },
+          {
+            "do": "draw_bar",
+            "id": "sam",
+            "say": "Let's draw Sam's bar first. Sam has 1 unit."
+          },
+          {
+            "do": "draw_bar",
+            "id": "peter",
+            "say": "Peter has 5 equal units."
+          },
+          {
+            "do": "divide_units",
+            "id": "peter",
+            "say": "We cut Peter's bar into 5 equal units."
+          },
+          {
+            "do": "bracket_difference",
+            "say": "Peter has 64 more than Sam.",
+            "text": "64"
+          },
+          {
+            "do": "pause",
+            "say": "Pause and think. How much is one unit?",
+            "seconds": 2.0
+          },
+          {
+            "do": "write",
+            "say": "4 extra units are worth 64.",
+            "text": "4 units = 64"
+          },
+          {
+            "do": "write",
+            "say": "1 unit is 64 divided by 4.",
+            "text": "1 unit = 64 ÷ 4 = 16"
+          },
+          {
+            "do": "label_unit",
+            "id": "sam",
+            "say": "1 unit is 16 cards.",
+            "text": "16"
+          },
+          {
+            "do": "question_mark",
+            "id": "peter",
+            "say": "We want Peter's cards. Mark with question."
+          },
+          {
+            "do": "answer",
+            "say": "So, Peter has 80 cards. Well done!",
+            "text": "Peter has 80 cards."
+          }
+        ],
+        "title": "Bar Model: Multiples"
+      },
+      "outcome": "correct",
+      "seconds": 5.6
+    },
+    {
+      "id": "times-diff-heavier",
+      "problem_type": "comparison",
+      "expected": 1.5,
+      "may_decline": false,
+      "answer": 1.5,
+      "attempts": 1,
+      "check": "agreed",
+      "log": [
+        "attempt 0 model=muse-spark-1.3 -> OK (5 units, 1 unit = 1.5)",
+        "independent check (muse-spark-1.2) agreed: 1.5"
+      ],
+      "spec": {
+        "level": "P3-P4",
+        "model": {
+          "answer": 1.5,
+          "asked": "pineapple",
+          "bars": [
+            {
+              "id": "pineapple",
+              "label": "Pineapple",
+              "units": 1
+            },
+            {
+              "id": "watermelon",
+              "label": "Watermelon",
+              "units": 4
+            }
+          ],
+          "difference": {
+            "less": "pineapple",
+            "more": "watermelon",
+            "value": 4.5
+          }
+        },
+        "problem_type": "multiples",
+        "question": "A watermelon is 4 times as heavy as a pineapple. The watermelon is 4.5 kg heavier than the pineapple. How heavy is the pineapple?",
+        "timeline": [
+          {
+            "do": "write_question",
+            "say": "A watermelon is 4 times as heavy as a pineapple. The watermelon is 4.5 kg heavier than the pineapple. How heavy is the pineapple?"
+          },
+          {
+            "do": "draw_bar",
+            "id": "pineapple",
+            "say": "Let's draw the pineapple first. It has one unit."
+          },
+          {
+            "do": "draw_bar",
+            "id": "watermelon",
+            "say": "Watermelon is four times as heavy. Draw four units."
+          },
+          {
+            "do": "divide_units",
+            "id": "watermelon",
+            "say": "Cut the watermelon bar into four equal units."
+          },
+          {
+            "do": "bracket_difference",
+            "say": "This extra part is 4.5 kilograms.",
+            "text": "4.5"
+          },
+          {
+            "do": "question_mark",
+            "id": "pineapple",
+            "say": "We do not know the pineapple. Mark with question."
+          },
+          {
+            "do": "pause",
+            "say": "Pause and think. How many extra units?",
+            "seconds": 2.0
+          },
+          {
+            "do": "write",
+            "say": "Three units are worth 4.5 kilograms.",
+            "text": "3 units = 4.5"
+          },
+          {
+            "do": "label_unit",
+            "id": "pineapple",
+            "say": "One unit is 1.5 kilograms.",
+            "text": "1 unit = 1.5 kg"
+          },
+          {
+            "do": "answer",
+            "say": "So, the pineapple is 1.5 kilograms. Well done!",
+            "text": "Pineapple is 1.5 kg."
+          }
+        ],
+        "title": "Bar Model: Multiples"
+      },
+      "outcome": "correct",
+      "seconds": 7.1
+    },
+    {
+      "id": "twice-diff",
+      "problem_type": "comparison",
+      "expected": 48,
+      "may_decline": false,
+      "answer": 48.0,
+      "attempts": 1,
+      "check": "agreed",
+      "log": [
+        "attempt 0 model=muse-spark-1.3 -> OK (3 units, 1 unit = 48)",
+        "independent check (muse-spark-1.2) agreed: 48"
+      ],
+      "spec": {
+        "level": "P3-P4",
+        "model": {
+          "answer": 48,
+          "asked": "hall_b",
+          "bars": [
+            {
+              "id": "hall_b",
+              "label": "Hall B",
+              "units": 1
+            },
+            {
+              "id": "hall_a",
+              "label": "Hall A",
+              "units": 2
+            }
+          ],
+          "difference": {
+            "less": "hall_b",
+            "more": "hall_a",
+            "value": 48
+          }
+        },
+        "problem_type": "comparison",
+        "question": "Hall A has twice as many chairs as Hall B. Hall A has 48 more chairs than Hall B. How many chairs are there in Hall B?",
+        "timeline": [
+          {
+            "do": "write_question",
+            "say": "Hall A has twice as many chairs as Hall B. Hall A has 48 more chairs than Hall B. How many chairs are there in Hall B?"
+          },
+          {
+            "do": "draw_bar",
+            "id": "hall_b",
+            "say": "Let's draw Hall B first, one short unit."
+          },
+          {
+            "do": "draw_bar",
+            "id": "hall_a",
+            "say": "Hall A is twice as long, two units."
+          },
+          {
+            "do": "divide_units",
+            "id": "hall_a",
+            "say": "Cut Hall A into two equal units."
+          },
+          {
+            "do": "bracket_difference",
+            "say": "This extra part is 48 chairs.",
+            "text": "48"
+          },
+          {
+            "do": "question_mark",
+            "id": "hall_b",
+            "say": "We need Hall B. Mark with question."
+          },
+          {
+            "do": "pause",
+            "say": "Pause and think. What is one unit?",
+            "seconds": 2.0
+          },
+          {
+            "do": "write",
+            "say": "Two units minus one unit is one unit.",
+            "text": "2 - 1 = 1 unit"
+          },
+          {
+            "do": "write",
+            "say": "So one unit equals 48 chairs.",
+            "text": "1 unit = 48"
+          },
+          {
+            "do": "label_unit",
+            "id": "hall_b",
+            "say": "One unit is 48 chairs.",
+            "text": "48"
+          },
+          {
+            "do": "answer",
+            "say": "Hall B has 48 chairs. Well done!",
+            "text": "Hall B has 48 chairs."
+          }
+        ],
+        "title": "Bar Model: Comparison"
+      },
+      "outcome": "correct",
+      "seconds": 7.3
+    },
+    {
+      "id": "fraction-left",
+      "problem_type": "fractions",
+      "expected": 48,
+      "may_decline": false,
+      "answer": 48.0,
+      "attempts": 2,
+      "check": "agreed",
+      "log": [
+        "attempt 0 model=muse-spark-1.3 -> FAILED: problem type 'fractions' cannot be verified yet",
+        "attempt 1 model=muse-spark-1.3 -> OK (5 units, 1 unit = 24)",
+        "independent check (muse-spark-1.2) agreed: 48"
+      ],
+      "spec": {
+        "level": "P3-P4",
+        "model": {
+          "answer": 48,
+          "asked": "left",
+          "bars": [
+            {
+              "id": "left",
+              "label": "Left",
+              "units": 2
+            },
+            {
+              "id": "sold",
+              "label": "Sold",
+              "units": 3
+            }
+          ],
+          "total": 120
+        },
+        "problem_type": "part-whole",
+        "question": "Mrs Lee baked 120 cookies. She sold 3/5 of them. How many cookies were left?",
+        "timeline": [
+          {
+            "do": "write_question",
+            "say": "Mrs Lee baked 120 cookies. She sold 3/5 of them. How many cookies were left?"
+          },
+          {
+            "do": "draw_bar",
+            "id": "left",
+            "say": "Let's draw the Left bar with 2 units."
+          },
+          {
+            "do": "draw_bar",
+            "id": "sold",
+            "say": "Now draw the Sold bar with 3 units."
+          },
+          {
+            "do": "bracket_total",
+            "say": "Together they make 120 cookies.",
+            "text": "120"
+          },
+          {
+            "do": "question_mark",
+            "id": "left",
+            "say": "We do not know the Left part yet."
+          },
+          {
+            "do": "pause",
+            "say": "Pause and think. How much is one unit?",
+            "seconds": 2.0
+          },
+          {
+            "do": "write",
+            "say": "5 units are worth 120.",
+            "text": "5 units = 120"
+          },
+          {
+            "do": "write",
+            "say": "1 unit is 24 cookies.",
+            "text": "1 unit = 120 ÷ 5 = 24"
+          },
+          {
+            "do": "write",
+            "say": "2 units are 48 cookies.",
+            "text": "2 units = 2 × 24 = 48"
+          },
+          {
+            "do": "answer",
+            "say": "48 cookies were left. Well done!",
+            "text": "48 cookies were left."
+          }
+        ],
+        "title": "Bar Model: Part-Whole"
+      },
+      "outcome": "correct",
+      "seconds": 15.3
+    },
+    {
+      "id": "decline-before-after",
+      "problem_type": "before-after",
+      "expected": 20,
+      "may_decline": true,
+      "outcome": "declined",
+      "error": "ValueError: I can't check my working for before-and-after problems yet, so I won't show an answer. Try a problem that compares parts or shares a total.",
+      "seconds": 0.0
+    },
+    {
+      "id": "decline-how-many-more",
+      "problem_type": "multiples",
+      "expected": 60,
+      "may_decline": true,
+      "outcome": "declined",
+      "error": "ValueError: I can't check my working for questions that ask how many more one person has than another yet, so I won't show an answer. Try a problem that compares parts or shares a total.",
+      "seconds": 0.0
+    },
+    {
+      "id": "mult-stamps-small",
+      "problem_type": "multiples",
+      "expected": 60,
+      "may_decline": false,
+      "answer": 60.0,
+      "attempts": 1,
+      "check": "agreed",
+      "log": [
+        "attempt 0 model=muse-spark-1.3 -> OK (6 units, 1 unit = 60)",
+        "independent check (muse-spark-1.2) agreed: 60"
+      ],
+      "spec": {
+        "level": "P3-P4",
+        "model": {
+          "answer": 60,
+          "asked": "kai",
+          "bars": [
+            {
+              "id": "kai",
+              "label": "Kai",
+              "units": 1
+            },
+            {
+              "id": "jun",
+              "label": "Jun",
+              "units": 5
+            }
+          ],
+          "total": 360
+        },
+        "problem_type": "multiples",
+        "question": "Jun has 5 times as many stamps as Kai. They have 360 stamps altogether. How many stamps does Kai have?",
+        "timeline": [
+          {
+            "do": "write_question",
+            "say": "Jun has 5 times as many stamps as Kai. They have 360 stamps altogether. How many stamps does Kai have?"
+          },
+          {
+            "do": "draw_bar",
+            "id": "kai",
+            "say": "Let's draw Kai's smaller bar first, one unit."
+          },
+          {
+            "do": "draw_bar",
+            "id": "jun",
+            "say": "Jun has five times, so draw five units."
+          },
+          {
+            "do": "bracket_total",
+            "say": "Together they have 360 stamps in total.",
+            "text": "360"
+          },
+          {
+            "do": "question_mark",
+            "id": "kai",
+            "say": "We need Kai's stamps, mark with question mark."
+          },
+          {
+            "do": "pause",
+            "say": "Pause and think. How many units altogether?",
+            "seconds": 2.0
+          },
+          {
+            "do": "write",
+            "say": "Six units make 360 altogether.",
+            "text": "6 units = 360"
+          },
+          {
+            "do": "label_unit",
+            "id": "kai",
+            "say": "One unit is 360 divided by six, sixty.",
+            "text": "60"
+          },
+          {
+            "do": "answer",
+            "say": "So, Kai has 60 stamps. Well done!",
+            "text": "Kai has 60 stamps."
+          }
+        ],
+        "title": "Bar Model: Multiples"
+      },
+      "outcome": "correct",
+      "seconds": 7.9
+    },
+    {
+      "id": "times-diff-beads",
+      "problem_type": "multiples",
+      "expected": 25,
+      "may_decline": false,
+      "answer": 25.0,
+      "attempts": 1,
+      "check": "agreed",
+      "log": [
+        "attempt 0 model=muse-spark-1.3 -> OK (5 units, 1 unit = 25)",
+        "independent check (muse-spark-1.2) agreed: 25"
+      ],
+      "spec": {
+        "level": "P3-P4",
+        "model": {
+          "answer": 25,
+          "asked": "blue",
+          "bars": [
+            {
+              "id": "blue",
+              "label": "Blue",
+              "units": 1
+            },
+            {
+              "id": "red",
+              "label": "Red",
+              "units": 4
+            }
+          ],
+          "difference": {
+            "less": "blue",
+            "more": "red",
+            "value": 75
+          }
+        },
+        "problem_type": "multiples",
+        "question": "A box has 4 times as many red beads as blue beads. There are 75 more red beads than blue beads. How many blue beads are there?",
+        "timeline": [
+          {
+            "do": "write_question",
+            "say": "A box has 4 times as many red beads as blue beads. There are 75 more red beads than blue beads. How many blue beads are there?"
+          },
+          {
+            "do": "draw_bar",
+            "id": "blue",
+            "say": "Let's draw Blue bar first. Blue has 1 unit."
+          },
+          {
+            "do": "draw_bar",
+            "id": "red",
+            "say": "Red has 4 times as many. Draw 4 units."
+          },
+          {
+            "do": "divide_units",
+            "id": "red",
+            "say": "Red bar has four equal units."
+          },
+          {
+            "do": "bracket_difference",
+            "say": "Red has 75 more than Blue.",
+            "text": "75"
+          },
+          {
+            "do": "question_mark",
+            "id": "blue",
+            "say": "What is Blue? Let's put a question mark."
+          },
+          {
+            "do": "pause",
+            "say": "Pause and think. How many units is 75?",
+            "seconds": 2.0
+          },
+          {
+            "do": "write",
+            "say": "3 extra units are worth 75.",
+            "text": "3 units = 75"
+          },
+          {
+            "do": "label_unit",
+            "id": "blue",
+            "say": "1 unit is 75 divided by 3 is 25.",
+            "text": "25"
+          },
+          {
+            "do": "answer",
+            "say": "So, there are 25 blue beads. Well done!",
+            "text": "There are 25 blue beads."
+          }
+        ],
+        "title": "Bar Model: Multiples"
+      },
+      "outcome": "correct",
+      "seconds": 7.2
+    },
+    {
+      "id": "ratio-choir",
+      "problem_type": "ratio",
+      "expected": 60,
+      "may_decline": false,
+      "answer": 60.0,
+      "attempts": 1,
+      "check": "agreed",
+      "log": [
+        "attempt 0 model=muse-spark-1.3 -> OK (7 units, 1 unit = 12)",
+        "independent check (muse-spark-1.2) agreed: 60"
+      ],
+      "spec": {
+        "level": "P3-P4",
+        "model": {
+          "answer": 60,
+          "asked": "girls",
+          "bars": [
+            {
+              "id": "boys",
+              "label": "Boys",
+              "units": 2
+            },
+            {
+              "id": "girls",
+              "label": "Girls",
+              "units": 5
+            }
+          ],
+          "total": 84
+        },
+        "problem_type": "ratio",
+        "question": "The ratio of boys to girls in a choir is 2 : 5. There are 84 children in the choir. How many girls are there?",
+        "timeline": [
+          {
+            "do": "write_question",
+            "say": "The ratio of boys to girls in a choir is 2 : 5. There are 84 children in the choir. How many girls are there?"
+          },
+          {
+            "do": "draw_bar",
+            "id": "boys",
+            "say": "Let's draw Boys first. Boys have 2 units."
+          },
+          {
+            "do": "divide_units",
+            "id": "boys",
+            "say": "We split Boys bar into 2 equal parts."
+          },
+          {
+            "do": "draw_bar",
+            "id": "girls",
+            "say": "Now draw Girls. Girls have 5 units."
+          },
+          {
+            "do": "divide_units",
+            "id": "girls",
+            "say": "We split Girls bar into 5 equal parts."
+          },
+          {
+            "do": "bracket_total",
+            "say": "Together there are 84 children.",
+            "text": "84"
+          },
+          {
+            "do": "question_mark",
+            "id": "girls",
+            "say": "We want to find Girls. Mark it."
+          },
+          {
+            "do": "pause",
+            "say": "Pause and think. How many units altogether?",
+            "seconds": 2.0
+          },
+          {
+            "do": "write",
+            "say": "7 units make 84 altogether.",
+            "text": "7 units = 84"
+          },
+          {
+            "do": "write",
+            "say": "1 unit is 84 divide 7, gives 12.",
+            "text": "1 unit = 84 ÷ 7 = 12"
+          },
+          {
+            "do": "label_unit",
+            "id": "boys",
+            "say": "One unit is worth 12.",
+            "text": "12"
+          },
+          {
+            "do": "write",
+            "say": "Girls have 5 units, so 5 times 12 is 60.",
+            "text": "5 units = 5 × 12 = 60"
+          },
+          {
+            "do": "answer",
+            "say": "There are 60 girls. Well done!",
+            "text": "There are 60 girls."
+          }
+        ],
+        "title": "Bar Model: Ratio"
+      },
+      "outcome": "correct",
+      "seconds": 8.7
+    },
+    {
+      "id": "ratio-three-money",
+      "problem_type": "ratio",
+      "expected": 48,
+      "may_decline": false,
+      "answer": 48.0,
+      "attempts": 1,
+      "check": "agreed",
+      "log": [
+        "attempt 0 model=muse-spark-1.3 -> OK (8 units, 1 unit = 12)",
+        "independent check (muse-spark-1.2) agreed: 48"
+      ],
+      "spec": {
+        "level": "P3-P4",
+        "model": {
+          "answer": 48,
+          "asked": "chen",
+          "bars": [
+            {
+              "id": "amy",
+              "label": "Amy",
+              "units": 1
+            },
+            {
+              "id": "bala",
+              "label": "Bala",
+              "units": 3
+            },
+            {
+              "id": "chen",
+              "label": "Chen",
+              "units": 4
+            }
+          ],
+          "total": 96
+        },
+        "problem_type": "ratio",
+        "question": "Amy, Bala and Chen share $96 in the ratio 1 : 3 : 4. How much money does Chen get?",
+        "timeline": [
+          {
+            "do": "write_question",
+            "say": "Amy, Bala and Chen share $96 in the ratio 1 : 3 : 4. How much money does Chen get?"
+          },
+          {
+            "do": "draw_bar",
+            "id": "amy",
+            "say": "Let's draw Amy's bar first. Amy has 1 unit."
+          },
+          {
+            "do": "draw_bar",
+            "id": "bala",
+            "say": "Now draw Bala's bar with 3 units."
+          },
+          {
+            "do": "draw_bar",
+            "id": "chen",
+            "say": "Then draw Chen's bar with 4 units."
+          },
+          {
+            "do": "divide_units",
+            "id": "bala",
+            "say": "Bala's bar has 3 equal units."
+          },
+          {
+            "do": "divide_units",
+            "id": "chen",
+            "say": "Chen's bar has 4 equal units."
+          },
+          {
+            "do": "bracket_total",
+            "say": "All three share 96 dollars altogether.",
+            "text": "96"
+          },
+          {
+            "do": "pause",
+            "say": "Pause and think. How many units altogether?",
+            "seconds": 2.0
+          },
+          {
+            "do": "write",
+            "say": "8 units make 96 dollars in total.",
+            "text": "8 units = 96"
+          },
+          {
+            "do": "write",
+            "say": "1 unit is 96 divide 8, which is 12.",
+            "text": "1 unit = 96 ÷ 8 = 12"
+          },
+          {
+            "do": "question_mark",
+            "id": "chen",
+            "say": "We want to find Chen's share."
+          },
+          {
+            "do": "label_unit",
+            "id": "amy",
+            "say": "So 1 unit is worth 12 dollars.",
+            "text": "12"
+          },
+          {
+            "do": "answer",
+            "say": "So, Chen gets 48 dollars. Well done!",
+            "text": "Chen gets $48."
+          }
+        ],
+        "title": "Bar Model: Ratio"
+      },
+      "outcome": "correct",
+      "seconds": 8.1
+    },
+    {
+      "id": "more-pens",
+      "problem_type": "comparison",
+      "expected": 90,
+      "may_decline": false,
+      "answer": 90.0,
+      "attempts": 1,
+      "check": "agreed",
+      "log": [
+        "attempt 0 model=muse-spark-1.3 -> OK (2 units, 1 unit = 60)",
+        "independent check (muse-spark-1.2) agreed: 90"
+      ],
+      "spec": {
+        "level": "P3-P4",
+        "model": {
+          "answer": 90,
+          "asked": "tan",
+          "bars": [
+            {
+              "id": "lim",
+              "label": "Mr Lim",
+              "units": 1
+            },
+            {
+              "extra": 30,
+              "id": "tan",
+              "label": "Mrs Tan",
+              "units": 1
+            }
+          ],
+          "total": 150
+        },
+        "problem_type": "part-whole",
+        "question": "Mrs Tan has 30 more pens than Mr Lim. They have 150 pens altogether. How many pens does Mrs Tan have?",
+        "timeline": [
+          {
+            "do": "write_question",
+            "say": "Mrs Tan has 30 more pens than Mr Lim. They have 150 pens altogether. How many pens does Mrs Tan have?"
+          },
+          {
+            "do": "draw_bar",
+            "id": "lim",
+            "say": "Let's draw Mr Lim's bar first."
+          },
+          {
+            "do": "draw_bar",
+            "id": "tan",
+            "say": "Now draw Mrs Tan's bar with thirty more."
+          },
+          {
+            "do": "bracket_total",
+            "say": "Together they have one hundred fifty pens.",
+            "text": "150"
+          },
+          {
+            "do": "pause",
+            "say": "Pause and think. How to find one unit?",
+            "seconds": 2.0
+          },
+          {
+            "do": "write",
+            "say": "Two units make one hundred twenty pens.",
+            "text": "2 units = 150 - 30 = 120"
+          },
+          {
+            "do": "write",
+            "say": "One unit is sixty pens. Good job.",
+            "text": "1 unit = 120 ÷ 2 = 60"
+          },
+          {
+            "do": "label_unit",
+            "id": "lim",
+            "say": "Label one unit as sixty pens.",
+            "text": "60"
+          },
+          {
+            "do": "question_mark",
+            "id": "tan",
+            "say": "What must we find? Mrs Tan's pens."
+          },
+          {
+            "do": "answer",
+            "say": "So, Mrs Tan has 90 pens. Well done!",
+            "text": "Mrs Tan has 90 pens."
+          }
+        ],
+        "title": "Bar Model: Part-Whole"
+      },
+      "outcome": "correct",
+      "seconds": 10.1
+    },
+    {
+      "id": "more-money-decimal",
+      "problem_type": "comparison",
+      "expected": 1.4,
+      "may_decline": false,
+      "answer": 1.4,
+      "attempts": 1,
+      "check": "agreed",
+      "log": [
+        "attempt 0 model=muse-spark-1.3 -> OK (2 units, 1 unit = 1.4)",
+        "independent check (muse-spark-1.2) agreed: 1.4"
+      ],
+      "spec": {
+        "level": "P3-P4",
+        "model": {
+          "answer": 1.4,
+          "asked": "ruler",
+          "bars": [
+            {
+              "id": "ruler",
+              "label": "Ruler",
+              "units": 1
+            },
+            {
+              "extra": 4.5,
+              "id": "pencilcase",
+              "label": "Pencil case",
+              "units": 1
+            }
+          ],
+          "total": 7.3
+        },
+        "problem_type": "comparison",
+        "question": "A pencil case costs $4.50 more than a ruler. Together they cost $7.30. How much does the ruler cost?",
+        "timeline": [
+          {
+            "do": "write_question",
+            "say": "A pencil case costs $4.50 more than a ruler. Together they cost $7.30. How much does the ruler cost?"
+          },
+          {
+            "do": "draw_bar",
+            "id": "ruler",
+            "say": "Let's draw Ruler bar first. Ruler has 1 unit."
+          },
+          {
+            "do": "draw_bar",
+            "id": "pencilcase",
+            "say": "Pencil case has same unit plus $4.50 more."
+          },
+          {
+            "do": "bracket_total",
+            "say": "Both bars give $7.30 together.",
+            "text": "7.30"
+          },
+          {
+            "do": "question_mark",
+            "id": "ruler",
+            "say": "We want ruler cost. Mark question mark."
+          },
+          {
+            "do": "pause",
+            "say": "Pause and think. What is left after extra?",
+            "seconds": 2.0
+          },
+          {
+            "do": "write",
+            "say": "Take away extra first. Left $2.80.",
+            "text": "7.30 - 4.50 = 2.80"
+          },
+          {
+            "do": "write",
+            "say": "Two units are worth $2.80.",
+            "text": "2 units = 2.80"
+          },
+          {
+            "do": "label_unit",
+            "id": "ruler",
+            "say": "One unit is $1.40. Good!",
+            "text": "1.40"
+          },
+          {
+            "do": "answer",
+            "say": "So, ruler costs $1.40. Well done!",
+            "text": "The ruler costs $1.40."
+          }
+        ],
+        "title": "Bar Model: Comparison"
+      },
+      "outcome": "correct",
+      "seconds": 10.4
+    },
+    {
+      "id": "times-diff-pages",
+      "problem_type": "multiples",
+      "expected": 180,
+      "may_decline": false,
+      "answer": 180.0,
+      "attempts": 1,
+      "check": "agreed",
+      "log": [
+        "attempt 0 model=muse-spark-1.3 -> OK (4 units, 1 unit = 60)",
+        "independent check (muse-spark-1.2) agreed: 180"
+      ],
+      "spec": {
+        "level": "P3-P4",
+        "model": {
+          "answer": 180,
+          "asked": "huimin",
+          "bars": [
+            {
+              "id": "ravi",
+              "label": "Ravi",
+              "units": 1
+            },
+            {
+              "id": "huimin",
+              "label": "Hui Min",
+              "units": 3
+            }
+          ],
+          "difference": {
+            "less": "ravi",
+            "more": "huimin",
+            "value": 120
+          }
+        },
+        "problem_type": "multiples",
+        "question": "Hui Min read 3 times as many pages as Ravi. Hui Min read 120 more pages than Ravi. How many pages did Hui Min read?",
+        "timeline": [
+          {
+            "do": "write_question",
+            "say": "Hui Min read 3 times as many pages as Ravi. Hui Min read 120 more pages than Ravi. How many pages did Hui Min read?"
+          },
+          {
+            "do": "draw_bar",
+            "id": "ravi",
+            "say": "Let's draw Ravi first. Ravi has 1 unit."
+          },
+          {
+            "do": "draw_bar",
+            "id": "huimin",
+            "say": "Hui Min has 3 times. Draw 3 units."
+          },
+          {
+            "do": "divide_units",
+            "id": "huimin",
+            "say": "Split Hui Min's bar into 3 equal units."
+          },
+          {
+            "do": "bracket_difference",
+            "say": "Hui Min has 120 more. See the difference?",
+            "text": "120"
+          },
+          {
+            "do": "pause",
+            "say": "Pause and think. How much is 1 unit?",
+            "seconds": 2.0
+          },
+          {
+            "do": "write",
+            "say": "2 extra units are worth 120.",
+            "text": "2 units = 120"
+          },
+          {
+            "do": "write",
+            "say": "1 unit is 60 pages. Nice!",
+            "text": "1 unit = 120 ÷ 2 = 60"
+          },
+          {
+            "do": "label_unit",
+            "id": "ravi",
+            "say": "So Ravi's 1 unit is 60.",
+            "text": "60"
+          },
+          {
+            "do": "question_mark",
+            "id": "huimin",
+            "say": "What about Hui Min? Let's find out."
+          },
+          {
+            "do": "answer",
+            "say": "So, Hui Min read 180 pages. Well done!",
+            "text": "Hui Min read 180 pages."
+          }
+        ],
+        "title": "Bar Model: Multiples"
+      },
+      "outcome": "correct",
+      "seconds": 7.8
+    },
+    {
+      "id": "mult-concert-big",
+      "problem_type": "multiples",
+      "expected": 250,
+      "may_decline": false,
+      "answer": 250.0,
+      "attempts": 1,
+      "check": "agreed",
+      "log": [
+        "attempt 0 model=muse-spark-1.3 -> OK (5 units, 1 unit = 250)",
+        "independent check (muse-spark-1.2) agreed: 250"
+      ],
+      "spec": {
+        "level": "P3-P4",
+        "model": {
+          "answer": 250,
+          "asked": "children",
+          "bars": [
+            {
+              "id": "children",
+              "label": "Children",
+              "units": 1
+            },
+            {
+              "id": "adults",
+              "label": "Adults",
+              "units": 4
+            }
+          ],
+          "total": 1250
+        },
+        "problem_type": "multiples",
+        "question": "There are 4 times as many adults as children at a concert. There are 1,250 people at the concert. How many children are there?",
+        "timeline": [
+          {
+            "do": "write_question",
+            "say": "There are 4 times as many adults as children at a concert. There are 1,250 people at the concert. How many children are there?"
+          },
+          {
+            "do": "draw_bar",
+            "id": "children",
+            "say": "Let's draw children first. One unit."
+          },
+          {
+            "do": "draw_bar",
+            "id": "adults",
+            "say": "Adults have four times. Draw four units."
+          },
+          {
+            "do": "divide_units",
+            "id": "adults",
+            "say": "Cut adult bar into four equal units."
+          },
+          {
+            "do": "bracket_total",
+            "say": "Bracket all bars. Total is 1250 people.",
+            "text": "1250"
+          },
+          {
+            "do": "question_mark",
+            "id": "children",
+            "say": "We do not know children. Mark question."
+          },
+          {
+            "do": "pause",
+            "say": "Pause and think. How many units altogether?",
+            "seconds": 2.0
+          },
+          {
+            "do": "write",
+            "say": "Five units make 1250 altogether.",
+            "text": "5 units = 1250"
+          },
+          {
+            "do": "write",
+            "say": "Five units is 1250, one is 250.",
+            "text": "1 unit = 1250 ÷ 5 = 250"
+          },
+          {
+            "do": "label_unit",
+            "id": "children",
+            "say": "One unit is 250. Nice!",
+            "text": "250"
+          },
+          {
+            "do": "answer",
+            "say": "There are 250 children. Well done!",
+            "text": "There are 250 children."
+          }
+        ],
+        "title": "Bar Model: Multiples"
+      },
+      "outcome": "correct",
+      "seconds": 7.2
+    },
+    {
+      "id": "mult-tank-litres",
+      "problem_type": "multiples",
+      "expected": 36,
+      "may_decline": false,
+      "answer": 36.0,
+      "attempts": 1,
+      "check": "agreed",
+      "log": [
+        "attempt 0 model=muse-spark-1.3 -> OK (7 units, 1 unit = 6)",
+        "independent check (muse-spark-1.2) agreed: 36"
+      ],
+      "spec": {
+        "level": "P3-P4",
+        "model": {
+          "answer": 36,
+          "asked": "tank",
+          "bars": [
+            {
+              "id": "pail",
+              "label": "Pail",
+              "units": 1
+            },
+            {
+              "id": "tank",
+              "label": "Tank",
+              "units": 6
+            }
+          ],
+          "total": 42
+        },
+        "problem_type": "multiples",
+        "question": "A tank holds 6 times as much water as a pail. The tank and the pail hold 42 litres of water altogether. How much water does the tank hold?",
+        "timeline": [
+          {
+            "do": "write_question",
+            "say": "A tank holds 6 times as much water as a pail. The tank and the pail hold 42 litres of water altogether. How much water does the tank hold?"
+          },
+          {
+            "do": "draw_bar",
+            "id": "pail",
+            "say": "Let's draw the pail first. It has 1 unit."
+          },
+          {
+            "do": "draw_bar",
+            "id": "tank",
+            "say": "Tank has 6 times as much. Draw 6 units."
+          },
+          {
+            "do": "divide_units",
+            "id": "tank",
+            "say": "Split the tank bar into 6 equal units."
+          },
+          {
+            "do": "bracket_total",
+            "say": "Both together make 42 litres.",
+            "text": "42"
+          },
+          {
+            "do": "question_mark",
+            "id": "tank",
+            "say": "We want the tank. Mark it unknown."
+          },
+          {
+            "do": "pause",
+            "say": "Pause and think. How many units altogether?",
+            "seconds": 2.0
+          },
+          {
+            "do": "write",
+            "say": "7 units are worth 42 litres.",
+            "text": "7 units = 42"
+          },
+          {
+            "do": "write",
+            "say": "1 unit equals 42 divided by 7.",
+            "text": "1 unit = 42 ÷ 7 = 6"
+          },
+          {
+            "do": "label_unit",
+            "id": "pail",
+            "say": "One unit is 6 litres.",
+            "text": "6"
+          },
+          {
+            "do": "write",
+            "say": "Tank is 6 units. 6 times 6 is 36.",
+            "text": "6 units = 6 x 6 = 36"
+          },
+          {
+            "do": "answer",
+            "say": "So, the tank holds 36 litres. Well done!",
+            "text": "The tank holds 36 litres."
+          }
+        ],
+        "title": "Bar Model: Multiples"
+      },
+      "outcome": "correct",
+      "seconds": 5.6
+    },
+    {
+      "id": "three-boxes-fewer",
+      "problem_type": "comparison",
+      "expected": 36,
+      "may_decline": false,
+      "answer": 36.0,
+      "attempts": 4,
+      "check": "agreed",
+      "log": [
+        "attempt 0 model=muse-spark-1.3 -> FAILED: bar 'c' extra 24 is not a number in the question",
+        "attempt 1 model=muse-spark-1.3 -> FAILED: duplicate bar ids",
+        "attempt 2 model=muse-spark-1.3 -> FAILED: bar 'c' extra 24 is not a number in the question",
+        "attempt 3 model=muse-wonder-1.0 -> OK (4 units, 1 unit = 18)",
+        "independent check (muse-spark-1.2) agreed: 36"
+      ],
+      "spec": {
+        "level": "P3-P4",
+        "model": {
+          "answer": 36,
+          "asked": "b",
+          "bars": [
+            {
+              "id": "a",
+              "label": "Box A",
+              "units": 1
+            },
+            {
+              "extra": 18,
+              "id": "b",
+              "label": "Box B",
+              "units": 1
+            },
+            {
+              "extra": 6,
+              "id": "c",
+              "label": "Box C",
+              "units": 2
+            }
+          ],
+          "total": 96
+        },
+        "problem_type": "part-whole",
+        "question": "Box A has 18 fewer apples than Box B. Box C has 6 more apples than Box B. There are 96 apples altogether. How many apples are in Box B?",
+        "timeline": [
+          {
+            "do": "write_question",
+            "say": "Box A has 18 fewer apples than Box B. Box C has 6 more apples than Box B. There are 96 apples altogether. How many apples are in Box B?"
+          },
+          {
+            "do": "draw_bar",
+            "id": "a",
+            "say": "Let's draw Box A first. Box A has 1 unit."
+          },
+          {
+            "do": "draw_bar",
+            "id": "b",
+            "say": "Box B has 18 more than Box A. Draw 1 unit and 18 extra."
+          },
+          {
+            "do": "draw_bar",
+            "id": "c",
+            "say": "Box C has 6 more than Box B."
+          },
+          {
+            "do": "divide_units",
+            "id": "c",
+            "say": "Split Box C into 2 equal units."
+          },
+          {
+            "do": "bracket_total",
+            "say": "Together, all three boxes have 96 apples.",
+            "text": "96"
+          },
+          {
+            "do": "question_mark",
+            "id": "b",
+            "say": "We need to find Box B."
+          },
+          {
+            "do": "pause",
+            "say": "Pause and think. How many units altogether?",
+            "seconds": 2.0
+          },
+          {
+            "do": "write",
+            "say": "Four units are worth 72.",
+            "text": "4 units = 96 - 18 - 6 = 72"
+          },
+          {
+            "do": "write",
+            "say": "One unit is 72 divided by 4, which is 18.",
+            "text": "1 unit = 72 ÷ 4 = 18"
+          },
+          {
+            "do": "label_unit",
+            "id": "a",
+            "say": "One unit is 18 apples.",
+            "text": "18"
+          },
+          {
+            "do": "write",
+            "say": "Box B is 18 plus 18, which is 36.",
+            "text": "Box B = 18 + 18 = 36"
+          },
+          {
+            "do": "answer",
+            "say": "So, Box B has 36 apples. Well done!",
+            "text": "Box B has 36 apples."
+          }
+        ],
+        "title": "Bar Model: Part-Whole"
+      },
+      "outcome": "correct",
+      "seconds": 86.1
+    },
+    {
+      "id": "decline-fraction-spent",
+      "problem_type": "fractions",
+      "expected": 30,
+      "may_decline": true,
+      "answer": 30.0,
+      "attempts": 2,
+      "check": "agreed",
+      "log": [
+        "attempt 0 model=muse-spark-1.3 -> FAILED: problem type 'fractions' cannot be verified yet",
+        "attempt 1 model=muse-spark-1.3 -> OK (5 units, 1 unit = 10)",
+        "independent check (muse-spark-1.2) agreed: 30"
+      ],
+      "spec": {
+        "level": "P3-P4",
+        "model": {
+          "answer": 30,
+          "asked": "left",
+          "bars": [
+            {
+              "id": "spent",
+              "label": "Spent",
+              "units": 2
+            },
+            {
+              "id": "left",
+              "label": "Left",
+              "units": 3
+            }
+          ],
+          "total": 50
+        },
+        "problem_type": "part-whole",
+        "question": "Sam had $50. He spent 2/5 of it. How much money did he have left?",
+        "timeline": [
+          {
+            "do": "write_question",
+            "say": "Sam had $50. He spent 2/5 of it. How much money did he have left?"
+          },
+          {
+            "do": "draw_bar",
+            "id": "spent",
+            "say": "Let's draw spent first. Spent has 2 units."
+          },
+          {
+            "do": "draw_bar",
+            "id": "left",
+            "say": "Now draw left part. Left has 3 units."
+          },
+          {
+            "do": "bracket_total",
+            "say": "Altogether is 50 dollars.",
+            "text": "50"
+          },
+          {
+            "do": "question_mark",
+            "id": "left",
+            "say": "We do not know left yet."
+          },
+          {
+            "do": "pause",
+            "say": "Pause and think. How much is 1 unit?",
+            "seconds": 2.0
+          },
+          {
+            "do": "write",
+            "say": "5 units are worth 50 dollars.",
+            "text": "5 units = 50"
+          },
+          {
+            "do": "write",
+            "say": "1 unit is 10 dollars.",
+            "text": "1 unit = 50 ÷ 5 = 10"
+          },
+          {
+            "do": "write",
+            "say": "3 units are 30 dollars.",
+            "text": "3 units = 3 × 10 = 30"
+          },
+          {
+            "do": "answer",
+            "say": "Sam has 30 dollars left. Well done!",
+            "text": "Sam has $30 left."
+          }
+        ],
+        "title": "Bar Model: Part-Whole"
+      },
+      "outcome": "correct",
+      "seconds": 16.3
+    },
+    {
+      "id": "decline-how-many-more-shells",
+      "problem_type": "multiples",
+      "expected": 60,
+      "may_decline": true,
+      "outcome": "declined",
+      "error": "ValueError: I can't check my working for questions that ask how many more one person has than another yet, so I won't show an answer. Try a problem that compares parts or shares a total.",
+      "seconds": 0.0
+    },
+    {
+      "id": "marbles-01-0",
+      "problem_type": "multiples",
+      "expected": 90,
+      "may_decline": false,
+      "answer": 90.0,
+      "attempts": 1,
+      "check": "agreed",
+      "log": [
+        "attempt 0 model=muse-spark-1.3 -> OK (4 units, 1 unit = 30)",
+        "independent check (muse-spark-1.2) agreed: 90"
+      ],
+      "spec": {
+        "level": "P3-P4",
+        "model": {
+          "answer": 90,
+          "asked": "ali",
+          "bars": [
+            {
+              "id": "ben",
+              "label": "Ben",
+              "units": 1
+            },
+            {
+              "id": "ali",
+              "label": "Ali",
+              "units": 3
+            }
+          ],
+          "total": 120
+        },
+        "problem_type": "multiples",
+        "question": "Ali has 3 times as many marbles as Ben. Together they have 120 marbles. How many marbles does Ali have?",
+        "timeline": [
+          {
+            "do": "write_question",
+            "say": "Ali has 3 times as many marbles as Ben. Together they have 120 marbles. How many marbles does Ali have?"
+          },
+          {
+            "do": "draw_bar",
+            "id": "ben",
+            "say": "Let's draw Ben first. One short bar."
+          },
+          {
+            "do": "draw_bar",
+            "id": "ali",
+            "say": "Ali has three times. Draw a longer bar."
+          },
+          {
+            "do": "divide_units",
+            "id": "ali",
+            "say": "Ali's bar has three equal units."
+          },
+          {
+            "do": "bracket_total",
+            "say": "Together they make 120.",
+            "text": "120"
+          },
+          {
+            "do": "pause",
+            "say": "Pause and think. How many units in all?",
+            "seconds": 2.0
+          },
+          {
+            "do": "write",
+            "say": "Four units equal 120 in total.",
+            "text": "4 units = 120"
+          },
+          {
+            "do": "write",
+            "say": "One unit is 120 divide 4, gives 30.",
+            "text": "1 unit = 120 ÷ 4 = 30"
+          },
+          {
+            "do": "label_unit",
+            "id": "ben",
+            "say": "One unit is 30 marbles.",
+            "text": "30"
+          },
+          {
+            "do": "question_mark",
+            "id": "ali",
+            "say": "We need Ali's marbles. Mark with question."
+          },
+          {
+            "do": "answer",
+            "say": "So, Ali has 90 marbles. Well done!",
+            "text": "Ali has 90 marbles."
+          }
+        ],
+        "title": "Bar Model: Multiples"
+      },
+      "outcome": "correct",
+      "seconds": 7.6
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+# Pinned on top of the app requirements (requirements.txt) for the Glimmer training venv (Python 3.12).
+fireworks-ai[training]==1.2.30
+transformers==5.10.4
+tokenizers==0.22.2
+torch==2.15.0
+Jinja2==3.1.6

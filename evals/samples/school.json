@@ -1,0 +1,74 @@
+[
+ {
+  "id": "sample-01",
+  "level": "Primary 4",
+  "method": "transfer",
+  "question": "Rhys and Maya had a total of 8469 stamps. After Rhys gave Maya 210 stamps, Rhys had 8 times as many stamps as Maya. How many stamps did Maya have at first?",
+  "answer": 731,
+  "unit": ""
+ },
+ {
+  "id": "sample-02",
+  "level": "Primary 4",
+  "method": "excess_shortage",
+  "question": "Jennifer bought some sweets for her friends. When she gave each of them 4 sweets, she would have 2 sweets left. When she gave each of them 5 sweets, she would need 3 more sweets. How many sweets did she buy?",
+  "answer": 22,
+  "unit": ""
+ },
+ {
+  "id": "sample-03",
+  "level": "Primary 4",
+  "method": "constant_difference",
+  "question": "This year, Sarah is 5 years old and her uncle is 44 years old. How old will her uncle be when he is 4 times as old as Sarah?",
+  "answer": 52,
+  "unit": "years"
+ },
+ {
+  "id": "sample-04",
+  "level": "Primary 5",
+  "method": "before_after",
+  "question": "Dilys had 117 more beads than Elaine. After Elaine gave away 75 beads, Dilys had 3 times as many beads as Elaine. How many beads did Elaine have at first?",
+  "answer": 171,
+  "unit": ""
+ },
+ {
+  "id": "sample-05",
+  "level": "Primary 5",
+  "method": "units_value",
+  "question": "There are thrice as many red markers as blue markers. Each red marker cost $4. Each blue marker cost $2.50. The red markers cost $38 more than the blue markers. How many blue markers are there?",
+  "answer": 4,
+  "unit": ""
+ },
+ {
+  "id": "sample-06",
+  "level": "Primary 5",
+  "method": "ratio",
+  "question": "The ratio of the number of children to the number of adults at a concert was 8 : 11. There were 208 boys. There were 40 fewer girls than boys. How many more adults than children were at the concert?",
+  "answer": 141,
+  "unit": ""
+ },
+ {
+  "id": "sample-07",
+  "level": "Primary 6",
+  "method": "ratio",
+  "question": "Ali, Ben and Carl shared 390 stamps. Each of them received another 44 stamps. In the end, the ratio of the number of stamps shared by Ali, Ben and Carl was 2 : 3 : 4. How many stamps did Carl have in the end?",
+  "answer": 232,
+  "unit": ""
+ },
+ {
+  "id": "sample-08",
+  "level": "Primary 6",
+  "method": "before_after",
+  "question": "Last year, a total of 2 432 members joined the Outdoor Adventure Club. This year, after 42 more female members joined and 56 male members left, there were twice as many male members as female members who were in the Outdoor Adventure Club. How many male members joined the Outdoor Adventure Club last year?",
+  "answer": 1668,
+  "unit": ""
+ },
+ {
+  "id": "sample-09",
+  "level": "Primary 6",
+  "method": "percentage",
+  "question": "Irfan bought some tarts and pies for $17.60. Each tart cost $0.80 and each pie cost $1.20. Given that 80% of what she bought were tarts, how many more tarts than pies did he buy?",
+  "answer": 12,
+  "unit": ""
+ }
+]

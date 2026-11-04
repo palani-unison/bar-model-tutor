@@ -1,0 +1,39 @@
+{
+  "version": 2,
+  "title": "Speed: moving towards each other",
+  "level": "P6",
+  "heuristic": "speed",
+  "template": "working",
+  "board": "rate_speed",
+  "question": "Town P and Town Q are 300 km apart. A car leaves Town P for Town Q at 70 km/h. At the same time, a van leaves Town Q for Town P at 50 km/h. After how many hours will they meet?",
+  "units": [],
+  "quantities": [
+    {"id": "hours", "label": "Hours until they meet"},
+    {"id": "car", "label": "Distance the car drives"},
+    {"id": "van", "label": "Distance the van drives"}
+  ],
+  "relations": [
+    {"eq": "car = 70*hours", "from": "A car leaves Town P for Town Q at 70 km/h"},
+    {"eq": "van = 50*hours", "from": "a van leaves Town Q for Town P at 50 km/h"},
+    {"eq": "car + van = 300", "from": "Town P and Town Q are 300 km apart"}
+  ],
+  "asked": {"expr": "hours", "label": "Hours until they meet"},
+  "answer": 2.5,
+  "stages": [],
+  "timeline": [
+    {"do": "write_question", "say": "Town P and Town Q are 300 km apart. A car leaves Town P for Town Q at 70 km/h. At the same time, a van leaves Town Q for Town P at 50 km/h. After how many hours will they meet?"},
+    {"do": "highlight", "text": "300 km apart", "say": "The towns are 300 kilometres apart."},
+    {"do": "highlight", "text": "at 70 km/h", "say": "The car goes 70 kilometres every hour."},
+    {"do": "highlight", "text": "at 50 km/h", "say": "The van comes the other way at 50 kilometres every hour."},
+    {"do": "number_line", "id": "road", "start": 0, "end": 300,
+     "marks": [{"at": 0, "label": "Town P"}, {"at": 175, "label": "meet", "value": "?"}, {"at": 300, "label": "Town Q"}],
+     "jumps": [{"from": 0, "to": 175, "label": "car"}, {"from": 300, "to": 175, "label": "van"}],
+     "say": "Let's draw the road. The car starts at P, the van at Q, and they meet in between."},
+    {"do": "pause", "seconds": 2, "say": "Pause and think. Together, how much closer do they get every hour?"},
+    {"do": "write", "text": "Speed together = 70 + 50 = 120", "say": "Every hour they get 70 plus 50, which is 120 kilometres closer."},
+    {"do": "write", "text": "Hours = 300 ÷ 120 = 2.5", "say": "300 divided by 120 is 2.5 hours."},
+    {"do": "mark_point", "line": "road", "at": 175, "text": "2.5 × 70 = 175 km", "say": "By then the car has gone 2.5 times 70, which is 175 kilometres."},
+    {"do": "write", "text": "Check: 175 + 2.5 × 50 = 300 ✓", "say": "Let's check: 175 kilometres plus the van's 125 kilometres make 300. It works!"},
+    {"do": "answer", "text": "They meet after 2.5 hours.", "say": "So, they meet after 2.5 hours. Well done!"}
+  ]
+}

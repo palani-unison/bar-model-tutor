@@ -1,0 +1,84 @@
+{
+  "level": "P3-P4",
+  "model": {
+    "answer": 24,
+    "asked": "tom",
+    "bars": [
+      {
+        "id": "tom",
+        "label": "Tom",
+        "units": 1
+      },
+      {
+        "id": "mei",
+        "label": "Mei",
+        "units": 3
+      }
+    ],
+    "difference": {
+      "less": "tom",
+      "more": "mei",
+      "value": 48
+    }
+  },
+  "problem_type": "multiples",
+  "question": "Mei has 3 times as many beads as Tom. Mei has 48 more beads than Tom. How many beads does Tom have?",
+  "timeline": [
+    {
+      "do": "write_question",
+      "say": "Mei has 3 times as many beads as Tom. Mei has 48 more beads than Tom. How many beads does Tom have?"
+    },
+    {
+      "do": "draw_bar",
+      "id": "tom",
+      "say": "Let's draw Tom's bar first. Tom has 1 unit."
+    },
+    {
+      "do": "draw_bar",
+      "id": "mei",
+      "say": "Mei has 3 times as many. Draw 3 units."
+    },
+    {
+      "do": "divide_units",
+      "id": "mei",
+      "say": "Split Mei's bar into 3 equal units."
+    },
+    {
+      "do": "bracket_difference",
+      "say": "Mei has 48 more beads.",
+      "text": "48"
+    },
+    {
+      "do": "question_mark",
+      "id": "tom",
+      "say": "How many beads does Tom have?"
+    },
+    {
+      "do": "pause",
+      "say": "Pause and think. How many extra units?",
+      "seconds": 2.0
+    },
+    {
+      "do": "write",
+      "say": "2 extra units are worth 48.",
+      "text": "2 units = 48"
+    },
+    {
+      "do": "write",
+      "say": "One unit is 48 divided by 2, 24.",
+      "text": "1 unit = 48 ÷ 2 = 24"
+    },
+    {
+      "do": "label_unit",
+      "say": "One unit is 24 beads.",
+      "text": "24",
+      "id": "tom"
+    },
+    {
+      "do": "answer",
+      "say": "So, Tom has 24 beads. Well done!",
+      "text": "Tom has 24 beads."
+    }
+  ],
+  "title": "Bar Model: Multiples"
+}

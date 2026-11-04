@@ -1,0 +1,39 @@
+{
+  "version": 2,
+  "title": "Speed: a journey in two parts",
+  "level": "P6",
+  "heuristic": "speed",
+  "template": "working",
+  "board": "rate_speed",
+  "question": "Mr Tan drove for 3 hours at 70 km/h. Then he drove for 2 more hours at 55 km/h. How far did he drive altogether?",
+  "units": [],
+  "quantities": [
+    {"id": "first", "label": "Distance in the first part"},
+    {"id": "second", "label": "Distance in the second part"},
+    {"id": "total", "label": "Distance altogether"}
+  ],
+  "relations": [
+    {"eq": "first = 3*70", "from": "Mr Tan drove for 3 hours at 70 km/h"},
+    {"eq": "second = 2*55", "from": "he drove for 2 more hours at 55 km/h"},
+    {"eq": "total = first + second", "from": "How far did he drive altogether"}
+  ],
+  "asked": {"expr": "total", "label": "Distance altogether"},
+  "answer": 320,
+  "stages": [],
+  "timeline": [
+    {"do": "write_question", "say": "Mr Tan drove for 3 hours at 70 km/h. Then he drove for 2 more hours at 55 km/h. How far did he drive altogether?"},
+    {"do": "highlight", "text": "3 hours at 70 km/h", "say": "First, 3 hours at 70 kilometres every hour."},
+    {"do": "highlight", "text": "2 more hours at 55 km/h", "say": "Then 2 more hours at 55 kilometres every hour."},
+    {"do": "number_line", "id": "trip", "start": 0, "end": 320,
+     "marks": [{"at": 0, "label": "Start"}, {"at": 210, "label": "3 h", "value": "?"}, {"at": 320, "label": "5 h", "value": "?"}],
+     "jumps": [{"from": 0, "to": 210, "label": "70 km/h"}, {"from": 210, "to": 320, "label": "55 km/h"}],
+     "say": "Let's draw the journey on a line: 3 hours first, then 2 more hours."},
+    {"do": "pause", "seconds": 2, "say": "Pause and think. How far did he go in the first 3 hours?"},
+    {"do": "mark_point", "line": "trip", "at": 210, "text": "3 × 70 = 210 km", "say": "3 hours at 70 km/h. 3 times 70 is 210 kilometres."},
+    {"do": "write", "text": "Second part = 2 × 55 = 110", "say": "Then 2 times 55, which is 110 kilometres."},
+    {"do": "write", "text": "Total = 210 + 110 = 320", "say": "Altogether, 210 plus 110 is 320 kilometres."},
+    {"do": "mark_point", "line": "trip", "at": 320, "text": "320 km", "say": "After 5 hours, Mr Tan is 320 kilometres from the start."},
+    {"do": "write", "text": "Check: 320 - 210 = 110 = 2 × 55 ✓", "say": "Let's check: the second part is 110 kilometres, which is 2 times 55. It works!"},
+    {"do": "answer", "text": "He drove 320 km altogether.", "say": "So, Mr Tan drove 320 kilometres altogether. Well done!"}
+  ]
+}

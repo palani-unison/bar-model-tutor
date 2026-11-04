@@ -1,0 +1,17 @@
+# Pinned to the versions verified locally (Python 3.14); the Dockerfile uses the same Python.
+openai==3.37.0
+fastapi==0.161.1
+uvicorn==0.54.0
+websockets==17.3
+pillow==13.0.0
+numpy==2.5.4
+jsonschema==4.26.0
+piper-tts==1.8.0
+pytest==9.1.1
+python-multipart==0.0.32
+PyMuPDF==2.0
+httpx==0.28.1
+sympy==1.14.0
+# Parent sign-in: verifies Google ID tokens (app/accounts.py); requests is its HTTP transport for Google's keys.
+google-auth==2.62.0
+requests==2.34.2

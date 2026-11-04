@@ -1,0 +1,54 @@
+{
+  "version": 2,
+  "title": "Ratio change: one amount stays the same",
+  "level": "P6",
+  "heuristic": "ratio_change",
+  "template": "bar-stages",
+  "board": "ratio_change",
+  "question": "The ratio of Amy's beads to Beth's beads was 3 : 5. After Amy bought 24 more beads, the ratio became 7 : 5. How many beads did Amy have at first?",
+  "units": [{"name": "u", "meaning": "1 unit"}],
+  "quantities": [
+    {"id": "amy_before", "label": "Amy's beads at first"},
+    {"id": "amy_after", "label": "Amy's beads after"},
+    {"id": "beth", "label": "Beth's beads"}
+  ],
+  "relations": [
+    {"eq": "amy_before / beth = 3/5", "from": "The ratio of Amy's beads to Beth's beads was 3 : 5"},
+    {"eq": "amy_after = amy_before + 24", "from": "Amy bought 24 more beads"},
+    {"eq": "amy_after / beth = 7/5", "from": "the ratio became 7 : 5"}
+  ],
+  "asked": {"expr": "amy_before", "label": "Amy's beads at first"},
+  "answer": 18,
+  "stages": [
+    {"id": "before", "label": "At first", "bars": [
+      {"id": "amy_b", "quantity": "amy_before", "label": "Amy", "segments": [{"expr": "3*u"}]},
+      {"id": "beth_b", "quantity": "beth", "label": "Beth", "segments": [{"expr": "5*u"}]}
+    ]},
+    {"id": "after", "label": "After", "bars": [
+      {"id": "amy_a", "quantity": "amy_after", "label": "Amy", "segments": [{"expr": "3*u"}, {"expr": "4*u", "style": "added", "label": "+24"}]},
+      {"id": "beth_a", "quantity": "beth", "label": "Beth", "segments": [{"expr": "5*u"}]}
+    ]}
+  ],
+  "timeline": [
+    {"do": "write_question", "say": "The ratio of Amy's beads to Beth's beads was 3 : 5. After Amy bought 24 more beads, the ratio became 7 : 5. How many beads did Amy have at first?"},
+    {"do": "highlight", "text": "3 : 5", "say": "At first, Amy's and Beth's beads were in the ratio 3 to 5."},
+    {"do": "draw_stage", "stage": "before", "say": "Let's draw their beads at first."},
+    {"do": "draw_bar", "bar": "amy_b", "say": "Amy has 3 units."},
+    {"do": "draw_bar", "bar": "beth_b", "say": "Beth has 5 units."},
+    {"do": "divide_units", "bar": "amy_b", "say": "Let's mark Amy's equal units."},
+    {"do": "divide_units", "bar": "beth_b", "say": "Beth buys nothing, so her 5 units stay the same."},
+    {"do": "highlight", "text": "7 : 5", "say": "After Amy bought 24 beads, the ratio became 7 to 5."},
+    {"do": "draw_stage", "stage": "after", "say": "Now let's draw their beads after."},
+    {"do": "draw_bar", "bar": "beth_a", "say": "Beth still has 5 units."},
+    {"do": "draw_bar", "bar": "amy_a", "say": "Amy now has 7 units, so she gained 4 units."},
+    {"do": "divide_units", "bar": "amy_a", "say": "Let's mark Amy's 7 units."},
+    {"do": "bracket", "bar": "amy_a", "segments": [1, 1], "side": "top", "text": "24", "say": "Those 4 extra units are the 24 beads Amy bought."},
+    {"do": "question_mark", "bar": "amy_b", "say": "We want Amy's beads at first."},
+    {"do": "pause", "seconds": 2.0, "say": "Pause and think. What is 1 unit worth?"},
+    {"do": "write", "text": "4 units = 24", "say": "4 units are worth 24 beads."},
+    {"do": "write", "text": "1 unit = 24 ÷ 4 = 6", "say": "So 1 unit is 24 divided by 4, which is 6."},
+    {"do": "write", "text": "3 units = 3 × 6 = 18", "say": "Amy had 3 units at first. 3 times 6 is 18."},
+    {"do": "write", "text": "Check: 7 units = 7 × 6 = 42 = 18 + 24 ✓", "say": "Let's check: Amy's 18 beads plus 24 make 42, which is 7 units. It works!"},
+    {"do": "answer", "text": "Amy had 18 beads at first.", "say": "So, Amy had 18 beads at first. Well done!"}
+  ]
+}

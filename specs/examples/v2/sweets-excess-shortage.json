@@ -1,0 +1,32 @@
+{
+  "version": 2,
+  "title": "Excess and shortage",
+  "level": "P5",
+  "heuristic": "excess_shortage",
+  "template": "working",
+  "board": "two_scenarios",
+  "question": "Mrs Tan has some sweets for her pupils. If she gives each pupil 5 sweets, she will be short of 24 sweets. If she gives each pupil 2 sweets, she will be short of 6 sweets. How many pupils are there?",
+  "units": [],
+  "quantities": [
+    {"id": "pupils", "label": "Number of pupils"},
+    {"id": "sweets", "label": "Number of sweets"}
+  ],
+  "relations": [
+    {"eq": "5*pupils - sweets = 24", "from": "If she gives each pupil 5 sweets, she will be short of 24 sweets"},
+    {"eq": "2*pupils - sweets = 6", "from": "If she gives each pupil 2 sweets, she will be short of 6 sweets"}
+  ],
+  "asked": {"expr": "pupils", "label": "Number of pupils"},
+  "answer": 6,
+  "stages": [],
+  "timeline": [
+    {"do": "write_question", "say": "Mrs Tan has some sweets for her pupils. If she gives each pupil 5 sweets, she will be short of 24 sweets. If she gives each pupil 2 sweets, she will be short of 6 sweets. How many pupils are there?"},
+    {"do": "highlight", "text": "short of 24 sweets", "say": "Giving 5 sweets each, she is short of 24 sweets."},
+    {"do": "highlight", "text": "short of 6 sweets", "say": "Giving 2 sweets each, she is short of only 6 sweets."},
+    {"do": "pause", "seconds": 2.0, "say": "Pause and think. Why does the shortage get smaller?"},
+    {"do": "write", "text": "Difference in shortage = 24 - 6 = 18", "say": "The shortage drops by 24 minus 6, which is 18 sweets."},
+    {"do": "write", "text": "Difference for each pupil = 5 - 2 = 3", "say": "Each pupil gets 3 fewer sweets."},
+    {"do": "write", "text": "Number of pupils = 18 ÷ 3 = 6", "say": "So there are 18 divided by 3, which is 6 pupils."},
+    {"do": "write", "text": "Check: 6 × 5 - 24 = 6 = 6 × 2 - 6 ✓", "say": "Let's check: both ways, Mrs Tan has 6 sweets. It works!"},
+    {"do": "answer", "text": "There are 6 pupils.", "say": "So, there are 6 pupils. Well done!"}
+  ]
+}

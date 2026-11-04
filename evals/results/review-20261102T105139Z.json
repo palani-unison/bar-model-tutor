@@ -1,0 +1,2521 @@
+{
+  "suite": "review",
+  "ran_at": "2026-11-02T10:51:39.218402+00:00",
+  "n": 72,
+  "diagnosed_right": 64,
+  "per_mistake": {
+    "correct": "12/12",
+    "wrong_units": "10/12",
+    "missing_total": "12/12",
+    "wrong_question": "10/12",
+    "calc_error": "10/12",
+    "wrong_answer": "10/12"
+  },
+  "false_alarms_on_correct": 0,
+  "p50_seconds": 4.2,
+  "rows": [
+    {
+      "id": "mult-stickers",
+      "mistake": "correct",
+      "expected": null,
+      "found": null,
+      "all_correct": true,
+      "ok": true,
+      "say": "Excellent! Your bar model, working and answer are all correct.",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Raju",
+            "units": 1
+          },
+          {
+            "extra": null,
+            "label": "Siti",
+            "units": 4
+          }
+        ],
+        "brace_numbers": [
+          250
+        ],
+        "final_answer": 200,
+        "legible": true,
+        "question_mark_on": "Siti",
+        "working": [
+          "5 units = 250",
+          "1 unit = 250 ÷ 5 = 50"
+        ]
+      },
+      "seconds": 5.7
+    },
+    {
+      "id": "mult-stickers",
+      "mistake": "wrong_units",
+      "expected": "units",
+      "found": "units",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person is right. Look at Siti's bar. You drew 5 units. Read the question again: how does Siti compare with Raju? How many units should Siti's bar have?",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Raju",
+            "units": 1
+          },
+          {
+            "extra": null,
+            "label": "Siti",
+            "units": 5
+          }
+        ],
+        "brace_numbers": [
+          250
+        ],
+        "final_answer": 200,
+        "legible": true,
+        "question_mark_on": "Siti",
+        "working": [
+          "5 units = 250",
+          "1 unit = 250 ÷ 5 = 50"
+        ]
+      },
+      "seconds": 4.5
+    },
+    {
+      "id": "mult-stickers",
+      "mistake": "missing_total",
+      "expected": "numbers",
+      "found": "numbers",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person, equal units are right. Where do we show what everyone has altogether? Draw a bracket and write the number from the question.",
+      "read": {
+        "bars": [
+          {
+            "label": "Raju",
+            "units": 1,
+            "extraњ": null,
+            "extraо": null
+          },
+          {
+            "label": "Siti",
+            "units": 4,
+            "extraњ": null,
+            "extraо": null
+          },
+          {
+            "label": "Raju",
+            "units": 1,
+            "extraWhitespaceCheck": null
+          },
+          {
+            "label": "Raju",
+            "units": 1,
+            "extraА": null
+          }
+        ],
+        "brace_numbers": [],
+        "final_answer": 200,
+        "legible": true,
+        "question_mark_on": "Siti",
+        "working": [
+          "5 units = 250",
+          "1 unit = 250 ÷ 5 = 50"
+        ]
+      },
+      "seconds": 6.0
+    },
+    {
+      "id": "mult-stickers",
+      "mistake": "wrong_question",
+      "expected": "question",
+      "found": "question",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person, equal units, given numbers are right. Read the last sentence of the question. Whose amount are we finding? Put a question mark on that bar.",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Raju",
+            "units": 1
+          },
+          {
+            "extra": null,
+            "label": "Siti",
+            "units": 4
+          }
+        ],
+        "brace_numbers": [
+          250
+        ],
+        "final_answer": 200,
+        "legible": true,
+        "question_mark_on": "Raju",
+        "working": [
+          "5 units = 250",
+          "1 unit = 250 ÷ 5 = 50"
+        ]
+      },
+      "seconds": 4.0
+    },
+    {
+      "id": "mult-stickers",
+      "mistake": "calc_error",
+      "expected": "working",
+      "found": "working",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person, equal units, given numbers, question mark are right. Check this line: \"5 units = 260\". Try that step again carefully.",
+      "read": {
+        "bars": [
+          {
+            "label": "Raju",
+            "units": 1,
+            "extra!!": null
+          },
+          {
+            "label": "Siti",
+            "units": 4,
+            "extra!!": null
+          }
+        ],
+        "brace_numbers": [
+          250
+        ],
+        "final_answer": null,
+        "legible": true,
+        "question_mark_on": "Siti",
+        "working": [
+          "5 units = 260"
+        ]
+      },
+      "seconds": 3.8
+    },
+    {
+      "id": "mult-stickers",
+      "mistake": "wrong_answer",
+      "expected": "answer",
+      "found": "answer",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person, equal units, given numbers, question mark, working are right. Your answer, 210, isn't quite right. Look at Siti's bar: how many units is it, and what is 1 unit worth?",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Raju",
+            "units": 1
+          },
+          {
+            "extra": null,
+            "label": "Siti",
+            "units": 4
+          }
+        ],
+        "brace_numbers": [
+          250
+        ],
+        "final_answer": 210,
+        "legible": true,
+        "question_mark_on": "Siti",
+        "working": [
+          "5 units = 250",
+          "1 unit = 250 ÷ 5 = 50"
+        ]
+      },
+      "seconds": 4.3
+    },
+    {
+      "id": "mult-rice-beans",
+      "mistake": "correct",
+      "expected": null,
+      "found": null,
+      "all_correct": true,
+      "ok": true,
+      "say": "Excellent! Your bar model, working and answer are all correct.",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Beans",
+            "units": 1
+          },
+          {
+            "extra": null,
+            "label": "Rice",
+            "units": 5
+          }
+        ],
+        "brace_numbers": [
+          18
+        ],
+        "final_answer": 3,
+        "legible": true,
+        "question_mark_on": "Beans",
+        "working": [
+          "6 units = 18",
+          "1 unit = 18 ÷ 6 = 3"
+        ]
+      },
+      "seconds": 21.3
+    },
+    {
+      "id": "mult-rice-beans",
+      "mistake": "wrong_units",
+      "expected": "units",
+      "found": "units",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person is right. Look at Rice's bar. You drew 6 units. Read the question again: how does Rice compare with Beans? How many units should Rice's bar have?",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Beans",
+            "units": 1
+          },
+          {
+            "extra": null,
+            "label": "Rice",
+            "units": 6
+          }
+        ],
+        "brace_numbers": [
+          18
+        ],
+        "final_answer": 3,
+        "legible": true,
+        "question_mark_on": "Beans",
+        "working": [
+          "6 units = 18",
+          "1 unit = 18 ÷ 6 = 3"
+        ]
+      },
+      "seconds": 4.7
+    },
+    {
+      "id": "mult-rice-beans",
+      "mistake": "missing_total",
+      "expected": "numbers",
+      "found": "numbers",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person, equal units are right. Where do we show what everyone has altogether? Draw a bracket and write the number from the question.",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Beans",
+            "units": 1
+          },
+          {
+            "extra": null,
+            "label": "Rice",
+            "units": 5
+          }
+        ],
+        "brace_numbers": [],
+        "final_answer": 3,
+        "legible": true,
+        "question_mark_on": "Beans",
+        "working": [
+          "6 units = 18",
+          "1 unit = 18 ÷ 6 = 3"
+        ]
+      },
+      "seconds": 2.8
+    },
+    {
+      "id": "mult-rice-beans",
+      "mistake": "wrong_question",
+      "expected": "question",
+      "found": "question",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person, equal units, given numbers are right. Read the last sentence of the question. Whose amount are we finding? Put a question mark on that bar.",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Beans",
+            "units": 1
+          },
+          {
+            "extra": null,
+            "label": "Rice",
+            "units": 5
+          }
+        ],
+        "brace_numbers": [
+          18
+        ],
+        "final_answer": 3,
+        "legible": true,
+        "question_mark_on": "Rice",
+        "working": [
+          "6 units = 18",
+          "1 unit = 18 ÷ 6 = 3"
+        ]
+      },
+      "seconds": 7.7
+    },
+    {
+      "id": "mult-rice-beans",
+      "mistake": "calc_error",
+      "expected": "working",
+      "found": "working",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person, equal units, given numbers, question mark are right. Check this line: \"6 units = 28\". Try that step again carefully.",
+      "read": {
+        "bars": [
+          {
+            "label": "Beans",
+            "units": 1,
+            "extraњ": null
+          },
+          {
+            "label": "Rice",
+            "units": 5,
+            "extraњ": null
+          }
+        ],
+        "brace_numbers": [
+          18
+        ],
+        "final_answer": null,
+        "legible": true,
+        "question_mark_on": "Beans",
+        "working": [
+          "6 units = 28"
+        ]
+      },
+      "seconds": 4.5
+    },
+    {
+      "id": "mult-rice-beans",
+      "mistake": "wrong_answer",
+      "expected": "answer",
+      "found": "answer",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person, equal units, given numbers, question mark, working are right. Your answer, 13, isn't quite right. Look at Beans's bar: how many units is it, and what is 1 unit worth?",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Beans",
+            "units": 1
+          },
+          {
+            "extra": null,
+            "label": "Rice",
+            "units": 5
+          }
+        ],
+        "brace_numbers": [
+          18
+        ],
+        "final_answer": 13,
+        "legible": true,
+        "question_mark_on": "Beans",
+        "working": [
+          "6 units = 18"
+        ]
+      },
+      "seconds": 4.3
+    },
+    {
+      "id": "mult-car-money",
+      "mistake": "correct",
+      "expected": null,
+      "found": null,
+      "all_correct": true,
+      "ok": true,
+      "say": "Excellent! Your bar model, working and answer are all correct.",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Motorcycle",
+            "units": 1
+          },
+          {
+            "extra": null,
+            "label": "Car",
+            "units": 3
+          }
+        ],
+        "brace_numbers": [
+          48000
+        ],
+        "final_answer": 12000,
+        "legible": true,
+        "question_mark_on": "Motorcycle",
+        "working": [
+          "4 units = 48000",
+          "1 unit = 48000 ÷ 4 = 12000"
+        ]
+      },
+      "seconds": 3.7
+    },
+    {
+      "id": "mult-car-money",
+      "mistake": "wrong_units",
+      "expected": "units",
+      "found": "units",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person is right. Look at Car's bar. You drew 4 units. Read the question again: how does Car compare with Motorcycle? How many units should Car's bar have?",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Motorcycle",
+            "units": 1
+          },
+          {
+            "extra": null,
+            "label": "Car",
+            "units": 4
+          }
+        ],
+        "brace_numbers": [
+          48000
+        ],
+        "final_answer": 12000,
+        "legible": true,
+        "question_mark_on": "Motorcycle",
+        "working": [
+          "4 units = 48000",
+          "1 unit = 48000 ÷ 4 = 12000",
+          "Ans: The motorcycle costs $12000."
+        ]
+      },
+      "seconds": 4.1
+    },
+    {
+      "id": "mult-car-money",
+      "mistake": "missing_total",
+      "expected": "numbers",
+      "found": "numbers",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person, equal units are right. Where do we show what everyone has altogether? Draw a bracket and write the number from the question.",
+      "read": {
+        "bars": [
+          {
+            "label": "Motorcycle",
+            "units": 1,
+            "extraњ": null
+          },
+          {
+            "label": "Car",
+            "units": 3,
+            "extraњ": null
+          }
+        ],
+        "brace_numbers": [],
+        "final_answer": 12000,
+        "legible": true,
+        "question_mark_on": "Motorcycle",
+        "working": [
+          "4 units = 48000",
+          "1 unit = 48000 ÷ 4 = 12000"
+        ]
+      },
+      "seconds": 3.7
+    },
+    {
+      "id": "mult-car-money",
+      "mistake": "wrong_question",
+      "expected": "question",
+      "found": "question",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person, equal units, given numbers are right. Read the last sentence of the question. Whose amount are we finding? Put a question mark on that bar.",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Motorcycle",
+            "units": 1
+          },
+          {
+            "extra": null,
+            "label": "Car",
+            "units": 3
+          }
+        ],
+        "brace_numbers": [
+          48000
+        ],
+        "final_answer": 12000,
+        "legible": true,
+        "question_mark_on": "Car",
+        "working": [
+          "4 units = 48000",
+          "1 unit = 48000 ÷ 4 = 12000"
+        ]
+      },
+      "seconds": 4.3
+    },
+    {
+      "id": "mult-car-money",
+      "mistake": "calc_error",
+      "expected": "working",
+      "found": "working",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person, equal units, given numbers, question mark are right. Check this line: \"4 units = 48010\". Try that step again carefully.",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Motorcycle",
+            "units": 1
+          },
+          {
+            "extra": null,
+            "label": "Car",
+            "units": 3
+          }
+        ],
+        "brace_numbers": [
+          48000
+        ],
+        "final_answer": null,
+        "legible": true,
+        "question_mark_on": "Motorcycle",
+        "working": [
+          "4 units = 48010"
+        ]
+      },
+      "seconds": 4.1
+    },
+    {
+      "id": "mult-car-money",
+      "mistake": "wrong_answer",
+      "expected": "answer",
+      "found": "answer",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person, equal units, given numbers, question mark, working are right. Your answer, 12,010, isn't quite right. Look at Motorcycle's bar: how many units is it, and what is 1 unit worth?",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Motorcycle",
+            "units": 1
+          },
+          {
+            "extra": null,
+            "label": "Car",
+            "units": 3
+          }
+        ],
+        "brace_numbers": [
+          48000
+        ],
+        "final_answer": 12010,
+        "legible": true,
+        "question_mark_on": "Motorcycle",
+        "working": [
+          "4 units = 48000"
+        ]
+      },
+      "seconds": 5.5
+    },
+    {
+      "id": "mult-dog-decimal",
+      "mistake": "correct",
+      "expected": null,
+      "found": null,
+      "all_correct": true,
+      "ok": true,
+      "say": "Excellent! Your bar model, working and answer are all correct.",
+      "read": {
+        "bars": [
+          {
+            "label": "Kitten",
+            "units": 1,
+            "extraњ": null
+          },
+          {
+            "extra": null,
+            "label": "Dog",
+            "units": 9
+          }
+        ],
+        "brace_numbers": [
+          22.5
+        ],
+        "final_answer": 20.25,
+        "legible": true,
+        "question_mark_on": "Dog",
+        "working": [
+          "10 units = 22.5",
+          "1 unit = 22.5 ÷ 10 = 2.25",
+          "9 units = 9 × 2.25 = 20.25"
+        ]
+      },
+      "seconds": 7.5
+    },
+    {
+      "id": "mult-dog-decimal",
+      "mistake": "wrong_units",
+      "expected": "units",
+      "found": null,
+      "all_correct": true,
+      "ok": false,
+      "say": "Excellent! Your bar model, working and answer are all correct.",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Kitten",
+            "units": 1
+          },
+          {
+            "extra": null,
+            "label": "Dog",
+            "units": 9
+          }
+        ],
+        "brace_numbers": [
+          22.5
+        ],
+        "final_answer": 20.25,
+        "legible": true,
+        "question_mark_on": "Dog",
+        "working": [
+          "10 units = 22.5",
+          "1 unit = 22.5 ÷ 10 = 2.25",
+          "9 units = 9 × 2.25 = 20.25"
+        ]
+      },
+      "seconds": 3.2
+    },
+    {
+      "id": "mult-dog-decimal",
+      "mistake": "missing_total",
+      "expected": "numbers",
+      "found": "numbers",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person, equal units are right. Where do we show what everyone has altogether? Draw a bracket and write the number from the question.",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Kitten",
+            "units": 1
+          },
+          {
+            "extra": null,
+            "label": "Dog",
+            "units": 9
+          }
+        ],
+        "brace_numbers": [],
+        "final_answer": 20.25,
+        "legible": true,
+        "question_mark_on": "Dog",
+        "working": [
+          "10 units = 22.5",
+          "1 unit = 22.5 ÷ 10 = 2.25",
+          "9 units = 9 × 2.25 = 20.25"
+        ]
+      },
+      "seconds": 6.0
+    },
+    {
+      "id": "mult-dog-decimal",
+      "mistake": "wrong_question",
+      "expected": "question",
+      "found": "question",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person, equal units, given numbers are right. Read the last sentence of the question. Whose amount are we finding? Put a question mark on that bar.",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Kitten",
+            "units": 1
+          },
+          {
+            "extra": null,
+            "label": "Dog",
+            "units": 9
+          }
+        ],
+        "brace_numbers": [
+          22.5
+        ],
+        "final_answer": 20.25,
+        "legible": true,
+        "question_mark_on": "Kitten",
+        "working": [
+          "10 units = 22.5",
+          "1 unit = 22.5 ÷ 10 = 2.25",
+          "9 units = 9 x 2.25 = 20.25"
+        ]
+      },
+      "seconds": 4.1
+    },
+    {
+      "id": "mult-dog-decimal",
+      "mistake": "calc_error",
+      "expected": "working",
+      "found": "units",
+      "all_correct": false,
+      "ok": false,
+      "say": "Good, your bars for each person is right. Look at Dog's bar. You drew 10 units. Read the question again: how does Dog compare with Kitten? How many units should Dog's bar have?",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Kitten",
+            "units": 1
+          },
+          {
+            "extra": null,
+            "label": "Dog",
+            "units": 10
+          }
+        ],
+        "brace_numbers": [
+          22.5
+        ],
+        "final_answer": null,
+        "legible": true,
+        "question_mark_on": "Dog",
+        "working": [
+          "10 units = 32.5"
+        ]
+      },
+      "seconds": 7.5
+    },
+    {
+      "id": "mult-dog-decimal",
+      "mistake": "wrong_answer",
+      "expected": "answer",
+      "found": "units",
+      "all_correct": false,
+      "ok": false,
+      "say": "Good, your bars for each person is right. Look at Dog's bar. You drew 10 units. Read the question again: how does Dog compare with Kitten? How many units should Dog's bar have?",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Kitten",
+            "units": 1
+          },
+          {
+            "extra": null,
+            "label": "Dog",
+            "units": 10
+          }
+        ],
+        "brace_numbers": [
+          22.5
+        ],
+        "final_answer": 30.25,
+        "legible": true,
+        "question_mark_on": "Dog",
+        "working": [
+          "10 units = 22.5",
+          "1 unit = 22.5 ÷ 10 = 2.25"
+        ]
+      },
+      "seconds": 8.8
+    },
+    {
+      "id": "ratio-two",
+      "mistake": "correct",
+      "expected": null,
+      "found": null,
+      "all_correct": true,
+      "ok": true,
+      "say": "Excellent! Your bar model, working and answer are all correct.",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Ann",
+            "units": 2
+          },
+          {
+            "extra": null,
+            "label": "Bala",
+            "units": 3
+          }
+        ],
+        "brace_numbers": [
+          150
+        ],
+        "final_answer": 90,
+        "legible": true,
+        "question_mark_on": "Bala",
+        "working": [
+          "5 units = 150",
+          "1 unit = 150 ÷ 5 = 30",
+          "3 units = 3 x 30 = 90"
+        ]
+      },
+      "seconds": 3.6
+    },
+    {
+      "id": "ratio-two",
+      "mistake": "wrong_units",
+      "expected": "units",
+      "found": "units",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person is right. Look at Bala's bar. You drew 4 units. Read the question again: how does Bala compare with Ann? How many units should Bala's bar have?",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Ann",
+            "units": 2
+          },
+          {
+            "extra": null,
+            "label": "Bala",
+            "units": 4
+          }
+        ],
+        "brace_numbers": [
+          150
+        ],
+        "final_answer": 90,
+        "legible": true,
+        "question_mark_on": "Bala",
+        "working": [
+          "5 units = 150",
+          "1 unit = 150 ÷ 5 = 30",
+          "3 units = 3 x 30 = 90"
+        ]
+      },
+      "seconds": 5.0
+    },
+    {
+      "id": "ratio-two",
+      "mistake": "missing_total",
+      "expected": "numbers",
+      "found": "numbers",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person, equal units are right. Where do we show what everyone has altogether? Draw a bracket and write the number from the question.",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Ann",
+            "units": 2
+          },
+          {
+            "extra": null,
+            "label": "Bala",
+            "units": 3
+          }
+        ],
+        "brace_numbers": [],
+        "final_answer": 90,
+        "legible": true,
+        "question_mark_on": "Bala",
+        "working": [
+          "5 units = 150",
+          "1 unit = 150 ÷ 5 = 30",
+          "3 units = 3 x 30 = 90"
+        ]
+      },
+      "seconds": 3.4
+    },
+    {
+      "id": "ratio-two",
+      "mistake": "wrong_question",
+      "expected": "question",
+      "found": "question",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person, equal units, given numbers are right. Read the last sentence of the question. Whose amount are we finding? Put a question mark on that bar.",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Ann",
+            "units": 2
+          },
+          {
+            "extra": null,
+            "label": "Bala",
+            "units": 3
+          }
+        ],
+        "brace_numbers": [
+          150
+        ],
+        "final_answer": 90,
+        "legible": true,
+        "question_mark_on": "Ann",
+        "working": [
+          "5 units = 150",
+          "1 unit = 150 ÷ 5 = 30",
+          "3 units = 3 × 30 = 90"
+        ]
+      },
+      "seconds": 4.4
+    },
+    {
+      "id": "ratio-two",
+      "mistake": "calc_error",
+      "expected": "working",
+      "found": "working",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person, equal units, given numbers, question mark are right. Check this line: \"5 units = 160\". Try that step again carefully.",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Ann",
+            "units": 2
+          },
+          {
+            "extra": null,
+            "label": "Bala",
+            "units": 3
+          }
+        ],
+        "brace_numbers": [
+          150
+        ],
+        "final_answer": null,
+        "legible": true,
+        "question_mark_on": "Bala",
+        "working": [
+          "5 units = 160"
+        ]
+      },
+      "seconds": 2.2
+    },
+    {
+      "id": "ratio-two",
+      "mistake": "wrong_answer",
+      "expected": "answer",
+      "found": "answer",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person, equal units, given numbers, question mark, working are right. Your answer, 100, isn't quite right. Look at Bala's bar: how many units is it, and what is 1 unit worth?",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Ann",
+            "units": 2
+          },
+          {
+            "extra": null,
+            "label": "Bala",
+            "units": 3
+          }
+        ],
+        "brace_numbers": [
+          150
+        ],
+        "final_answer": 100,
+        "legible": true,
+        "question_mark_on": "Bala",
+        "working": [
+          "5 units = 150",
+          "1 unit = 150 ÷ 5 = 30"
+        ]
+      },
+      "seconds": 4.2
+    },
+    {
+      "id": "ratio-hall",
+      "mistake": "correct",
+      "expected": null,
+      "found": null,
+      "all_correct": true,
+      "ok": true,
+      "say": "Excellent! Your bar model, working and answer are all correct.",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Boys",
+            "units": 4
+          },
+          {
+            "extra": null,
+            "label": "Girls",
+            "units": 5
+          }
+        ],
+        "brace_numbers": [
+          360
+        ],
+        "final_answer": 200,
+        "legible": true,
+        "question_mark_on": "Girls",
+        "working": [
+          "9 units = 360",
+          "1 unit = 360 ÷ 9 = 40",
+          "5 units = 5 × 40 = 200"
+        ]
+      },
+      "seconds": 4.1
+    },
+    {
+      "id": "ratio-hall",
+      "mistake": "wrong_units",
+      "expected": "units",
+      "found": "units",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person is right. Look at Girls's bar. You drew 6 units. Read the question again: how does Girls compare with Boys? How many units should Girls's bar have?",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Boys",
+            "units": 4
+          },
+          {
+            "extra": null,
+            "label": "Girls",
+            "units": 6
+          }
+        ],
+        "brace_numbers": [
+          360
+        ],
+        "final_answer": 200,
+        "legible": true,
+        "question_mark_on": "Girls",
+        "working": [
+          "9 units = 360",
+          "1 unit = 360 ÷ 9 = 40",
+          "5 units = 5 × 40 = 200"
+        ]
+      },
+      "seconds": 5.5
+    },
+    {
+      "id": "ratio-hall",
+      "mistake": "missing_total",
+      "expected": "numbers",
+      "found": "numbers",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person, equal units are right. Where do we show what everyone has altogether? Draw a bracket and write the number from the question.",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Boys",
+            "units": 4
+          },
+          {
+            "extra": null,
+            "label": "Girls",
+            "units": 5
+          }
+        ],
+        "brace_numbers": [],
+        "final_answer": 200,
+        "legible": true,
+        "question_mark_on": "Girls",
+        "working": [
+          "9 units = 360",
+          "1 unit = 360 ÷ 9 = 40",
+          "5 units = 5 × 40 = 200"
+        ]
+      },
+      "seconds": 3.5
+    },
+    {
+      "id": "ratio-hall",
+      "mistake": "wrong_question",
+      "expected": "question",
+      "found": "question",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person, equal units, given numbers are right. Read the last sentence of the question. Whose amount are we finding? Put a question mark on that bar.",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Boys",
+            "units": 4
+          },
+          {
+            "extra": null,
+            "label": "Girls",
+            "units": 5
+          }
+        ],
+        "brace_numbers": [
+          360
+        ],
+        "final_answer": 200,
+        "legible": true,
+        "question_mark_on": "Boys",
+        "working": [
+          "9 units = 360",
+          "1 unit = 360 ÷ 9 = 40",
+          "5 units = 5 x 40 = 200"
+        ]
+      },
+      "seconds": 4.8
+    },
+    {
+      "id": "ratio-hall",
+      "mistake": "calc_error",
+      "expected": "working",
+      "found": "working",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person, equal units, given numbers, question mark are right. Check this line: \"9 units = 370\". Try that step again carefully.",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Boys",
+            "units": 4
+          },
+          {
+            "extra": null,
+            "label": "Girls",
+            "units": 5
+          }
+        ],
+        "brace_numbers": [
+          360
+        ],
+        "final_answer": null,
+        "legible": true,
+        "question_mark_on": "Girls",
+        "working": [
+          "9 units = 370"
+        ]
+      },
+      "seconds": 3.6
+    },
+    {
+      "id": "ratio-hall",
+      "mistake": "wrong_answer",
+      "expected": "answer",
+      "found": "answer",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person, equal units, given numbers, question mark, working are right. Your answer, 210, isn't quite right. Look at Girls's bar: how many units is it, and what is 1 unit worth?",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Boys",
+            "units": 4
+          },
+          {
+            "extra": null,
+            "label": "Girls",
+            "units": 5
+          }
+        ],
+        "brace_numbers": [
+          360
+        ],
+        "final_answer": 210,
+        "legible": true,
+        "question_mark_on": "Girls",
+        "working": [
+          "9 units = 360",
+          "1 unit = 360 ÷ 9 = 40"
+        ]
+      },
+      "seconds": 3.7
+    },
+    {
+      "id": "ratio-three",
+      "mistake": "correct",
+      "expected": null,
+      "found": null,
+      "all_correct": true,
+      "ok": true,
+      "say": "Excellent! Your bar model, working and answer are all correct.",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Ali",
+            "units": 1
+          },
+          {
+            "extra": null,
+            "label": "Ben",
+            "units": 2
+          },
+          {
+            "extra": null,
+            "label": "Chong",
+            "units": 5
+          }
+        ],
+        "brace_numbers": [
+          240
+        ],
+        "final_answer": 150,
+        "legible": true,
+        "question_mark_on": "Chong",
+        "working": [
+          "8 units = 240",
+          "5 units = 5 x 30 = 150"
+        ]
+      },
+      "seconds": 4.8
+    },
+    {
+      "id": "ratio-three",
+      "mistake": "wrong_units",
+      "expected": "units",
+      "found": "units",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person is right. Look at Chong's bar. You drew 6 units. Read the question again: how does Chong compare with Ali? How many units should Chong's bar have?",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Ali",
+            "units": 1
+          },
+          {
+            "extra": null,
+            "label": "Ben",
+            "units": 2
+          },
+          {
+            "extra": null,
+            "label": "Chong",
+            "units": 6
+          }
+        ],
+        "brace_numbers": [
+          240
+        ],
+        "final_answer": 150,
+        "legible": true,
+        "question_mark_on": "Chong",
+        "working": [
+          "8 units = 240",
+          "5 units = 5 x 30 = 150"
+        ]
+      },
+      "seconds": 7.5
+    },
+    {
+      "id": "ratio-three",
+      "mistake": "missing_total",
+      "expected": "numbers",
+      "found": "numbers",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person, equal units are right. Where do we show what everyone has altogether? Draw a bracket and write the number from the question.",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Ali",
+            "units": 1
+          },
+          {
+            "extra": null,
+            "label": "Ben",
+            "units": 2
+          },
+          {
+            "extra": null,
+            "label": "Chong",
+            "units": 5
+          }
+        ],
+        "brace_numbers": [],
+        "final_answer": 150,
+        "legible": true,
+        "question_mark_on": "Chong",
+        "working": [
+          "8 units = 240",
+          "5 units = 5 x 30 = 150"
+        ]
+      },
+      "seconds": 4.3
+    },
+    {
+      "id": "ratio-three",
+      "mistake": "wrong_question",
+      "expected": "question",
+      "found": "question",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person, equal units, given numbers are right. Read the last sentence of the question. Whose amount are we finding? Put a question mark on that bar.",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Ali",
+            "units": 1
+          },
+          {
+            "extra": null,
+            "label": "Ben",
+            "units": 2
+          },
+          {
+            "extra": null,
+            "label": "Chong",
+            "units": 5
+          }
+        ],
+        "brace_numbers": [
+          240
+        ],
+        "final_answer": 150,
+        "legible": true,
+        "question_mark_on": "Ali",
+        "working": [
+          "8 units = 240",
+          "5 units = 5 x 30 = 150"
+        ]
+      },
+      "seconds": 3.7
+    },
+    {
+      "id": "ratio-three",
+      "mistake": "calc_error",
+      "expected": "working",
+      "found": "working",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person, equal units, given numbers, question mark are right. Check this line: \"8 units = 250\". Try that step again carefully.",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Ali",
+            "units": 1
+          },
+          {
+            "extra": null,
+            "label": "Ben",
+            "units": 2
+          },
+          {
+            "extra": null,
+            "label": "Chong",
+            "units": 5
+          }
+        ],
+        "brace_numbers": [
+          240
+        ],
+        "final_answer": null,
+        "legible": true,
+        "question_mark_on": "Chong",
+        "working": [
+          "8 units = 250"
+        ]
+      },
+      "seconds": 3.1
+    },
+    {
+      "id": "ratio-three",
+      "mistake": "wrong_answer",
+      "expected": "answer",
+      "found": "answer",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person, equal units, given numbers, question mark, working are right. Your answer, 160, isn't quite right. Look at Chong's bar: how many units is it, and what is 1 unit worth?",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Ali",
+            "units": 1
+          },
+          {
+            "extra": null,
+            "label": "Ben",
+            "units": 2
+          },
+          {
+            "extra": null,
+            "label": "Chong",
+            "units": 5
+          }
+        ],
+        "brace_numbers": [
+          240
+        ],
+        "final_answer": 160,
+        "legible": true,
+        "question_mark_on": "Chong",
+        "working": [
+          "8 units = 240"
+        ]
+      },
+      "seconds": 3.0
+    },
+    {
+      "id": "ratio-string",
+      "mistake": "correct",
+      "expected": null,
+      "found": null,
+      "all_correct": true,
+      "ok": true,
+      "say": "Excellent! Your bar model, working and answer are all correct.",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Shorter",
+            "units": 3
+          },
+          {
+            "extra": null,
+            "label": "Longer",
+            "units": 4
+          }
+        ],
+        "brace_numbers": [
+          84
+        ],
+        "final_answer": 36,
+        "legible": true,
+        "question_mark_on": "Shorter",
+        "working": [
+          "7 units = 84",
+          "1 unit = 84 ÷ 7 = 12",
+          "3 units = 3 × 12 = 36"
+        ]
+      },
+      "seconds": 3.6
+    },
+    {
+      "id": "ratio-string",
+      "mistake": "wrong_units",
+      "expected": "units",
+      "found": "bars",
+      "all_correct": false,
+      "ok": false,
+      "say": "I can't find a bar for Longer. Who else is in the question? Draw a bar for each one, and write the name next to it.",
+      "read": {
+        "bars": [
+          {
+            "label": "Shorter",
+            "units": 3,
+            "extra\": null}, {": null
+          }
+        ],
+        "brace_numbers": [
+          84
+        ],
+        "final_answer": 36,
+        "legible": true,
+        "question_mark_on": "Shorter",
+        "working": [
+          "7 units = 84",
+          "1 unit = 84 ÷ 7 = 12",
+          "3 units = 3 × 12 = 36"
+        ]
+      },
+      "seconds": 8.9
+    },
+    {
+      "id": "ratio-string",
+      "mistake": "missing_total",
+      "expected": "numbers",
+      "found": "numbers",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person, equal units are right. Where do we show what everyone has altogether? Draw a bracket and write the number from the question.",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Shorter",
+            "units": 3
+          },
+          {
+            "extra": null,
+            "label": "Longer",
+            "units": 4
+          }
+        ],
+        "brace_numbers": [],
+        "final_answer": 36,
+        "legible": true,
+        "question_mark_on": "Shorter",
+        "working": [
+          "7 units = 84",
+          "1 unit = 84 ÷ 7 = 12",
+          "3 units = 3 × 12 = 36"
+        ]
+      },
+      "seconds": 3.7
+    },
+    {
+      "id": "ratio-string",
+      "mistake": "wrong_question",
+      "expected": "question",
+      "found": "question",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person, equal units, given numbers are right. Read the last sentence of the question. Whose amount are we finding? Put a question mark on that bar.",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Shorter",
+            "units": 3
+          },
+          {
+            "extra": null,
+            "label": "Longer",
+            "units": 4
+          }
+        ],
+        "brace_numbers": [
+          84
+        ],
+        "final_answer": 36,
+        "legible": true,
+        "question_mark_on": "Longer",
+        "working": [
+          "7 units = 84",
+          "1 unit = 84 ÷ 7 = 12",
+          "3 units = 3 x 12 = 36"
+        ]
+      },
+      "seconds": 3.0
+    },
+    {
+      "id": "ratio-string",
+      "mistake": "calc_error",
+      "expected": "working",
+      "found": "working",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person, equal units, given numbers, question mark are right. Check this line: \"7 units = 94\". Try that step again carefully.",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Shorter",
+            "units": 3
+          },
+          {
+            "extra": null,
+            "label": "Longer",
+            "units": 4
+          }
+        ],
+        "brace_numbers": [
+          84
+        ],
+        "final_answer": null,
+        "legible": true,
+        "question_mark_on": "Shorter",
+        "working": [
+          "7 units = 94"
+        ]
+      },
+      "seconds": 3.7
+    },
+    {
+      "id": "ratio-string",
+      "mistake": "wrong_answer",
+      "expected": "answer",
+      "found": "answer",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person, equal units, given numbers, question mark, working are right. Your answer, 46, isn't quite right. Look at Shorter's bar: how many units is it, and what is 1 unit worth?",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Shorter",
+            "units": 3
+          },
+          {
+            "extra": null,
+            "label": "Longer",
+            "units": 4
+          }
+        ],
+        "brace_numbers": [
+          84
+        ],
+        "final_answer": 46,
+        "legible": true,
+        "question_mark_on": "Shorter",
+        "working": [
+          "7 units = 84",
+          "1 unit = 84 ÷ 7 = 12"
+        ]
+      },
+      "seconds": 4.2
+    },
+    {
+      "id": "more-total",
+      "mistake": "correct",
+      "expected": null,
+      "found": null,
+      "all_correct": true,
+      "ok": true,
+      "say": "Excellent! Your bar model, working and answer are all correct.",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Ben",
+            "units": 1
+          },
+          {
+            "extra": 20,
+            "label": "Ali",
+            "units": 1
+          }
+        ],
+        "brace_numbers": [
+          100
+        ],
+        "final_answer": 60,
+        "legible": true,
+        "question_mark_on": "Ali",
+        "working": [
+          "2 units = 100 - 20 = 80",
+          "40 + 20 = 60"
+        ]
+      },
+      "seconds": 3.7
+    },
+    {
+      "id": "more-total",
+      "mistake": "wrong_units",
+      "expected": "units",
+      "found": "units",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person is right. Look at Ali's bar. You drew 1 unit. Read the question again: how does Ben compare with Ben? How many units should Ali's bar have?",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Ben",
+            "units": 2
+          },
+          {
+            "extra": 20,
+            "label": "Ali",
+            "units": 1
+          }
+        ],
+        "brace_numbers": [
+          100
+        ],
+        "final_answer": 60,
+        "legible": true,
+        "question_mark_on": "Ali",
+        "working": [
+          "2 units = 100 - 20 = 80",
+          "40 + 20 = 60"
+        ]
+      },
+      "seconds": 4.5
+    },
+    {
+      "id": "more-total",
+      "mistake": "missing_total",
+      "expected": "numbers",
+      "found": "numbers",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person, equal units are right. Where do we show what everyone has altogether? Draw a bracket and write the number from the question.",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Ben",
+            "units": 1
+          },
+          {
+            "extra": 20,
+            "label": "Ali",
+            "units": 1
+          }
+        ],
+        "brace_numbers": [],
+        "final_answer": 60,
+        "legible": true,
+        "question_mark_on": "Ali",
+        "working": [
+          "2 units = 100 - 20 = 80",
+          "40 + 20 = 60"
+        ]
+      },
+      "seconds": 4.1
+    },
+    {
+      "id": "more-total",
+      "mistake": "wrong_question",
+      "expected": "question",
+      "found": "question",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person, equal units, given numbers are right. Read the last sentence of the question. Whose amount are we finding? Put a question mark on that bar.",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Ben",
+            "units": 1
+          },
+          {
+            "extra": 20,
+            "label": "Ali",
+            "units": 1
+          }
+        ],
+        "brace_numbers": [
+          100
+        ],
+        "final_answer": 60,
+        "legible": true,
+        "question_mark_on": "Ben",
+        "working": [
+          "2 units = 100 - 20 = 80",
+          "40 + 20 = 60"
+        ]
+      },
+      "seconds": 4.5
+    },
+    {
+      "id": "more-total",
+      "mistake": "calc_error",
+      "expected": "working",
+      "found": "working",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person, equal units, given numbers, question mark are right. Check this line: \"2 units = 100 - 20 = 90\". Try that step again carefully.",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Ben",
+            "units": 1
+          },
+          {
+            "extra": 20,
+            "label": "Ali",
+            "units": 1
+          }
+        ],
+        "brace_numbers": [
+          100
+        ],
+        "final_answer": null,
+        "legible": true,
+        "question_mark_on": "Ali",
+        "working": [
+          "2 units = 100 - 20 = 90"
+        ]
+      },
+      "seconds": 3.5
+    },
+    {
+      "id": "more-total",
+      "mistake": "wrong_answer",
+      "expected": "answer",
+      "found": "units",
+      "all_correct": false,
+      "ok": false,
+      "say": "Good, your bars for each person is right. Ali has some more than the others. Draw that extra part at the end of Ali's bar and write how much it is.",
+      "read": {
+        "bars": [
+          {
+            "label": "Ben",
+            "units": 1,
+            "extraњ": null
+          },
+          {
+            "label": "Ali",
+            "units": 1,
+            "extraњ": 20
+          }
+        ],
+        "brace_numbers": [
+          100
+        ],
+        "final_answer": 70,
+        "legible": true,
+        "question_mark_on": "Ali",
+        "working": [
+          "2 units = 100 - 20 = 80"
+        ]
+      },
+      "seconds": 4.3
+    },
+    {
+      "id": "fewer-total",
+      "mistake": "correct",
+      "expected": null,
+      "found": null,
+      "all_correct": true,
+      "ok": true,
+      "say": "Excellent! Your bar model, working and answer are all correct.",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Jia Hui",
+            "units": 1
+          },
+          {
+            "extra": 15,
+            "label": "Mei",
+            "units": 1
+          }
+        ],
+        "brace_numbers": [
+          85
+        ],
+        "final_answer": 35,
+        "legible": true,
+        "question_mark_on": "Jia Hui",
+        "working": [
+          "2 units = 85 - 15 = 70"
+        ]
+      },
+      "seconds": 3.8
+    },
+    {
+      "id": "fewer-total",
+      "mistake": "wrong_units",
+      "expected": "units",
+      "found": "units",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person is right. Look at Mei's bar. You drew 1 unit. Read the question again: how does Jia Hui compare with Jia Hui? How many units should Mei's bar have?",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Jia Hui",
+            "units": 2
+          },
+          {
+            "extra": 15,
+            "label": "Mei",
+            "units": 1
+          }
+        ],
+        "brace_numbers": [
+          85
+        ],
+        "final_answer": 35,
+        "legible": true,
+        "question_mark_on": "Jia Hui",
+        "working": [
+          "2 units = 85 - 15 = 70"
+        ]
+      },
+      "seconds": 7.4
+    },
+    {
+      "id": "fewer-total",
+      "mistake": "missing_total",
+      "expected": "numbers",
+      "found": "numbers",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person, equal units are right. Where do we show what everyone has altogether? Draw a bracket and write the number from the question.",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Jia Hui",
+            "units": 1
+          },
+          {
+            "extra": 15,
+            "label": "Mei",
+            "units": 1
+          }
+        ],
+        "brace_numbers": [],
+        "final_answer": 35,
+        "legible": true,
+        "question_mark_on": "Jia Hui",
+        "working": [
+          "2 units = 85 - 15 = 70"
+        ]
+      },
+      "seconds": 4.2
+    },
+    {
+      "id": "fewer-total",
+      "mistake": "wrong_question",
+      "expected": "question",
+      "found": "question",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person, equal units, given numbers are right. Read the last sentence of the question. Whose amount are we finding? Put a question mark on that bar.",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Jia Hui",
+            "units": 1
+          },
+          {
+            "extra": 15,
+            "label": "Mei",
+            "units": 1
+          }
+        ],
+        "brace_numbers": [
+          85
+        ],
+        "final_answer": 35,
+        "legible": true,
+        "question_mark_on": "Mei",
+        "working": [
+          "2 units = 85 - 15 = 70"
+        ]
+      },
+      "seconds": 2.7
+    },
+    {
+      "id": "fewer-total",
+      "mistake": "calc_error",
+      "expected": "working",
+      "found": "bars",
+      "all_correct": false,
+      "ok": false,
+      "say": "I can't find a bar for Mei. Who else is in the question? Draw a bar for each one, and write the name next to it.",
+      "read": {
+        "bars": [
+          {
+            "label": "Jia Hui",
+            "units": 1,
+            "extra\": null}, {": {
+              "legible": true,
+              "bars": [
+                {
+                  "label": "Jia Hui",
+                  "units": 1,
+                  "extra": null
+                },
+                {
+                  "label": "Mei",
+                  "units": 1,
+                  "extra": 15
+                }
+              ],
+              "brace_numbers": [
+                85
+              ],
+              "question_mark_on": "Jia Hui",
+              "working": [
+                "2 units = 85 - 15 = 80"
+              ],
+              "final_answer": null
+            }
+          }
+        ],
+        "brace_numbers": [
+          85
+        ],
+        "final_answer": null,
+        "legible": true,
+        "question_mark_on": "Jia Hui",
+        "working": [
+          "2 units = 85 - 15 = 80"
+        ]
+      },
+      "seconds": 3.8
+    },
+    {
+      "id": "fewer-total",
+      "mistake": "wrong_answer",
+      "expected": "answer",
+      "found": "answer",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person, equal units, given numbers, question mark, working are right. Your answer, 45, isn't quite right. Look at Jia Hui's bar: how many units is it, and what is 1 unit worth?",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Jia Hui",
+            "units": 1
+          },
+          {
+            "extra": 15,
+            "label": "Mei",
+            "units": 1
+          }
+        ],
+        "brace_numbers": [
+          85
+        ],
+        "final_answer": 45,
+        "legible": true,
+        "question_mark_on": "Jia Hui",
+        "working": [
+          "2 units = 85 - 15 = 70"
+        ]
+      },
+      "seconds": 2.8
+    },
+    {
+      "id": "more-money",
+      "mistake": "correct",
+      "expected": null,
+      "found": null,
+      "all_correct": true,
+      "ok": true,
+      "say": "Excellent! Your bar model, working and answer are all correct.",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Pencil",
+            "units": 1
+          },
+          {
+            "extra": 3,
+            "label": "Pen",
+            "units": 1
+          }
+        ],
+        "brace_numbers": [
+          7
+        ],
+        "final_answer": 2,
+        "legible": true,
+        "question_mark_on": "Pencil",
+        "working": [
+          "2 units = 7 - 3 = 4"
+        ]
+      },
+      "seconds": 3.6
+    },
+    {
+      "id": "more-money",
+      "mistake": "wrong_units",
+      "expected": "units",
+      "found": "units",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person is right. Look at Pen's bar. You drew 1 unit. Read the question again: how does Pencil compare with Pencil? How many units should Pen's bar have?",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Pencil",
+            "units": 2
+          },
+          {
+            "extra": 3,
+            "label": "Pen",
+            "units": 1
+          }
+        ],
+        "brace_numbers": [
+          7
+        ],
+        "final_answer": 2,
+        "legible": true,
+        "question_mark_on": "Pencil",
+        "working": [
+          "2 units = 7 - 3 = 4"
+        ]
+      },
+      "seconds": 4.9
+    },
+    {
+      "id": "more-money",
+      "mistake": "missing_total",
+      "expected": "numbers",
+      "found": "numbers",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person, equal units are right. Where do we show what everyone has altogether? Draw a bracket and write the number from the question.",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Pencil",
+            "units": 1
+          },
+          {
+            "extra": 3,
+            "label": "Pen",
+            "units": 1
+          }
+        ],
+        "brace_numbers": [],
+        "final_answer": 2,
+        "legible": true,
+        "question_mark_on": "Pencil",
+        "working": [
+          "2 units = 7 - 3 = 4"
+        ]
+      },
+      "seconds": 3.0
+    },
+    {
+      "id": "more-money",
+      "mistake": "wrong_question",
+      "expected": "question",
+      "found": null,
+      "all_correct": true,
+      "ok": false,
+      "say": "Excellent! Your bar model, working and answer are all correct.",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Pencil",
+            "units": 1
+          },
+          {
+            "extra": 3,
+            "label": "Pen",
+            "units": 1
+          }
+        ],
+        "brace_numbers": [
+          7
+        ],
+        "final_answer": 2,
+        "legible": true,
+        "question_mark_on": "Pen",
+        "working": [
+          "2 units = 7 - 3 = 4"
+        ]
+      },
+      "seconds": 4.9
+    },
+    {
+      "id": "more-money",
+      "mistake": "calc_error",
+      "expected": "working",
+      "found": "working",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person, equal units, given numbers, question mark are right. Check this line: \"2 units = 7 - 3 = 14\". Try that step again carefully.",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Pencil",
+            "units": 1
+          },
+          {
+            "extra": 3,
+            "label": "Pen",
+            "units": 1
+          }
+        ],
+        "brace_numbers": [
+          7
+        ],
+        "final_answer": null,
+        "legible": true,
+        "question_mark_on": "Pencil",
+        "working": [
+          "2 units = 7 - 3 = 14"
+        ]
+      },
+      "seconds": 2.6
+    },
+    {
+      "id": "more-money",
+      "mistake": "wrong_answer",
+      "expected": "answer",
+      "found": "answer",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person, equal units, given numbers, question mark, working are right. Your answer, 12, isn't quite right. Look at Pencil's bar: how many units is it, and what is 1 unit worth?",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Pencil",
+            "units": 1
+          },
+          {
+            "extra": 3,
+            "label": "Pen",
+            "units": 1
+          }
+        ],
+        "brace_numbers": [
+          7
+        ],
+        "final_answer": 12,
+        "legible": true,
+        "question_mark_on": "Pencil",
+        "working": [
+          "2 units = 7 - 3 = 4"
+        ]
+      },
+      "seconds": 3.8
+    },
+    {
+      "id": "more-three-boxes",
+      "mistake": "correct",
+      "expected": null,
+      "found": null,
+      "all_correct": true,
+      "ok": true,
+      "say": "Excellent! Your bar model, working and answer are all correct.",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Box B",
+            "units": 1
+          },
+          {
+            "extra": 12,
+            "label": "Box A",
+            "units": 1
+          },
+          {
+            "extra": 6,
+            "label": "Box C",
+            "units": 1
+          }
+        ],
+        "brace_numbers": [
+          93
+        ],
+        "final_answer": 25,
+        "legible": true,
+        "question_mark_on": "Box B",
+        "working": [
+          "12 + 6 = 18",
+          "93 - 18 = 75",
+          "75 ÷ 3 = 25"
+        ]
+      },
+      "seconds": 5.2
+    },
+    {
+      "id": "more-three-boxes",
+      "mistake": "wrong_units",
+      "expected": "units",
+      "found": "units",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person is right. Look at Box A's bar. You drew 1 unit. Read the question again: how does Box B compare with Box B? How many units should Box A's bar have?",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Box B",
+            "units": 2
+          },
+          {
+            "extra": 12,
+            "label": "Box A",
+            "units": 1
+          },
+          {
+            "extra": 6,
+            "label": "Box C",
+            "units": 1
+          }
+        ],
+        "brace_numbers": [
+          93
+        ],
+        "final_answer": 25,
+        "legible": true,
+        "question_mark_on": "Box B",
+        "working": [
+          "12 + 6 = 18",
+          "93 - 18 = 75",
+          "75 ÷ 3 = 25"
+        ]
+      },
+      "seconds": 6.2
+    },
+    {
+      "id": "more-three-boxes",
+      "mistake": "missing_total",
+      "expected": "numbers",
+      "found": "numbers",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person, equal units are right. Where do we show what everyone has altogether? Draw a bracket and write the number from the question.",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Box B",
+            "units": 1
+          },
+          {
+            "extra": 12,
+            "label": "Box A",
+            "units": 1
+          },
+          {
+            "extra": 6,
+            "label": "Box C",
+            "units": 1
+          }
+        ],
+        "brace_numbers": [],
+        "final_answer": 25,
+        "legible": true,
+        "question_mark_on": "Box B",
+        "working": [
+          "12 + 6 = 18",
+          "93 - 18 = 75",
+          "75 ÷ 3 = 25"
+        ]
+      },
+      "seconds": 4.9
+    },
+    {
+      "id": "more-three-boxes",
+      "mistake": "wrong_question",
+      "expected": "question",
+      "found": null,
+      "all_correct": true,
+      "ok": false,
+      "say": "Excellent! Your bar model, working and answer are all correct.",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Box B",
+            "units": 1
+          },
+          {
+            "extra": 12,
+            "label": "Box A",
+            "units": 1
+          },
+          {
+            "extra": 6,
+            "label": "Box C",
+            "units": 1
+          }
+        ],
+        "brace_numbers": [
+          93
+        ],
+        "final_answer": 25,
+        "legible": true,
+        "question_mark_on": "Box A",
+        "working": [
+          "12 + 6 = 18",
+          "93 - 18 = 75",
+          "75 ÷ 3 = 25"
+        ]
+      },
+      "seconds": 4.4
+    },
+    {
+      "id": "more-three-boxes",
+      "mistake": "calc_error",
+      "expected": "working",
+      "found": "working",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person, equal units, given numbers, question mark are right. Check this line: \"12 + 6 = 28\". Try that step again carefully.",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Box B",
+            "units": 1
+          },
+          {
+            "extra": 12,
+            "label": "Box A",
+            "units": 1
+          },
+          {
+            "extra": 6,
+            "label": "Box C",
+            "units": 1
+          }
+        ],
+        "brace_numbers": [
+          93
+        ],
+        "final_answer": null,
+        "legible": true,
+        "question_mark_on": "Box B",
+        "working": [
+          "12 + 6 = 28"
+        ]
+      },
+      "seconds": 4.2
+    },
+    {
+      "id": "more-three-boxes",
+      "mistake": "wrong_answer",
+      "expected": "answer",
+      "found": "answer",
+      "all_correct": false,
+      "ok": true,
+      "say": "Good, your bars for each person, equal units, given numbers, question mark, working are right. Your answer, 35, isn't quite right. Look at Box B's bar: how many units is it, and what is 1 unit worth?",
+      "read": {
+        "bars": [
+          {
+            "extra": null,
+            "label": "Box B",
+            "units": 1
+          },
+          {
+            "extra": 12,
+            "label": "Box A",
+            "units": 1
+          },
+          {
+            "extra": 6,
+            "label": "Box C",
+            "units": 1
+          }
+        ],
+        "brace_numbers": [
+          93
+        ],
+        "final_answer": 35,
+        "legible": true,
+        "question_mark_on": "Box B",
+        "working": [
+          "12 + 6 = 18",
+          "93 - 18 = 75"
+        ]
+      },
+      "seconds": 3.5
+    }
+  ]
+}

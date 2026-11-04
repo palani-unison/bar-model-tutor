@@ -1,0 +1,53 @@
+{
+  "version": 2,
+  "title": "Units and value: two items with different prices",
+  "level": "P5",
+  "heuristic": "units_and_value",
+  "template": "bar",
+  "board": "units_value_table",
+  "question": "At a bakery, a cake costs 4 times as much as a bun. Mdm Ong bought 2 cakes and 5 buns for $19.50. How much does one cake cost?",
+  "units": [{"name": "u", "meaning": "1 unit"}],
+  "quantities": [
+    {"id": "cake", "label": "Cost of one cake"},
+    {"id": "bun", "label": "Cost of one bun"},
+    {"id": "total", "label": "Cost of 2 cakes and 5 buns"}
+  ],
+  "relations": [
+    {"eq": "cake = 4*bun", "from": "a cake costs 4 times as much as a bun"},
+    {"eq": "total = 2*cake + 5*bun", "from": "Mdm Ong bought 2 cakes and 5 buns for $19.50"},
+    {"eq": "total = 19.50", "from": "for $19.50"}
+  ],
+  "asked": {"expr": "cake", "label": "Cost of one cake"},
+  "answer": 6,
+  "stages": [
+    {"id": "all", "label": "Cost", "bars": [
+      {"id": "cake_bar", "quantity": "cake", "label": "1 cake", "segments": [{"expr": "4*u"}]},
+      {"id": "bun_bar", "quantity": "bun", "label": "1 bun", "segments": [{"expr": "u"}]},
+      {"id": "total_bar", "quantity": "total", "label": "Total", "segments": [
+        {"expr": "8*u", "style": "marked", "label": "2 cakes"},
+        {"expr": "5*u", "label": "5 buns"}
+      ]}
+    ]}
+  ],
+  "timeline": [
+    {"do": "write_question", "say": "At a bakery, a cake costs 4 times as much as a bun. Mdm Ong bought 2 cakes and 5 buns for $19.50. How much does one cake cost?"},
+    {"do": "highlight", "text": "a cake costs 4 times as much as a bun", "say": "A cake costs 4 times as much as a bun."},
+    {"do": "draw_bar", "bar": "bun_bar", "say": "Let's draw the cost of a bun as 1 unit."},
+    {"do": "draw_bar", "bar": "cake_bar", "say": "A cake costs 4 times as much, so it is 4 units."},
+    {"do": "divide_units", "bar": "cake_bar", "say": "Let's mark the cake's 4 equal units."},
+    {"do": "question_mark", "bar": "cake_bar", "say": "We want the cost of one cake."},
+    {"do": "highlight", "text": "2 cakes and 5 buns for $19.50", "say": "Mdm Ong bought 2 cakes and 5 buns for $19.50."},
+    {"do": "pause", "seconds": 2.0, "say": "Pause and think. How many units do 2 cakes make?"},
+    {"do": "write", "text": "Cake units = 2 × 4 = 8", "say": "2 cakes are 2 times 4, which is 8 units."},
+    {"do": "draw_bar", "bar": "total_bar", "say": "Now draw the total: 8 units for the cakes and 5 units for the buns."},
+    {"do": "divide_units", "bar": "total_bar", "say": "Let's mark all the units."},
+    {"do": "write", "text": "Total units = 8 + 5 = 13", "say": "Altogether that is 8 plus 5, which is 13 units."},
+    {"do": "bracket", "bar": "total_bar", "segments": [0, 1], "side": "bottom", "text": "$19.50", "say": "All 13 units cost $19.50."},
+    {"do": "write", "text": "13 units = 19.50", "say": "13 units are worth $19.50."},
+    {"do": "write", "text": "1 unit = 19.50 ÷ 13 = 1.50", "say": "So 1 unit is $19.50 divided by 13, which is $1.50."},
+    {"do": "label_unit", "bar": "bun_bar", "text": "$1.50", "say": "A bun costs $1.50."},
+    {"do": "write", "text": "4 units = 4 × 1.50 = 6", "say": "A cake is 4 units. 4 times $1.50 is $6."},
+    {"do": "write", "text": "Check: 2 × 6 + 5 × 1.50 = 19.50 ✓", "say": "Let's check: 2 cakes and 5 buns cost $19.50 altogether. It works!"},
+    {"do": "answer", "text": "One cake costs $6.", "say": "So, one cake costs $6. Well done!"}
+  ]
+}

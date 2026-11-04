@@ -1,0 +1,29 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+out/
+renderer/voice.onnx
+renderer/voice.onnx.json
+*.wav
+*.mp4
+evals/dataset/voice/
+
+# Private test data (school exam papers): never commit
+evals/private/
+evals/private
+.claude/worktrees/
+
+# Personalisation database (app/db.py): never commit or upload
+data/
+hackathon_files/
+
+# Synthetic training data (large; regenerate with evals/synth/generate.py)
+evals/synth/out/
+
+# Glimmer training venv (training/glimmer/requirements.txt)
+.venv-glimmer/
+.DS_Store
+
+# Showcase media (videos, slides): deployed to the live app from this folder, not committed
+showcase/

@@ -1,0 +1,38 @@
+{
+  "version": 2,
+  "title": "Units and value: pens and files",
+  "level": "P4",
+  "heuristic": "units_and_value",
+  "template": "working",
+  "board": "units_value_table",
+  "question": "A shop sells pens at $2 each and files at $5 each. Ravi bought 4 pens and some files. He paid $38 altogether. How many files did he buy?",
+  "units": [],
+  "quantities": [
+    {"id": "pens", "label": "Number of pens"},
+    {"id": "files", "label": "Number of files"}
+  ],
+  "relations": [
+    {"eq": "pens = 4", "from": "Ravi bought 4 pens"},
+    {"eq": "2*pens + 5*files = 38", "from": "He paid $38 altogether"}
+  ],
+  "asked": {"expr": "files", "label": "Number of files"},
+  "answer": 6,
+  "stages": [],
+  "timeline": [
+    {"do": "write_question", "say": "A shop sells pens at $2 each and files at $5 each. Ravi bought 4 pens and some files. He paid $38 altogether. How many files did he buy?"},
+    {"do": "highlight", "text": "pens at $2 each and files at $5 each", "say": "A pen costs $2 and a file costs $5."},
+    {"do": "highlight", "text": "4 pens", "say": "Ravi bought 4 pens."},
+    {"do": "highlight", "text": "$38 altogether", "say": "He paid $38 altogether."},
+    {"do": "table", "id": "shop", "columns": ["Item", "How many", "Each", "Total"],
+     "rows": [["Pens", "4", "$2", "?"], ["Files", "?", "$5", "?"], ["All", "", "", "$38"]],
+     "say": "Let's put what we know in a table: how many, the cost of each, and the total."},
+    {"do": "pause", "seconds": 2, "say": "Pause and think. How much did the 4 pens cost?"},
+    {"do": "fill_cell", "table": "shop", "row": 0, "col": 3, "text": "4 × $2 = $8", "say": "4 pens at $2 each cost $8."},
+    {"do": "write", "text": "Cost of files = 38 - 8 = 30", "say": "So the files cost 38 minus 8, which is $30."},
+    {"do": "fill_cell", "table": "shop", "row": 1, "col": 3, "text": "$30", "say": "The files cost $30 in all."},
+    {"do": "write", "text": "Number of files = 30 ÷ 5 = 6", "say": "Each file is $5. 30 divided by 5 is 6."},
+    {"do": "fill_cell", "table": "shop", "row": 1, "col": 1, "text": "6", "say": "So Ravi bought 6 files."},
+    {"do": "write", "text": "Check: 4 × 2 + 6 × 5 = 38 ✓", "say": "Let's check: $8 for pens and $30 for files make $38. It works!"},
+    {"do": "answer", "text": "He bought 6 files.", "say": "So, Ravi bought 6 files. Well done!"}
+  ]
+}

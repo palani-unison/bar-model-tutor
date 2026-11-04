@@ -1,0 +1,63 @@
+{
+  "version": 2,
+  "title": "Equal in the end: both spend different amounts",
+  "level": "P5",
+  "heuristic": "equal_end",
+  "template": "bar-stages",
+  "board": "before_after",
+  "question": "Jamal had 4 times as much money as Kiran. After Jamal spent $80 and Kiran spent $5, they had the same amount of money left. How much money did Jamal have at first?",
+  "units": [{"name": "u", "meaning": "1 unit"}],
+  "quantities": [
+    {"id": "jamal_before", "label": "Jamal's money at first"},
+    {"id": "kiran_before", "label": "Kiran's money at first"},
+    {"id": "jamal_after", "label": "Jamal's money left"},
+    {"id": "kiran_after", "label": "Kiran's money left"}
+  ],
+  "relations": [
+    {"eq": "jamal_before = 4*kiran_before", "from": "Jamal had 4 times as much money as Kiran"},
+    {"eq": "jamal_after = jamal_before - 80", "from": "Jamal spent $80"},
+    {"eq": "kiran_after = kiran_before - 5", "from": "Kiran spent $5"},
+    {"eq": "jamal_after = kiran_after", "from": "they had the same amount of money left"}
+  ],
+  "asked": {"expr": "jamal_before", "label": "Jamal's money at first"},
+  "answer": 100,
+  "stages": [
+    {"id": "before", "label": "At first", "bars": [
+      {"id": "jamal_b", "quantity": "jamal_before", "label": "Jamal", "segments": [{"expr": "4*u"}]},
+      {"id": "kiran_b", "quantity": "kiran_before", "label": "Kiran", "segments": [{"expr": "u"}]}
+    ]},
+    {"id": "after", "label": "In the end", "bars": [
+      {"id": "jamal_a", "quantity": "jamal_after", "label": "Jamal", "segments": [
+        {"expr": "u - 5"},
+        {"expr": "5", "style": "removed"},
+        {"expr": "3*u", "style": "removed", "label": "spent"}
+      ]},
+      {"id": "kiran_a", "quantity": "kiran_after", "label": "Kiran", "segments": [
+        {"expr": "u - 5"},
+        {"expr": "5", "style": "removed", "label": "spent $5"}
+      ]}
+    ]}
+  ],
+  "timeline": [
+    {"do": "write_question", "say": "Jamal had 4 times as much money as Kiran. After Jamal spent $80 and Kiran spent $5, they had the same amount of money left. How much money did Jamal have at first?"},
+    {"do": "highlight", "text": "4 times as much money as Kiran", "say": "At first, Jamal had 4 times as much money as Kiran."},
+    {"do": "draw_stage", "stage": "before", "say": "Let's draw their money at first."},
+    {"do": "draw_bar", "bar": "kiran_b", "say": "Kiran's bar is 1 unit."},
+    {"do": "draw_bar", "bar": "jamal_b", "say": "Jamal's bar is 4 units."},
+    {"do": "divide_units", "bar": "jamal_b", "say": "Let's mark Jamal's 4 equal units."},
+    {"do": "highlight", "text": "the same amount of money left", "say": "After spending, they had the same amount of money left."},
+    {"do": "draw_stage", "stage": "after", "say": "Now let's draw what they had left."},
+    {"do": "draw_bar", "bar": "kiran_a", "say": "Kiran spent $5, so we cross out $5 from his unit."},
+    {"do": "draw_bar", "bar": "jamal_a", "say": "Jamal ends with the same amount as Kiran, so we cross out the rest."},
+    {"do": "divide_units", "bar": "jamal_a", "say": "Jamal crossed out $5 and 3 more units."},
+    {"do": "bracket", "bar": "jamal_a", "segments": [1, 2], "side": "top", "text": "$80", "say": "Those crossed-out parts are the $80 Jamal spent."},
+    {"do": "question_mark", "bar": "jamal_b", "say": "We want Jamal's money at first."},
+    {"do": "pause", "seconds": 2.0, "say": "Pause and think. What are 3 units worth?"},
+    {"do": "write", "text": "3 units = 80 - 5 = 75", "say": "3 units are $80 minus $5, which is $75."},
+    {"do": "write", "text": "1 unit = 75 ÷ 3 = 25", "say": "So 1 unit is 75 divided by 3, which is 25."},
+    {"do": "label_unit", "bar": "kiran_b", "text": "$25", "say": "Each unit is $25."},
+    {"do": "write", "text": "4 units = 4 × 25 = 100", "say": "Jamal had 4 units. 4 times 25 is 100."},
+    {"do": "write", "text": "Check: 100 - 80 = 20 = 25 - 5 ✓", "say": "Let's check: both have $20 left in the end. It works!"},
+    {"do": "answer", "text": "Jamal had $100 at first.", "say": "So, Jamal had $100 at first. Well done!"}
+  ]
+}

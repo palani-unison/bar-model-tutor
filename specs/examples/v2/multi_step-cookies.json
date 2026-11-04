@@ -1,0 +1,50 @@
+{
+  "version": 2,
+  "title": "Multi-step: multiply, subtract, then share equally",
+  "level": "P4",
+  "heuristic": "multi_step",
+  "template": "bar",
+  "board": "part_whole",
+  "question": "Auntie Mei baked 4 trays of 24 cookies. She gave 30 cookies to her neighbour and packed the rest equally into 6 boxes. How many cookies were in each box?",
+  "units": [{"name": "u", "meaning": "1 unit"}],
+  "quantities": [
+    {"id": "cookies", "label": "Cookies baked"},
+    {"id": "given", "label": "Cookies given to the neighbour"},
+    {"id": "rest", "label": "Cookies packed into boxes"},
+    {"id": "per_box", "label": "Cookies in each box"}
+  ],
+  "relations": [
+    {"eq": "cookies = 4*24", "from": "4 trays of 24 cookies"},
+    {"eq": "given = 30", "from": "She gave 30 cookies to her neighbour"},
+    {"eq": "rest = cookies - given", "from": "packed the rest"},
+    {"eq": "rest = 6*per_box", "from": "packed the rest equally into 6 boxes"}
+  ],
+  "asked": {"expr": "per_box", "label": "Cookies in each box"},
+  "answer": 11,
+  "stages": [
+    {"id": "all", "label": "Cookies", "bars": [
+      {"id": "cookie_bar", "quantity": "cookies", "label": "Cookies", "segments": [
+        {"expr": "30", "style": "marked", "label": "neighbour"},
+        {"expr": "6*u", "label": "6 boxes"}
+      ]}
+    ]}
+  ],
+  "timeline": [
+    {"do": "write_question", "say": "Auntie Mei baked 4 trays of 24 cookies. She gave 30 cookies to her neighbour and packed the rest equally into 6 boxes. How many cookies were in each box?"},
+    {"do": "highlight", "text": "4 trays of 24 cookies", "say": "She baked 4 trays with 24 cookies on each tray."},
+    {"do": "write", "text": "4 × 24 = 96", "say": "First, find all the cookies. 4 times 24 is 96."},
+    {"do": "draw_bar", "bar": "cookie_bar", "say": "Let's draw all 96 cookies as one bar."},
+    {"do": "highlight", "text": "gave 30 cookies to her neighbour", "say": "She gave 30 cookies to her neighbour."},
+    {"do": "bracket", "bar": "cookie_bar", "segments": [0, 0], "side": "top", "text": "30", "say": "This marked part is the 30 cookies she gave away."},
+    {"do": "highlight", "text": "packed the rest equally into 6 boxes", "say": "She packed the rest equally into 6 boxes."},
+    {"do": "divide_units", "bar": "cookie_bar", "say": "So the rest is cut into 6 equal units, 1 for each box."},
+    {"do": "question_mark", "bar": "cookie_bar", "segments": [1, 1], "say": "We want the cookies in 1 box, which is 1 unit."},
+    {"do": "pause", "seconds": 2.0, "say": "Pause and think. How many cookies went into the boxes?"},
+    {"do": "write", "text": "96 - 30 = 66", "say": "96 minus 30 is 66 cookies for the boxes."},
+    {"do": "write", "text": "6 units = 66", "say": "6 units are 66 cookies."},
+    {"do": "write", "text": "1 unit = 66 ÷ 6 = 11", "say": "So 1 unit is 66 divided by 6, which is 11."},
+    {"do": "label_unit", "bar": "cookie_bar", "text": "11", "say": "Each box has 11 cookies."},
+    {"do": "write", "text": "Check: 6 × 11 + 30 = 96 ✓", "say": "Let's check: 6 boxes of 11, plus the 30 given away, make 96. It works!"},
+    {"do": "answer", "text": "There were 11 cookies in each box.", "say": "So, there were 11 cookies in each box. Well done!"}
+  ]
+}

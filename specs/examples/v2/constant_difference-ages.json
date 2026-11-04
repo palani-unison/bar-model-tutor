@@ -1,0 +1,60 @@
+{
+  "version": 2,
+  "title": "Constant difference: ages in some years' time",
+  "level": "P5",
+  "heuristic": "constant_difference",
+  "template": "bar-stages",
+  "board": "constant_difference",
+  "question": "Mr Ismail is 41 years old and his son is 9 years old. In how many years' time will Mr Ismail be 3 times as old as his son?",
+  "units": [{"name": "u", "meaning": "1 unit"}],
+  "quantities": [
+    {"id": "dad_now", "label": "Mr Ismail's age now"},
+    {"id": "son_now", "label": "His son's age now"},
+    {"id": "years", "label": "Number of years from now"},
+    {"id": "dad_later", "label": "Mr Ismail's age then"},
+    {"id": "son_later", "label": "His son's age then"}
+  ],
+  "relations": [
+    {"eq": "dad_now = 41", "from": "Mr Ismail is 41 years old"},
+    {"eq": "son_now = 9", "from": "his son is 9 years old"},
+    {"eq": "dad_later = dad_now + years", "from": "In how many years' time"},
+    {"eq": "son_later = son_now + years", "from": "In how many years' time"},
+    {"eq": "dad_later = 3*son_later", "from": "Mr Ismail be 3 times as old as his son"}
+  ],
+  "asked": {"expr": "years", "label": "Number of years from now"},
+  "answer": 7,
+  "stages": [
+    {"id": "now", "label": "Now", "bars": [
+      {"id": "dad_n", "quantity": "dad_now", "label": "Mr Ismail", "segments": [{"expr": "9"}, {"expr": "2*u", "label": "difference"}]},
+      {"id": "son_n", "quantity": "son_now", "label": "Son", "segments": [{"expr": "9"}]}
+    ]},
+    {"id": "later", "label": "Later", "bars": [
+      {"id": "dad_l", "quantity": "dad_later", "label": "Mr Ismail", "segments": [{"expr": "u"}, {"expr": "2*u", "label": "difference"}]},
+      {"id": "son_l", "quantity": "son_later", "label": "Son", "segments": [{"expr": "9"}, {"expr": "u - 9", "style": "added", "label": "years"}]}
+    ]}
+  ],
+  "timeline": [
+    {"do": "write_question", "say": "Mr Ismail is 41 years old and his son is 9 years old. In how many years' time will Mr Ismail be 3 times as old as his son?"},
+    {"do": "highlight", "text": "41 years old", "say": "Mr Ismail is 41 years old now."},
+    {"do": "highlight", "text": "9 years old", "say": "His son is 9 years old now."},
+    {"do": "draw_stage", "stage": "now", "say": "Let's draw their ages now."},
+    {"do": "draw_bar", "bar": "son_n", "say": "The son's bar is 9 years."},
+    {"do": "draw_bar", "bar": "dad_n", "say": "Mr Ismail's bar is 9 years plus the difference in their ages."},
+    {"do": "write", "text": "Difference = 41 - 9 = 32", "say": "The difference in their ages is 41 minus 9, which is 32."},
+    {"do": "bracket", "bar": "dad_n", "segments": [1, 1], "side": "top", "text": "32", "say": "The difference is 32 years, and it never changes."},
+    {"do": "highlight", "text": "3 times as old as his son", "say": "Later, Mr Ismail will be 3 times as old as his son."},
+    {"do": "draw_stage", "stage": "later", "say": "Let's draw their ages at that time."},
+    {"do": "draw_bar", "bar": "son_l", "say": "The son's bar grows by some years. His age then is 1 unit."},
+    {"do": "draw_bar", "bar": "dad_l", "say": "Mr Ismail's age then is 3 units."},
+    {"do": "divide_units", "bar": "dad_l", "say": "His bar is 1 unit plus 2 units of difference."},
+    {"do": "bracket", "bar": "dad_l", "segments": [1, 1], "side": "top", "text": "32", "say": "The difference is still 32 years, and now it is 2 units."},
+    {"do": "question_mark", "bar": "son_l", "segments": [1, 1], "say": "We want the number of years that pass."},
+    {"do": "pause", "seconds": 2.0, "say": "Pause and think. What is 1 unit worth?"},
+    {"do": "write", "text": "2 units = 32", "say": "2 units are 32 years."},
+    {"do": "write", "text": "1 unit = 32 ÷ 2 = 16", "say": "So 1 unit is 32 divided by 2, which is 16."},
+    {"do": "label_unit", "bar": "dad_l", "text": "16", "say": "1 unit is 16, so the son will be 16 years old."},
+    {"do": "write", "text": "Number of years = 16 - 9 = 7", "say": "He is 9 now, so 16 minus 9 is 7 years."},
+    {"do": "write", "text": "Check: 41 + 7 = 48 = 3 × 16 ✓", "say": "Let's check: in 7 years Mr Ismail is 48 and his son is 16. 48 is 3 times 16!"},
+    {"do": "answer", "text": "In 7 years' time, Mr Ismail will be 3 times as old as his son.", "say": "So, in 7 years' time, Mr Ismail will be 3 times as old as his son. Well done!"}
+  ]
+}

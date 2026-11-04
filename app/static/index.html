@@ -1,0 +1,2069 @@
+<!DOCTYPE html>
+<html lang="en" data-skin="notebook">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bar Model Tutor</title>
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#e9ebe3">
+<link rel="icon" href="/pwa/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/pwa/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Bar Model">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<script>if("serviceWorker" in navigator) addEventListener("load", function(){ navigator.serviceWorker.register("/sw.js").catch(function(){}); });</script>
+<script>try { var s = localStorage.getItem("bmt.skin"); if(s) document.documentElement.dataset.skin = s; } catch(e){}  /* the skin before first paint (ui/stage.js) */</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="/ui/app.css">
+</head>
+<body>
+<div id="app">
+<header class="topbar" id="topbar">
+  <button class="ib" id="backBtn" type="button" aria-label="Back"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <h1 class="brand display">Bar Model Tutor</h1>
+  <div class="tb-lesson" id="lessonTop">
+    <span class="stars" id="stars" aria-label="Steps you worked out"></span>
+    <span class="status-chip" id="checkBadge">Bar model checked ✓</span>
+    <button class="ib" id="qBtn" type="button" data-sheet="sheet-question" aria-label="See the question" title="See the question">📷</button>
+    <button class="ib speed-ib" id="speedBtn" type="button" aria-label="Teacher speed" title="Teacher speed">1×</button>
+    <button class="ib" id="menuBtn" type="button" data-sheet="sheet-menu" aria-label="More" title="More"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="2.2"/><circle cx="12" cy="12" r="2.2"/><circle cx="19" cy="12" r="2.2"/></svg></button>
+  </div>
+  <span class="spacer"></span>
+  <button class="acct-chip" id="acctChip" type="button" data-sheet="sheet-account" aria-label="Account and settings"><span class="av">🙂</span><b>Sign in</b></button>
+</header>
+<div class="toast" aria-live="polite"><p id="status" role="status"></p><div id="error"></div></div>
+
+<main class="stages">
+  <!-- ---- landing: who are you? (not signed in) -->
+  <section class="stage" id="stage-landing" hidden aria-label="Welcome">
+    <div class="landing">
+      <svg class="hero-bars" viewBox="0 0 150 86" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"><rect x="4" y="8" width="96" height="26" rx="3"/><path d="M36 8v26M68 8v26"/><rect x="4" y="52" width="32" height="26" rx="3"/><path d="M110 8q12 0 12 10v12q0 6 8 8q-8 2-8 8v12q0 10-12 10" stroke="var(--green)"/></g><text x="132" y="50" font-size="22" fill="var(--red)" font-family="Caveat, cursive">?</text></svg>
+      <h2 class="display">Bar Model Tutor</h2>
+      <p class="pitch">Snap a maths problem. Draw the bar model together. You work it out; it checks.</p>
+      <div id="landingMain" style="display:contents">
+        <div class="family-pick" id="familyPick" hidden></div>
+        <div class="land-card">
+          <h3>Parents</h3>
+          <div class="gsi-slot" id="signInSlot"></div>
+          <p class="hint">Sign in or register with Google. New here? We’ll help you add your children.</p>
+        </div>
+        <button class="big-btn secondary" id="kidInBtn" type="button">🦸 Kids: sign in</button>
+        <button class="linkish" id="tryExample" type="button">Try an example lesson →</button>
+      </div>
+      <!-- ---- kids: hero name + password, on any device -->
+      <div class="card kid-in" id="kidIn" hidden aria-label="Kids sign in">
+        <h2>Kids: sign in 🦸</h2>
+        <label class="field">Your hero name<input id="kidHero" autocomplete="username" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="e.g. Thor987" maxlength="40"></label>
+        <label class="field">Password
+          <span class="pw-row"><input id="kidPw" type="password" autocomplete="current-password" autocapitalize="off" autocorrect="off" spellcheck="false" maxlength="40" style="flex:1;max-width:320px">
+          <button class="mini" id="kidPwShow" type="button" style="min-height:48px" aria-pressed="false">Show</button></span></label>
+        <button class="big-btn" id="kidGo" type="button">Let's go! 🚀</button>
+        <p class="acct-msg" id="kidMsg" aria-live="polite" style="font-size:17px"></p>
+        <p class="hint" style="margin:4px 0 0">Forgot your password? Ask your parent: they can make a new one. <button class="mini" id="kidInClose" type="button">Back</button></p>
+      </div>
+      <p class="acct-msg" id="landMsg" aria-live="polite"></p>
+      <p class="foot-links"><a href="/showcase">🎬 Showcase: videos, slides, docs</a> · <a href="/terms">Terms</a> · <a href="/privacy">What we store</a></p>
+    </div>
+  </section>
+
+  <!-- ---- start: snap a question -->
+  <section class="stage" id="stage-start" hidden aria-label="Start">
+    <div class="start">
+      <div class="card kid-hello" id="kidHello" hidden aria-live="polite"><p class="big" id="kidHelloText"></p></div>
+      <!-- ---- sound and microphone: one tap unlocks the teacher's voice and asks for the mic (mobile browsers need a tap) -->
+      <div class="card av-step" id="avStep" hidden aria-label="Sound and microphone">
+        <h2>Turn on sound 🔊 and microphone 🎤</h2>
+        <p style="margin:0 0 10px">The teacher talks you through each step. The microphone is so you can say your answers — nothing you say is saved.</p>
+        <button class="big-btn" id="avBtn" type="button">Turn on sound 🔊 and mic 🎤</button>
+        <p class="hint" style="margin:8px 0 0">📱 Can't hear anything? Check your phone isn't on silent, and turn the volume up.</p>
+        <p class="av-msg" id="avMsg" aria-live="polite"></p>
+        <button class="mini" id="avLater" type="button" style="margin-top:6px">Not now</button>
+      </div>
+      <div class="card" id="needParent" hidden role="status">
+        <h2 class="display" style="margin:0 0 4px">Almost ready! 🧩</h2>
+        <p style="margin:0 0 10px">Ask your parent to finish setting up: they need to sign in and agree to the terms first. You can try an example lesson meanwhile.</p>
+        <button class="mini" type="button" data-src="example">⭐ Try an example</button>
+      </div>
+      <h2 class="display" id="startTitle">What shall we solve?</h2>
+      <button class="snap" id="snapBtn" type="button"><span class="big" aria-hidden="true">📷</span>Snap a question<small>Point the camera at a maths problem</small></button>
+      <div class="alt-row" role="group" aria-label="Other ways to start">
+        <button type="button" data-src="photo"><span aria-hidden="true">🖼️</span>Photo / PDF</button>
+        <button type="button" data-src="type"><span aria-hidden="true">⌨️</span>Type it</button>
+        <button type="button" data-src="example"><span aria-hidden="true">⭐</span>Example</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---- capture: only the chosen source -->
+  <section class="stage" id="stage-capture" hidden aria-label="Add a question">
+    <section class="pane" id="pane-camera">
+      <div class="cam-wrap">
+        <video id="camVideo" autoplay playsinline muted></video>
+        <canvas id="camCanvas" hidden></canvas>
+        <p class="cam-msg" id="camMsg">Point at the question and hold steady.</p>
+        <div class="cam-bar">
+          <span class="side"><button type="button" data-src="photo">🖼️ Photo</button></span>
+          <button class="shutter" id="camCapture" type="button" aria-label="Take the photo" disabled></button>
+          <span class="side"><button type="button" data-src="type">⌨️ Type</button></span>
+        </div>
+      </div>
+    </section>
+    <section class="pane" id="pane-photo">
+      <p class="cap-title">A photo or a worksheet PDF</p>
+      <div class="drop" id="photoDrop">
+        <p style="margin:0">Drop a photo or PDF of the problem here,</p>
+        <label class="big-btn" for="photoInput" style="max-width:320px">Choose a file</label>
+        <input type="file" id="photoInput" accept="image/*,application/pdf,.pdf">
+      </div>
+    </section>
+    <section class="pane" id="pane-type">
+      <p class="cap-title">Type the word problem</p>
+      <textarea id="typeInput" placeholder="e.g. Ali has 3 times as many marbles as Ben. Together they have 120 marbles. How many marbles does Ali have?"></textarea>
+      <p><button class="big-btn" id="typeSolve" type="button">Start the lesson ▶</button></p>
+    </section>
+    <section class="pane examples" id="pane-example">
+      <p class="cap-title">Try an example</p>
+      <label for="exampleSel" class="hint">Pick a problem</label>
+      <select id="exampleSel"><option value="marbles">Marbles: Ali and Ben · P4</option></select>
+      <button class="big-btn" id="exampleBtn" type="button">Start the lesson ▶</button>
+    </section>
+  </section>
+
+  <!-- ---- confirm: the photo, which question, start -->
+  <section class="stage" id="stage-confirm" hidden aria-label="Check the photo">
+    <div class="confirm">
+      <img id="confirmImg" alt="Your question" hidden>
+      <div class="pdf-name" id="confirmPdf" hidden></div>
+      <details class="qno" id="qnoBox">
+        <summary id="qnoSummary">A whole page? Pick the question number</summary>
+        <div class="chips" id="qnoChips"></div>
+        <label class="hint">Question no. <input id="qnoInput" type="text" inputmode="numeric" maxlength="5" placeholder="e.g. 12"></label>
+      </details>
+      <button class="big-btn" id="confirmGo" type="button">Start the lesson ▶</button>
+      <button class="linkish" id="confirmRetake" type="button">Take another photo</button>
+    </div>
+  </section>
+
+  <!-- ---- family: parent onboarding and the children panel -->
+  <section class="stage wide" id="stage-family" hidden aria-label="Your family">
+    <div class="card onboard" id="onboard" hidden aria-label="Set up your family"></div>
+    <div class="card" id="parentPanel" hidden aria-label="Parent panel">
+      <h2>Your children</h2>
+      <p class="hint" style="margin:0">On this device your children can tap their avatar to start. On any other device they sign in with their hero name and the password you set. We keep only a first name or nickname, level, avatar and hero name, and how they do on each kind of problem (never photos or voice).</p>
+      <div class="table-scroll"><table><thead><tr><th></th><th>Name</th><th>Level</th><th>Hero name</th><th></th></tr></thead><tbody id="kidRows"></tbody></table></div>
+      <div class="addkid">
+        <b>Add a child:</b>
+        <input id="newKidName" maxlength="20" placeholder="First name or nickname (no surname)">
+        <select id="newKidLevel"></select>
+        <select id="newKidAvatar" aria-label="Avatar"></select>
+        <button class="btn" id="addKidBtn" type="button" style="font-size:17px;padding:6px 14px">Add</button>
+      </div>
+      <p style="margin:12px 0 0"><button class="btn secondary" id="forgetBtn" type="button" style="font-size:15px;padding:4px 10px">Sign out and forget this device</button>
+        <button class="btn secondary" id="deleteMeBtn" type="button" style="font-size:15px;padding:4px 10px;color:var(--red)">Delete my account and all data</button></p>
+      <p class="hint" id="panelMsg" aria-live="polite"></p>
+      <p id="adminLink" hidden style="margin:8px 0 0"><a class="btn secondary" href="/admin" style="font-size:15px;padding:4px 10px">🛠️ Admin dashboard</a></p>
+    </div>
+  </section>
+
+  <!-- ---- the live lesson: board, teacher, answer bar; the end is a sheet over it -->
+  <section class="stage" id="lesson" hidden aria-label="Live lesson">
+    <div class="lesson-grid">
+      <div class="board-slot" id="boardSlot">
+        <div class="board-wrap" title="Tap to see it bigger"><svg id="board" viewBox="0 0 1280 720" role="img" aria-label="Whiteboard"></svg><span class="zoom-tag" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7"/></svg></span></div>
+        <div class="builder" id="builder" hidden aria-label="Build the bar model" role="group"></div>
+      </div>
+      <div class="talk">
+        <div class="say-area">
+          <div class="caption" id="caption" aria-live="polite"><span class="who">Teacher</span><span id="captionText">Getting the whiteboard ready…</span></div>
+          <div class="ask" id="askBox">
+            <h3 id="askText"></h3>
+            <div class="verdict" id="verdict" aria-live="polite"></div>
+          </div>
+          <pre class="vtiming" id="vtiming" hidden></pre>
+        </div>
+        <div class="answer-bar controls" id="answerBar">
+          <div class="heard" id="heard" aria-live="polite"></div>
+          <div class="acts">
+            <button class="btn secondary" id="showBtn" type="button" hidden>Show me</button>
+            <button class="btn" id="goBtn" type="button" hidden>Continue ▶</button>
+          </div>
+          <div class="kb-row">
+            <input id="answerInput" type="text" inputmode="text" autocomplete="off" enterkeyhint="send" placeholder="Type your answer or a question…" aria-label="Your answer">
+            <button class="btn" id="sendBtn" type="button">Send</button>
+          </div>
+          <div class="mic-row">
+            <button class="side-btn" id="handBtn" type="button" title="Stop the teacher and ask" aria-label="Wait: stop the teacher">✋</button>
+            <button class="mic" id="micBtn" type="button" data-state="off" aria-label="Microphone: tap to talk"><span class="dot" id="micDot"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></span><span class="lbl"><span id="micLabel">Tap to talk</span><small id="micSub">then say your answer</small></span></button>
+            <button class="side-btn" id="kbBtn" type="button" aria-pressed="false" aria-label="Type instead" title="Type instead">⌨️</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="after" id="after" role="region" aria-label="Lesson finished">
+      <div class="end-head"><span class="stars" id="endStars" aria-hidden="true"></span><b id="endSay">Well done!</b></div>
+      <!-- ---- practice: "Try one like this" (a twin made and checked by code) -->
+      <div class="practice" id="practiceBox" hidden>
+        <span class="say" id="practiceSay">Want to try one like this?</span>
+        <button class="big-btn" id="twinBtn" type="button">Try one like this ✏️</button>
+        <span class="why" id="practiceWhy">Same kind of problem, new numbers. Every number is checked by code before you see it.</span>
+      </div>
+      <div class="end-actions">
+        <button class="big-btn secondary" id="againBtn" type="button">📷 Another problem</button>
+        <button class="big-btn secondary myl-open" id="endLessons" type="button" hidden>🎬 My lessons</button>
+      </div>
+      <p class="next-pace" id="nextPace"></p>
+      <div class="end-more">
+        <button class="mini" id="renderBtn" type="button">🎞️ Download as a video</button>
+        <button class="mini" type="button" data-sheet="sheet-steps">All the steps</button>
+        <button class="mini" id="reportBtn" type="button" aria-expanded="false">🚩 Report a problem</button>
+      </div>
+      <form class="report" id="reportBox" hidden>
+        <b>What went wrong?</b>
+        <select id="reportReason" aria-label="What went wrong">
+          <option value="wrong_answer">The answer looks wrong</option>
+          <option value="confusing">The explanation was confusing</option>
+          <option value="wrong_reading">It read my question wrongly</option>
+          <option value="declined">It couldn't do my question</option>
+          <option value="bug">Something didn't work</option>
+          <option value="other">Something else</option>
+        </select>
+        <textarea id="reportNote" maxlength="1000" rows="2" placeholder="Tell us more (optional). Please don't write names."></textarea>
+        <button class="mini go" id="reportSend" type="submit">Send to the Bar Model Tutor team</button>
+        <span class="hint" id="reportMsg" aria-live="polite">We keep the question and your note to improve the tutor. No photo or voice is sent.</span>
+      </form>
+      <p class="hint" id="renderMsg"></p>
+      <video id="resVideo" controls style="width:100%" hidden></video>
+    </div>
+  </section>
+</main>
+</div>
+
+<!-- ---- sheets -->
+<div class="sheet-back" id="sheetBack" hidden></div>
+<div class="zoom-back" id="zoomBack" hidden></div>
+<div class="sheet" id="sheet-account" hidden role="dialog" aria-label="Account and settings">
+  <div class="grab"></div>
+  <div class="sheet-head"><h2>You</h2><button class="ib" type="button" data-close-sheet aria-label="Close">✕</button></div>
+  <section><div class="acct" id="acct" aria-label="Who is learning"></div></section>
+  <section class="card methods" id="methodsCard" hidden aria-label="My methods" style="border:none;box-shadow:none;padding:12px 0;margin:0;border-radius:0">
+    <h2>My methods 🏅</h2>
+    <p class="hint" id="methodsIntro" style="margin:0">Each badge is a method you have used. Levels grow as you work out steps on your own.</p>
+    <div id="methodsLevels"></div>
+    <div class="badge-grid" id="methodsBadges"></div>
+  </section>
+  <section><h3>Look</h3><div data-skins></div></section>
+  <p class="foot-links"><a href="/showcase">🎬 Showcase: videos, slides, docs</a> · <a href="/terms">Terms</a> · <a href="/privacy">What we store</a></p>
+</div>
+<div class="sheet" id="sheet-question" hidden role="dialog" aria-label="The question">
+  <div class="grab"></div>
+  <div class="sheet-head"><h2>The question</h2><button class="ib" type="button" data-close-sheet aria-label="Close">✕</button></div>
+  <img class="q-photo" id="qPhoto" alt="Your photo of the question" hidden>
+  <p class="q-text" id="qText"></p>
+</div>
+<div class="sheet" id="sheet-menu" hidden role="dialog" aria-label="Lesson menu">
+  <div class="grab"></div>
+  <div class="sheet-head"><h2>Lesson</h2><button class="ib" type="button" data-close-sheet aria-label="Close">✕</button></div>
+  <section>
+    <h3>Teacher speed</h3>
+    <span class="speed" id="speedBox" role="group" aria-label="Teacher speed">
+      <button type="button" data-rate="auto" aria-pressed="true" id="speedAuto">Auto</button><button type="button" data-rate="1" aria-pressed="false">1×</button><button type="button" data-rate="1.5" aria-pressed="false">1.5×</button><button type="button" data-rate="2" aria-pressed="false">2×</button>
+    </span>
+    <div class="pace" id="paceNote" aria-live="polite"></div>
+  </section>
+  <section class="mine" id="mine">
+    <h3>Drew it yourself? 📷 Check my bar model</h3>
+    <p class="hint" style="margin:0">Draw the bar model and your working on paper, then snap a photo. I'll check each step and give you a hint for the first thing to fix, not the answer.</p>
+    <p style="margin:8px 0 0"><label class="btn secondary" for="mineInput" style="display:inline-flex;align-items:center">Snap or choose a photo</label>
+      <input type="file" id="mineInput" accept="image/*" capture="environment" hidden></p>
+    <ul class="checklist" id="mineChecks"></ul>
+    <div class="mine-say" id="mineSay" aria-live="polite"></div>
+  </section>
+  <section>
+    <p style="margin:0"><span class="badge" id="checkBadgeFull">Bar model checked ✓</span></p>
+    <p class="hint" style="margin:8px 0 0">The teacher never just gives the answer: you work out each step, and every number is checked by code against the verified bar model. Nothing you say is saved.</p>
+  </section>
+  <section><h3>Look</h3><div data-skins></div></section>
+</div>
+<div class="sheet" id="sheet-steps" hidden role="dialog" aria-label="All the steps">
+  <div class="grab"></div>
+  <div class="sheet-head"><h2>All the steps</h2><button class="ib" type="button" data-close-sheet aria-label="Close">✕</button></div>
+  <ol class="steps" id="resSteps"></ol>
+</div>
+<button class="sound-chip" id="soundChip" type="button" hidden>🔇 Tap for sound</button>
+<script src="/ui/stage.js"></script>
+<script src="/ui/builder.js"></script>
+<script>
+// ---------------------------------------------------------------- sound and microphone unlock (mobile)
+// Phones only play audio started by a tap, and iOS unlocks a media element, not the page. So the lesson plays
+// every clip on this ONE element (swapping src), and the first tap anywhere plays a silent clip on it.
+// The "Turn on sound and microphone" step does that and asks for the mic, once per device (localStorage);
+// a clip that is refused later brings back the "Tap for sound" chip.
+window.Sound = (function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var el = new Audio(); el.setAttribute('playsinline', ''); el.preload = 'auto';
+  var unlocked = false;
+  function silentWav(){  // 0.1 s of 8 kHz 8-bit silence
+    var n = 800, b = new Uint8Array(44 + n), v = new DataView(b.buffer), s = function(o, t){ for(var i = 0; i < t.length; i++) b[o + i] = t.charCodeAt(i); };
+    s(0, 'RIFF'); v.setUint32(4, 36 + n, true); s(8, 'WAVEfmt '); v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true);
+    v.setUint32(24, 8000, true); v.setUint32(28, 8000, true); v.setUint16(32, 1, true); v.setUint16(34, 8, true); s(36, 'data'); v.setUint32(40, n, true);
+    for(var i = 44; i < b.length; i++) b[i] = 128;
+    var bin = ''; for(var k = 0; k < b.length; k++) bin += String.fromCharCode(b[k]);
+    return 'data:audio/wav;base64,' + btoa(bin);
+  }
+  var SILENT = silentWav();
+  function get(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
+  function put(k, v){ try { if(v == null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch(e){} }
+  function chip(on){ $('soundChip').hidden = !on; }
+  // Must run inside a tap. Resolves true when this element may play sound.
+  function unlock(){
+    if(!el.paused) { unlocked = true; return Promise.resolve(true); }  // already talking: nothing to unlock
+    var p;
+    try { el.onended = el.onloadedmetadata = el.onplaying = null; el.src = SILENT; p = el.play(); } catch(e){ p = Promise.reject(e); }
+    return Promise.resolve(p).then(function(){ unlocked = true; chip(false); return true; },
+                                   function(){ return false; });
+  }
+  function askMic(){
+    if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) return Promise.resolve('unavailable');
+    return navigator.mediaDevices.getUserMedia({ audio:true }).then(function(s){
+      s.getTracks().forEach(function(t){ t.stop(); }); return 'granted';  // only the permission; the lesson opens its own stream
+    }, function(e){ return e && (e.name === 'NotAllowedError' || e.name === 'SecurityError') ? 'denied' : 'unavailable'; });
+  }
+  function micNote(state){
+    return state === 'granted' ? 'Microphone on 🎤 — tap the 🎤 in the lesson to talk.'
+      : 'No microphone — that’s fine. You can type your answers.';
+  }
+  function step(show){ $('avStep').hidden = !show; if(show) $('avMsg').textContent = ''; }
+  // The step shows on phones and tablets (and installed apps) until it has worked once on this device.
+  var touch = window.matchMedia && (matchMedia('(pointer: coarse)').matches || matchMedia('(display-mode: standalone)').matches);
+  if(touch && get('bmt.sound') !== 'ok') step(true);
+  $('avBtn').addEventListener('click', function(){
+    var sound = unlock();  // first, while the tap still counts
+    $('avMsg').textContent = 'Asking your device…';
+    Promise.all([sound, askMic()]).then(function(r){
+      put('bmt.sound', r[0] ? 'ok' : null); put('bmt.mic', r[1]);
+      $('avMsg').textContent = (r[0] ? 'Sound on 🔊 ' : 'Sound is still blocked: check your phone isn’t on silent, then tap again. ') + micNote(r[1]);
+      if(r[0]) setTimeout(function(){ step(false); }, r[1] === 'granted' ? 1600 : 3200);
+    });
+  });
+  $('avLater').addEventListener('click', function(){ step(false); });
+  $('soundChip').addEventListener('click', function(){ unlock().then(function(ok){ if(ok) put('bmt.sound', 'ok'); }); });
+  // Any first tap on the page unlocks the element too (a "Start the lesson" tap is enough on its own).
+  function firstTap(){ if(unlocked) return; unlock().then(function(ok){ if(ok){ document.removeEventListener('click', firstTap, true); document.removeEventListener('touchend', firstTap, true); } }); }
+  document.addEventListener('click', firstTap, true);
+  document.addEventListener('touchend', firstTap, true);
+  return {
+    el: el,  // the lesson's one audio element
+    unlock: unlock,
+    blocked: function(){ unlocked = false; put('bmt.sound', null); chip(true); },  // a clip was refused
+    micDenied: function(){ put('bmt.mic', 'denied'); }
+  };
+})();
+</script>
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var SVGNS = 'http://www.w3.org/2000/svg';
+  var camBlob = null, photoFile = null, pdfFile = null, camStream = null, lessonPhoto = null;
+
+  function setStatus(t){ $('status').textContent = t || ''; }
+  function setError(t){ $('error').innerHTML = t ? '<div class="err" role="alert">' + esc(t) + '<button class="x" type="button" aria-label="Dismiss">✕</button></div>' : ''; }
+  $('error').addEventListener('click', function(e){ if(e.target.closest('.x')) setError(''); });
+  function esc(t){ return String(t).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  // Access rules (app/access.py): 401 -> the sign-in landing, 403 -> the parent's consent step (a child: "ask your
+  // parent"), 429 -> the daily limit, said kindly. The account script (window.Access) knows who is here.
+  function apiJSON(r){
+    return r.json().catch(function(){ return {}; }).then(function(j){
+      if(!r.ok){ var e = new Error(j.detail || ('Request failed (' + r.status + ')')); e.status = r.status; throw e; }
+      return j;
+    });
+  }
+  function showErr(e){ if(!(window.Access && Access.handle(e.status, e.message))) setError(e.message); }
+
+  // ---------------------------------------------------------------- input
+  // A new problem doesn't wait for its plan (3 s on Glimmer, 15-40 s on Spark): the lesson opens at once in its
+  // "prepare" phase (app/lesson_ws.py), writing and reading the question while the server plans. A photo is read
+  // first (/api/extract, a few seconds).
+  function solveForm(fd){
+    setError('');
+    setStatus('Reading the problem…');
+    return fetch('/api/extract', { method:'POST', body: fd }).then(apiJSON).then(function(j){
+      prepareLesson({ problem:j.problem, timings:j.timings });
+    }).catch(showErr).finally(function(){ setStatus(''); });
+  }
+  function solveText(text){
+    setError('');
+    text = (text || '').trim();
+    if(text.length < 10){ setError('Please enter the full word problem.'); return; }
+    prepareLesson({ question:text });
+  }
+
+  // ---------------------------------------------------------------- capture: camera, photo or PDF, typing, examples
+  // Each source is its own stage content (ui/stage.js "capture", sub = the source); a photo goes on to "confirm".
+  var coarse = !!(window.matchMedia && matchMedia('(pointer: coarse)').matches);
+  function pane(name){
+    Array.prototype.forEach.call(document.querySelectorAll('#stage-capture .pane'), function(p){ p.classList.toggle('on', p.id === 'pane-' + name); });
+    $('stage-capture').classList.toggle('cam-on', name === 'camera');
+  }
+  function capture(src){ setError(''); Stage.go('capture', { sub:src || 'camera' }); }
+  document.addEventListener('bmt:stage', function(e){
+    var d = e.detail;
+    if(d.stage !== 'capture') return;
+    pane(d.sub || 'camera');
+    if((d.sub || 'camera') === 'camera') startCam(); else stopCam();
+    if(d.sub === 'type' && !coarse) setTimeout(function(){ $('typeInput').focus(); }, 50);
+  });
+  Stage.onLeave('capture', function(){ stopCam(); });
+  $('snapBtn').addEventListener('click', function(){ capture('camera'); });
+  document.addEventListener('click', function(e){
+    var b = e.target.closest && e.target.closest('[data-src]'); if(!b) return;
+    var src = b.dataset.src;
+    if(src === 'photo' && coarse) $('photoInput').click();  // a phone goes straight to its picker (still inside the tap)
+    capture(src);
+  });
+  $('tryExample').addEventListener('click', function(){ capture('example'); });
+  function startCam(){
+    $('camCapture').disabled = !camStream;
+    if(camStream) return;
+    if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){ camFail('The camera isn’t available here.'); return; }
+    $('camMsg').textContent = 'Starting the camera…';
+    navigator.mediaDevices.getUserMedia({ video:{ facingMode:'environment', width:{ ideal:1920 }, height:{ ideal:1440 } }, audio:false }).then(function(s){
+      if(Stage.current() !== 'capture' || Stage.sub() !== 'camera'){ s.getTracks().forEach(function(t){ t.stop(); }); return; }
+      camStream = s; $('camVideo').srcObject = s; $('camCapture').disabled = false; $('camMsg').textContent = 'Point at the question and hold steady.';
+    }).catch(function(){ camFail('The camera is blocked.'); });
+  }
+  function camFail(why){ $('camMsg').innerHTML = esc(why) + '<br><button class="mini" type="button" data-src="photo">Choose a photo instead</button>'; }
+  function stopCam(){
+    if(camStream) camStream.getTracks().forEach(function(t){ t.stop(); });
+    camStream = null; $('camVideo').srcObject = null; $('camCapture').disabled = true;
+  }
+  $('camCapture').addEventListener('click', function(){
+    var v = $('camVideo'), c = $('camCanvas'); if(!v.videoWidth) return;
+    c.width = v.videoWidth; c.height = v.videoHeight; c.getContext('2d').drawImage(v, 0, 0);
+    c.toBlob(function(blob){ camBlob = blob; photoFile = pdfFile = null; stopCam(); confirmPhoto(blob); }, 'image/jpeg', 0.92);
+  });
+  function setPhoto(f){
+    if(!f) return;
+    if(f.type === 'application/pdf' || /\.pdf$/i.test(f.name || '')){ pdfFile = f; camBlob = photoFile = null; confirmPdf(f); }
+    else { photoFile = f; camBlob = pdfFile = null; confirmPhoto(f); }
+  }
+  $('photoInput').addEventListener('change', function(){ setPhoto(this.files[0]); this.value = ''; });
+  wireDrop('photoDrop', setPhoto);
+  function wireDrop(id, fn){
+    var el = $(id);
+    ['dragover','dragleave','drop'].forEach(function(ev){ el.addEventListener(ev, function(e){ e.preventDefault(); el.classList.toggle('over', ev==='dragover'); }); });
+    el.addEventListener('drop', function(e){ if(e.dataTransfer.files[0]) fn(e.dataTransfer.files[0]); });
+  }
+  $('typeSolve').addEventListener('click', function(){ lessonPhoto = null; solveText($('typeInput').value); });
+  // "Try an example": marbles plus every v2 example the server has (ready-made, verified files: no planning).
+  fetch('/api/example').then(function(r){ return r.json(); }).then(function(j){
+    var list = (j.examples || []).filter(function(e){ return e.name === 'marbles' || e.version === 2; });
+    if(!list.length) return;
+    $('exampleSel').innerHTML = list.map(function(e){ return '<option value="' + esc(e.name) + '">' + esc(e.title + (e.level ? ' · ' + e.level : '')) + '</option>'; }).join('');
+  }).catch(function(){});
+  $('exampleBtn').addEventListener('click', function(){
+    setError(''); lessonPhoto = null;
+    fetch('/api/example?name=' + encodeURIComponent($('exampleSel').value)).then(apiJSON)
+      .then(function(j){ startLesson(j.spec, j); }).catch(showErr);
+  });
+
+  // ---------------------------------------------------------------- confirm: the photo, which question, start
+  var qnoReq = 0;
+  function confirmPhoto(blob){
+    var url = URL.createObjectURL(blob);
+    $('confirmImg').src = url; $('confirmImg').hidden = false; $('confirmPdf').hidden = true;
+    $('qnoBox').hidden = false; $('qnoBox').open = false; $('qnoInput').value = ''; $('qnoChips').innerHTML = '';
+    $('qnoSummary').textContent = 'A whole page? Pick the question number';
+    $('confirmRetake').textContent = camBlob ? 'Take another photo' : 'Choose another file';
+    Stage.go('confirm');
+    var id = ++qnoReq, fd = new FormData(); fd.append('file', blob, 'page.jpg');
+    fetch('/api/questions', { method:'POST', body:fd }).then(apiJSON).then(function(j){  // several questions on the page: pick one
+      var qs = j.questions || [];
+      if(id !== qnoReq || qs.length < 2) return;
+      $('qnoSummary').textContent = 'I can see ' + qs.length + ' questions. Which one?';
+      $('qnoChips').innerHTML = qs.map(function(q){ return '<button type="button" data-q="' + esc(q.number) + '" aria-pressed="false" title="' + esc(q.start || '') + '">' + esc(q.number) + '</button>'; }).join('');
+      $('qnoBox').open = true;
+    }).catch(function(){});
+  }
+  function confirmPdf(f){
+    qnoReq++;
+    $('confirmImg').hidden = true; $('confirmPdf').hidden = false; $('confirmPdf').textContent = '📄 ' + f.name;
+    $('qnoBox').hidden = true; $('confirmRetake').textContent = 'Choose another file';
+    Stage.go('confirm');
+  }
+  $('qnoChips').addEventListener('click', function(e){
+    var b = e.target.closest('[data-q]'); if(!b) return;
+    Array.prototype.forEach.call(this.children, function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+    $('qnoInput').value = b.dataset.q;
+  });
+  $('confirmGo').addEventListener('click', function(){
+    var fd = new FormData(), btn = this;
+    if(pdfFile){ fd.append('file', pdfFile); lessonPhoto = null; }
+    else if(camBlob || photoFile){
+      fd.append('file', camBlob || photoFile, camBlob ? 'camera-scan.jpg' : photoFile.name);
+      fd.append('question_number', $('qnoInput').value);
+      lessonPhoto = $('confirmImg').src;
+    } else return;
+    btn.disabled = true; btn.textContent = 'Reading the problem…';
+    Promise.resolve(solveForm(fd)).finally(function(){ btn.disabled = false; btn.textContent = 'Start the lesson ▶'; });
+  });
+  $('confirmRetake').addEventListener('click', function(){ Stage.back(); });  // the capture it came from
+
+  // ---------------------------------------------------------------- whiteboard (mirrors renderer/render.py)
+  var C = { ink:'#1f2a44', blue:'#2563eb', red:'#dc2626', green:'#15803d' };
+  var B = {}, board = $('board'), measureCtx = document.createElement('canvas').getContext('2d');
+  function textW(t, size, fam){ measureCtx.font = size + 'px "' + (fam || 'Caveat') + '"'; return measureCtx.measureText(t).width; }
+  function rng(seed){ return function(){ seed = (seed * 9301 + 49297) % 233280; return seed / 233280; }; }
+  function wobbly(x0, y0, x1, y1, seed, amp){
+    var r = rng(seed), n = Math.max(2, Math.round(Math.hypot(x1-x0, y1-y0) / 14)), d = 'M' + x0 + ' ' + y0;
+    amp = amp == null ? 1.3 : amp;
+    for(var i=1;i<=n;i++){ var t = i/n; d += ' L' + (x0 + (x1-x0)*t + (i<n ? (r()-.5)*amp*2 : 0)).toFixed(1) + ' ' + (y0 + (y1-y0)*t + (i<n ? (r()-.5)*amp*2 : 0)).toFixed(1); }
+    return d;
+  }
+  function braceV(x, y0, y1, w){ var m = (y0+y1)/2; return 'M'+x+' '+y0+' Q'+(x+w)+' '+y0+' '+(x+w*.6)+' '+(m-12)+' L'+(x+w)+' '+m+' L'+(x+w*.6)+' '+(m+12)+' Q'+(x+w)+' '+y1+' '+x+' '+y1; }
+  function braceH(y, x0, x1, h){ var m = (x0+x1)/2; return 'M'+x0+' '+y+' Q'+x0+' '+(y+h)+' '+(m-14)+' '+(y+h*.7)+' L'+m+' '+(y+h)+' L'+(m+14)+' '+(y+h*.7)+' Q'+x1+' '+(y+h)+' '+x1+' '+y; }
+  function el(tag, attrs, parent){ var e = document.createElementNS(SVGNS, tag); for(var k in attrs) e.setAttribute(k, attrs[k]); (parent || board).appendChild(e); return e; }
+  function stroke(g, d, color, width, delay){
+    var p = el('path', { d:d, 'class':'ink', stroke:color, 'stroke-width':width || 4 }, g);
+    var len = p.getTotalLength(); p.style.strokeDasharray = len; p.style.strokeDashoffset = len;
+    p.getBoundingClientRect();
+    p.style.transition = 'stroke-dashoffset ' + Math.min(1.2, Math.max(.35, len/600)).toFixed(2) + 's ease ' + (delay || 0) + 's';
+    requestAnimationFrame(function(){ p.style.strokeDashoffset = 0; });
+    return p;
+  }
+  function text(g, x, y, t, size, color, anchor, cls, delay){
+    var e = el('text', { x:x, y:y, 'font-size':size, fill:color || C.ink, 'text-anchor':anchor || 'start', 'class':'appear ' + (cls || '') }, g);
+    e.textContent = t; e.style.transitionDelay = (delay || 0) + 's';
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){ e.classList.add('on'); }); });
+    return e;
+  }
+  function wrap(t, size, maxw){
+    var lines = [], cur = '';
+    t.split(/\s+/).forEach(function(w){ var n = (cur + ' ' + w).trim(); if(textW(n, size, 'Patrick Hand') > maxw && cur){ lines.push(cur); cur = w; } else cur = n; });
+    return lines.concat([cur]);
+  }
+  function unitValue(m){
+    var bars = m.bars, sum = 0, extra = 0;
+    bars.forEach(function(b){ sum += b.units; extra += (b.extra || 0); });
+    if(m.total) return (m.total - extra) / sum;
+    var by = {}; bars.forEach(function(b){ by[b.id] = b; });
+    return m.difference.value / (by[m.difference.more].units - by[m.difference.less].units);
+  }
+  function setupBoard(spec){
+    while(board.firstChild) board.removeChild(board.firstChild);
+    el('line', { x1:750, y1:240, x2:750, y2:690, stroke:'#d8d3c4', 'stroke-width':2 });
+    var m = spec.model, bars = m.bars;
+    B = { spec:spec, bars:{}, by:{}, bx:170, bh:64, uv:unitValue(m), steps:{} };
+    bars.forEach(function(b){ B.bars[b.id] = b; });
+    var totals = spec.timeline.filter(function(a){ return a.do === 'bracket_total'; }).map(function(a){ return a.text; });
+    var labelW = Math.max.apply(null, [0].concat(totals.map(function(t){ return textW(t, 46); })));
+    var areaW = 750 - 10 - B.bx - 62 - labelW;
+    B.extraUnits = function(b){ return b.extra ? Math.min(2.5, Math.max(.6, b.extra / B.uv)) : 0; };
+    B.uw = Math.min(150, areaW / Math.max.apply(null, bars.map(function(b){ return b.units + B.extraUnits(b); })));
+    B.step = Math.min(144, (690 - B.bh - 285) / Math.max(1, bars.length - 1));
+    bars.forEach(function(b, i){ B.by[b.id] = 285 + i * B.step; });
+    var lines = spec.timeline.filter(function(a){ return a.do === 'write'; }).map(function(a){ return a.text; });
+    B.workY = 280; B.workStep = Math.min(68, (690 - B.workY - 40) / Math.max(1, lines.length + 1));
+    B.fWork = Math.min(50, Math.floor(B.workStep * .9));
+    while(B.fWork > 20 && lines.some(function(t){ return textW(t, B.fWork) > 440; })) B.fWork -= 2;
+    B.qSize = 34; B.qLines = wrap(spec.question, B.qSize, 1140);
+    while(B.qLines.length > 3 && B.qSize > 22){ B.qSize -= 2; B.qLines = wrap(spec.question, B.qSize, 1140); }
+    el('text', { x:60, y:56, 'font-size':24, fill:'#8a8578', 'class':'q' }).textContent = spec.title + ' · ' + spec.level;
+    el('line', { x1:60, y1:72, x2:1220, y2:72, stroke:'#d8d3c4', 'stroke-width':2 });
+    B.seed = 7;
+  }
+  function rect(id){ var b = B.bars[id], x0 = B.bx, y0 = B.by[id]; return [x0, y0, x0 + (b.units + B.extraUnits(b)) * B.uw, y0 + B.bh]; }
+  function rightEdge(){ return Math.max.apply(null, Object.keys(B.bars).map(function(id){ return rect(id)[2]; })); }
+  function drawStep(i, a){
+    if(B.v2) return drawStepV2(i, a);
+    var g = el('g', { id:'step-' + i }); B.steps[i] = g; B.seed++; var sd = B.seed * 31, k = a.do;
+    if(k === 'write_question'){
+      B.qLines.forEach(function(ln, j){ text(g, 60, 120 + j * (B.qSize + 10), ln, B.qSize, C.ink, 'start', 'q', j * .25); });
+    } else if(k === 'highlight'){
+      B.qLines.forEach(function(ln, j){
+        var at = ln.indexOf(a.text); if(at < 0 || g.childNodes.length) return;
+        var x0 = 60 + textW(ln.slice(0, at), B.qSize, 'Patrick Hand'), w = textW(a.text, B.qSize, 'Patrick Hand'), y = 120 + j * (B.qSize + 10);
+        var r = el('rect', { x:x0 - 4, y:y - B.qSize + 4, width:0, height:B.qSize + 6, fill:'rgba(255,221,64,.55)', rx:4 }, g);
+        board.insertBefore(g, board.firstChild.nextSibling);
+        r.style.transition = 'width .6s ease'; requestAnimationFrame(function(){ requestAnimationFrame(function(){ r.setAttribute('width', w + 8); }); });
+      });
+    } else if(k === 'draw_bar'){
+      var R = rect(a.id), b = B.bars[a.id];
+      text(g, R[0] - 20, (R[1] + R[3]) / 2 + 14, b.label, 46, C.blue, 'end');
+      stroke(g, wobbly(R[0], R[1], R[2], R[1], sd), C.ink, 4, 0); stroke(g, wobbly(R[2], R[1], R[2], R[3], sd + 1), C.ink, 4, .3);
+      stroke(g, wobbly(R[2], R[3], R[0], R[3], sd + 2), C.ink, 4, .5); stroke(g, wobbly(R[0], R[3], R[0], R[1], sd + 3), C.ink, 4, .8);
+      if(b.extra){ var xu = R[0] + b.units * B.uw; stroke(g, wobbly(xu, R[1] + 2, xu, R[3] - 2, sd + 4, .8), C.blue, 3, 1);
+        text(g, (xu + R[2]) / 2, (R[1] + R[3]) / 2 + 14, String(b.extra), 38, C.blue, 'middle', '', 1); }
+    } else if(k === 'divide_units'){
+      var n = 0;
+      Object.keys(B.bars).forEach(function(id){
+        var R = rect(id), b = B.bars[id];
+        for(var u = 1; u < b.units; u++) stroke(g, wobbly(R[0] + u * B.uw, R[1] + 2, R[0] + u * B.uw, R[3] - 2, sd + u, .8), C.red, 3, (n++) * .12);
+        for(var v = 0; v < b.units; v++) text(g, R[0] + (v + .5) * B.uw, R[1] + B.bh / 2 + 12, 'u', 34, C.red, 'middle', '', .3 + v * .08);
+      });
+    } else if(k === 'bracket_total'){
+      var ys = Object.keys(B.by).map(function(id){ return B.by[id]; }), top = Math.min.apply(null, ys), bot = Math.max.apply(null, ys) + B.bh, x = rightEdge() + 22;
+      stroke(g, braceV(x, top, bot, 26), C.green, 4); text(g, x + 40, (top + bot) / 2 + 16, a.text, 46, C.green, 'start', '', .6);
+    } else if(k === 'bracket_difference'){
+      var d = B.spec.model.difference, xs = rect(d.less)[2], M = rect(d.more);
+      stroke(g, braceH(M[1] - 8, xs, M[2], -22), C.green, 4); text(g, (xs + M[2]) / 2, M[1] - 40, a.text, 40, C.green, 'middle', '', .6);
+    } else if(k === 'question_mark'){
+      var Q = rect(a.id), gap = B.step - B.bh, big = gap >= 80;
+      stroke(g, braceH(Q[3] + 8, Q[0], Q[2], 22), C.red, 4); text(g, (Q[0] + Q[2]) / 2, Q[3] + (big ? 72 : gap - 3), '?', big ? 56 : 32, C.red, 'middle', 'q', .5);
+    } else if(k === 'label_unit'){
+      var L = rect(a.id); text(g, L[0] + B.uw / 2, L[1] - 12, a.text, 40, C.blue, 'middle');
+    } else if(k === 'write'){
+      text(g, 790, B.workY, a.text, B.fWork); B.workY += B.workStep;
+    } else if(k === 'answer'){
+      var y = B.workY + 20, t = text(g, 790, y, a.text, 54, C.green), w = textW(a.text, 54);
+      stroke(g, wobbly(778, y - 52, 802 + w, y - 52, sd, 1) + wobbly(802 + w, y - 52, 802 + w, y + 14, sd + 1, 1).replace('M', ' L') +
+             wobbly(802 + w, y + 14, 778, y + 14, sd + 2, 1).replace('M', ' L') + wobbly(778, y + 14, 778, y - 52, sd + 3, 1).replace('M', ' L'), C.green, 3, .5);
+    }
+    return g;
+  }
+  function flashStep(i){ var g = B.steps[i]; if(!g) return; g.classList.remove('flash'); void g.getBoundingClientRect(); g.classList.add('flash'); }
+  function flashBar(id){
+    if(B.v2){
+      var b = B.bars[id]; if(!b || b.y == null) return;
+      var f = el('rect', { x:V2.bx - 6, y:b.y - 6, width:b.xe - V2.bx + 12, height:B.bh + 12, fill:'rgba(255,221,64,.35)', rx:6 }, B.under);
+      setTimeout(function(){ f.remove(); }, 2600); return;
+    }
+    if(!B.bars[id]) return; var R = rect(id);
+    var r = el('rect', { x:R[0] - 6, y:R[1] - 6, width:R[2] - R[0] + 12, height:B.bh + 12, fill:'rgba(255,221,64,.35)', rx:6 });
+    board.insertBefore(r, board.firstChild.nextSibling); setTimeout(function(){ r.remove(); }, 2600);
+  }
+
+  // ---------------------------------------------------------------- v2 whiteboard (mirrors renderer/render.py BoardV2)
+  // Stages of bars made of segments, drawn true to scale from the server's solve ("solved"), so the board never
+  // does its own maths. Same rules as the video: 1280x720, title y=56, question from y=120, bars from the
+  // question's bottom + 40; bx=200 with names right-aligned at 180; one scale for every stage from the longest
+  // drawn bar (removed parts too); stage labels Caveat 30 grey at (60, first bar top - 10); bar height
+  // max(36, 64 - 6(n - 1)); layers above and below each bar for what the timeline puts there; working at x=790,
+  // or across the board under the question for the "working" template. The live board ends at y=690 (the video
+  // keeps 600 because its captions sit on the frame).
+  var GREY = '#787882', HATCH = '#aaa08c', TINT = 'rgba(37,99,235,.13)';
+  var V2 = { bx:200, divider:750, braceRoom:62, bottom:690, workW:440 };
+  var ROOM = { stage:32, stageGap:10, text:30, bracket:48, qmark:54, pad:6, maxGap:24, label:28 };
+  function isV2(s){ return !!s && s.version === 2; }
+  function later(f){ requestAnimationFrame(function(){ requestAnimationFrame(f); }); }
+  function halo(e, w){ e.setAttribute('stroke', '#fbfaf5'); e.setAttribute('stroke-width', w || 5); e.setAttribute('paint-order', 'stroke'); e.setAttribute('stroke-linejoin', 'round'); return e; }
+  function fade(e, delay){ e.classList.add('appear'); e.style.transitionDelay = (delay || 0) + 's'; later(function(){ e.classList.add('on'); }); return e; }
+  function wrapF(t, size, maxw, fam){
+    var lines = [], cur = '';
+    String(t).split(/\s+/).forEach(function(w){ var n = (cur + ' ' + w).trim(); if(textW(n, size, fam) > maxw && cur){ lines.push(cur); cur = w; } else cur = n; });
+    return lines.concat([cur]);
+  }
+  function fitSize(texts, size, maxw){ while(size > 20 && texts.some(function(t){ return textW(t, size) > maxw; })) size -= 2; return size; }
+  function fitOne(t, width, hi, lo){ for(var s = hi; s >= lo; s -= 2) if(textW(t, s) <= width) return s; return 0; }
+  // '3*u + 20' -> {u:3, c:20}. Numbers, unit names, + - * / and brackets: enough for a spec's segment expressions.
+  function linear(expr){
+    var toks = String(expr || '').replace(/×/g, '*').replace(/÷/g, '/').replace(/[−–]/g, '-').match(/\d+(?:\.\d+)?|[a-z]+|[-+*\/()]/g) || [], i = 0;
+    function add(a, b, s){ var o = {}; Object.keys(a).concat(Object.keys(b)).forEach(function(k){ o[k] = (a[k] || 0) + s * (b[k] || 0); }); return o; }
+    function scale(a, f){ var o = {}; for(var k in a) o[k] = a[k] * f; return o; }
+    function plain(a){ for(var k in a) if(k !== 'c' && a[k]) return false; return true; }
+    function atom(){
+      var t = toks[i++];
+      if(t === '('){ var v = sum(); i++; return v; }
+      if(t === '-') return scale(atom(), -1);
+      if(t === '+') return atom();
+      if(/^\d/.test(t || '')) return { c:parseFloat(t) };
+      var o = {}; if(t) o[t] = 1; return o;
+    }
+    function prod(){
+      var v = atom();
+      while(toks[i] === '*' || toks[i] === '/'){ var op = toks[i++], w = atom();
+        v = op === '*' ? (plain(v) ? scale(w, v.c || 0) : scale(v, w.c || 0)) : scale(v, 1 / (w.c || 1)); }
+      return v;
+    }
+    function sum(){ var v = prod(); while(toks[i] === '+' || toks[i] === '-'){ var op = toks[i++]; v = add(v, prod(), op === '+' ? 1 : -1); } return v; }
+    try { return sum(); } catch(e){ return { c:0 }; }
+  }
+  function unitCount(expr){  // '3*u' -> [3, 'u']; anything else (20, u + 4, u/2) -> null, as the renderer's unit_count
+    var lin = linear(expr), names = Object.keys(lin).filter(function(n){ return n !== 'c' && lin[n]; });
+    if(names.length !== 1 || lin.c || B.units.indexOf(names[0]) < 0) return null;
+    var k = lin[names[0]];
+    return k > 0 && Math.abs(k - Math.round(k)) < 1e-9 ? [Math.round(k), names[0]] : null;
+  }
+  function isRight(a){ return !!(a.bars && a.bars.length) || a.side === 'right'; }
+  function segSpan(a, bar){
+    var n = bar.segs.length, s = a.segments;
+    if(!s || s.length !== 2 || !(s[0] >= 0 && s[0] <= s[1] && s[1] < n)) return [0, n - 1];
+    return [s[0], s[1]];
+  }
+  function counted(bar){
+    var xs = bar.segs.filter(function(s){ return s.style !== 'removed'; });
+    if(!xs.length) xs = bar.segs;
+    return [xs[0].x0, xs[xs.length - 1].x1];
+  }
+  function labelSpan(t, x0, x1, size){  // a label centred on its segment, kept within the bar area
+    var w = textW(t, size), cx = Math.min(Math.max((x0 + x1) / 2, V2.bx - 4 + w / 2), V2.divider - 12 - w / 2);
+    return [cx - w / 2, cx + w / 2];
+  }
+  function layer(bid, key){ return B.layer[bid + '|' + key] || [B.bars[bid].y, ROOM.text * B.k]; }
+
+  function setupBoardV2(spec, solved){
+    while(board.firstChild) board.removeChild(board.firstChild);
+    solved = solved || { units:{}, segments:{} };
+    B = { v2:true, spec:spec, solved:solved, bars:{}, layer:{}, segLabel:{}, steps:{}, seed:7, k:1,
+          units:(spec.units || []).map(function(u){ return u.name; }) };
+    B.qSize = 34; B.qLines = wrap(spec.question, B.qSize, 1140);
+    while(B.qLines.length > 3 && B.qSize > 22){ B.qSize -= 2; B.qLines = wrap(spec.question, B.qSize, 1140); }
+    var top = 120 + (B.qLines.length - 1) * (B.qSize + 10) + 52;  // the question's bottom + 40
+    var tl = spec.timeline, lines = tl.filter(function(a){ return a.do === 'write'; }).map(function(a){ return a.text || ''; });
+    var bars = (spec.stages || []).some(function(st){ return (st.bars || []).length; });
+    var table = tl.filter(function(a){ return a.do === 'table'; })[0], nline = tl.filter(function(a){ return a.do === 'number_line'; })[0];
+    var picture = bars || !!table || !!nline;
+    el('text', { x:60, y:56, 'font-size':24, fill:'#8a8578', 'class':'q' }).textContent = spec.title + ' · ' + spec.level;
+    el('line', { x1:60, y1:72, x2:1220, y2:72, stroke:'#d8d3c4', 'stroke-width':2 });
+    if(picture) el('line', { x1:V2.divider, y1:top, x2:V2.divider, y2:V2.bottom, stroke:'#d8d3c4', 'stroke-width':2 });
+    B.under = el('g', {});  // highlighter and flashes sit under the ink
+    if(table && !bars) layoutTableV2(table, tl, top);
+    else if(nline && !bars) layoutLineV2(nline, tl, top);
+    B.workX = picture ? 790 : 60; B.workW = picture ? V2.workW : 1160; B.workY = top + 40;
+    B.workStep = Math.min(68, (V2.bottom - B.workY - 40) / Math.max(1, lines.length + 1));
+    B.fWork = fitSize(lines, Math.min(50, Math.floor(B.workStep * .9)), B.workW);
+    if(bars){ layoutXV2(spec, solved); layoutYV2(spec, top); B.pct = layoutPercentV2(spec); }
+  }
+
+  function layoutXV2(spec, solved){
+    var rightW = Math.max.apply(null, [0].concat(spec.timeline.filter(function(a){ return a.do === 'bracket' && isRight(a); })
+      .map(function(a){ return textW(a.text || '', 40); })));
+    var all = [];
+    (spec.stages || []).forEach(function(st){ (st.bars || []).forEach(function(b, i){
+      var vals = solved.segments[b.id] || [];
+      var bar = { id:b.id, label:b.label || '', stage:st, first:i === 0, segs:(b.segments || []).map(function(s, j){
+        var lin = linear(s.expr), v = vals[j];
+        if(v == null){ v = lin.c || 0; B.units.forEach(function(n){ v += (lin[n] || 0) * (solved.units[n] || 0); }); }
+        return { i:j, style:s.style || 'normal', label:s.label || '', unit:unitCount(s.expr), val:Math.max(0, v) };
+      }) };
+      B.bars[b.id] = bar; all.push(bar);
+    }); });
+    var area = V2.divider - 10 - V2.bx - V2.braceRoom - rightW;
+    B.scale = area / Math.max.apply(null, [1e-9].concat(all.map(function(b){ return b.segs.reduce(function(t, s){ return t + s.val; }, 0); })));
+    all.forEach(function(bar){
+      var x = V2.bx;
+      bar.segs.forEach(function(s){ s.x0 = x; x += s.val * B.scale; s.x1 = x; });
+      bar.xe = x;
+    });
+  }
+
+  function layoutYV2(spec, top){
+    var tl = spec.timeline, divided = {}, covered = {}, above = {}, below = {};
+    Object.keys(B.bars).forEach(function(id){ above[id] = []; below[id] = []; covered[id] = {}; });
+    tl.forEach(function(a, idx){
+      if(a.do === 'divide_units') divided[a.bar] = true;
+      if(!B.bars[a.bar]) return;
+      if(a.do === 'label_unit') above[a.bar].push([idx, ROOM.text]);
+      else if(a.do === 'bracket' && !isRight(a) && (a.side || 'top') === 'top'){
+        var sp = segSpan(a, B.bars[a.bar]); for(var j = sp[0]; j <= sp[1]; j++) covered[a.bar][j] = true;
+      }
+    });
+    // Segment labels: inside if they fit (shrinking), otherwise above (below if a top brace is there, or if the
+    // label before it is in the way). Removed parts are crossed out and divided parts get a "u" per box, so
+    // their labels go outside.
+    Object.keys(B.bars).forEach(function(id){
+      var bar = B.bars[id], end = { above:-1e9, below:-1e9 }, sides = {};
+      bar.segs.forEach(function(s){
+        if(!s.label) return;
+        var size = fitOne(s.label, s.x1 - s.x0 - 10, 32, 18);
+        if(s.style === 'removed' || (divided[id] && s.unit) || !size){
+          var side = covered[id][s.i] ? 'below' : 'above', sp = labelSpan(s.label, s.x0, s.x1, ROOM.label);
+          if(sp[0] < end[side] + 6) side = side === 'above' ? 'below' : 'above';
+          end[side] = sp[1]; B.segLabel[id + '|' + s.i] = [side]; sides[side] = true;
+        } else B.segLabel[id + '|' + s.i] = ['in', size];
+      });
+      if(sides.above) above[id].push(['above', ROOM.text]);
+      if(sides.below) below[id].push(['below', ROOM.text]);
+    });
+    tl.forEach(function(a, idx){
+      if(!B.bars[a.bar]) return;
+      if(a.do === 'bracket' && !isRight(a)) ((a.side || 'top') === 'top' ? above : below)[a.bar].push([idx, ROOM.bracket]);
+      else if(a.do === 'question_mark') below[a.bar].push([idx, ROOM.qmark]);
+    });
+    function sum(list){ return list.reduce(function(t, r){ return t + r[1]; }, 0); }
+    var order = [], nStages = 0;
+    (spec.stages || []).forEach(function(st){ if((st.bars || []).length) nStages++; (st.bars || []).forEach(function(b, i){ order.push([nStages - 1, i, b.id]); }); });
+    function roomAbove(i, id){ var r = ROOM.pad + sum(above[id]); return i === 0 ? Math.max(ROOM.stage, r) : r; }
+    var rooms = order.reduce(function(t, o){ return t + roomAbove(o[1], o[2]) + ROOM.pad + sum(below[o[2]]); }, 0) + ROOM.stageGap * (nStages - 1);
+    var n = order.length, avail = V2.bottom - top, bh = Math.max(36, 64 - 6 * (n - 1)), k = 1;
+    if(n * bh + rooms > avail){
+      bh = Math.max(36, Math.floor((avail - rooms) / n));
+      if(n * bh + rooms > avail) k = Math.max(.3, (avail - n * bh) / rooms);  // the gate refuses what the video can't fit
+    }
+    var gap = n > 1 ? Math.max(0, Math.min(ROOM.maxGap, (avail - n * bh - rooms * k) / (n - 1))) : 0, y = top;
+    B.bh = bh; B.k = k;
+    order.forEach(function(o){
+      var si = o[0], i = o[1], id = o[2], bar = B.bars[id], off = 0;
+      if(si || i) y += gap;
+      if(si && !i) y += ROOM.stageGap * k;
+      y += roomAbove(i, id) * k;
+      bar.y = y;
+      above[id].forEach(function(r){ B.layer[id + '|' + r[0]] = [y - off, r[1] * k]; off += r[1] * k; });  // nearest the bar first
+      off = 0;
+      below[id].forEach(function(r){ B.layer[id + '|' + r[0]] = [y + bh + off, r[1] * k]; off += r[1] * k; });
+      y += bh + (ROOM.pad + sum(below[id])) * k;
+    });
+  }
+
+  // ---- table (renderer/render.py layout_table): column widths from the widest text, one font, left of the divider
+  function cellText(v){ return typeof v === 'number' ? String(v) : String(v == null ? '' : v).trim(); }
+  function layoutTableV2(a, tl, top){
+    var cols = a.columns || [], rows = a.rows || [], grid = [cols.map(cellText)].concat(rows.map(function(r){ return (r || []).map(cellText); }));
+    var fills = tl.filter(function(f){ return f.do === 'fill_cell' && f.table === a.id; });
+    var x0 = 60, x1 = V2.divider - 24, y0 = top + 8, rh = Math.min(64, (V2.bottom - y0) / grid.length), pad = 16;
+    function widths(size){
+      return cols.map(function(_, c){
+        var texts = grid.map(function(r){ return r[c] || ''; }).concat(fills.filter(function(f){ return f.col === c; }).map(function(f){ return cellText(f.text); }));
+        return Math.max.apply(null, texts.map(function(t){ return textW(t, size); })) + 2 * pad;
+      });
+    }
+    function total(ws){ return ws.reduce(function(t, w){ return t + w; }, 0); }
+    var size = Math.min(36, Math.floor(rh * .62));
+    while(size > 20 && total(widths(size)) > x1 - x0) size -= 2;
+    var ws = widths(size), spare = Math.max(0, Math.min(x1 - x0 - total(ws), 36 * cols.length)), xs = [x0];
+    ws.forEach(function(w){ xs.push(xs[xs.length - 1] + w + spare / cols.length); });
+    B.table = { id:a.id, xs:xs, ys:grid.map(function(_, r){ return y0 + r * rh; }).concat([y0 + grid.length * rh]), size:size, grid:grid, q:{} };
+  }
+  function cellV2(g, r, c, t, color, delay){
+    var T = B.table, x0 = T.xs[c], x1 = T.xs[c + 1], y0 = T.ys[r], y1 = T.ys[r + 1];
+    var size = fitOne(t, x1 - x0 - 12, T.size, 18) || 18;
+    return text(g, (x0 + x1) / 2, (y0 + y1) / 2 + .3 * size, t, size, color, 'middle', '', delay);
+  }
+  function tableV2(g, a, sd){  // a hand-drawn grid, then headers and given cells row by row; "?" waits for fill_cell
+    var T = B.table; if(!T || T.id !== a.id) return;
+    var xs = T.xs, ys = T.ys, X0 = xs[0], X1 = xs[xs.length - 1], Y0 = ys[0], Y1 = ys[ys.length - 1], n = 0;
+    [[X0, Y0, X1, Y0], [X1, Y0, X1, Y1], [X1, Y1, X0, Y1], [X0, Y1, X0, Y0]].forEach(function(e, k){ stroke(g, wobbly(e[0], e[1], e[2], e[3], sd + k), C.ink, 4, .15 * k); });
+    stroke(g, wobbly(X0, ys[1], X1, ys[1], sd + 4, .8), C.ink, 4, .5);
+    ys.slice(2, -1).forEach(function(y, k){ stroke(g, wobbly(X0, y, X1, y, sd + 5 + k, .8), C.ink, 2, .6); });
+    xs.slice(1, -1).forEach(function(x, k){ stroke(g, wobbly(x, Y0, x, Y1, sd + 20 + k, .8), C.ink, 3, .6); });
+    T.grid.forEach(function(row, r){ row.forEach(function(t, c){
+      if(!t) return;
+      var e = cellV2(g, r, c, t, t === '?' ? C.red : C.ink, .8 + .12 * n++);
+      if(t === '?') e.classList.add('q');
+      if(t === '?') T.q[r + '|' + c] = e;
+    }); });
+  }
+  function fillCellV2(g, a){  // rub out the "?" and write the value in blue
+    var T = B.table; if(!T || T.id !== a.table) return;
+    var r = (a.row || 0) + 1, c = a.col || 0, q = T.q[r + '|' + c];
+    if(q) q.remove();
+    cellV2(g, r, c, cellText(a.text), C.blue);
+  }
+
+  // ---- number line (renderer/render.py layout_line / draw_line / mark_point)
+  var NL = { label:28, hop:44, value:84, row:38 };
+  function lineX(t, x, size){ var w = textW(t, size); return Math.min(Math.max(x, 28 + w / 2), V2.divider - 14 - w / 2); }
+  function layoutLineV2(a, tl, top){
+    var start = +a.start, end = +a.end; if(!(start < end)) return;
+    var x0 = 100, x1 = V2.divider - 70, y = top + Math.max(NL.value + 2 * NL.row + 30, (V2.bottom - top) * .55);
+    var X = function(v){ return x0 + (v - start) / (end - start) * (x1 - x0); }, fills = {}, slots = {}, rows = [];
+    tl.forEach(function(f){ if(f.do === 'mark_point' && f.line === a.id) fills[f.at] = cellText(f.text); });
+    (a.marks || []).filter(function(m){ return cellText(m.value); }).sort(function(p, q){ return p.at - q.at; }).forEach(function(m){
+      var w = textW(cellText(m.value), NL.label); if(fills[m.at] != null) w = Math.max(w, textW(fills[m.at], NL.label + 2));
+      var cx = Math.min(Math.max(X(m.at), 28 + w / 2), V2.divider - 14 - w / 2);
+      for(var r = 0; r < 3; r++){
+        if(r === rows.length) rows.push(-1e9);
+        if(cx - w / 2 > rows[r] + 18){ rows[r] = cx + w / 2; slots[m.at] = [cx, y - NL.value - r * NL.row]; break; }
+      }
+    });
+    B.nline = { id:a.id, X:X, x0:x0, x1:x1, y:y, slots:slots, q:{} };
+  }
+  function lineV2(g, a, sd){
+    var L = B.nline; if(!L || L.id !== a.id) return;
+    var y = L.y, n = 0;
+    stroke(g, wobbly(L.x0 - 24, y, L.x1 + 30, y, sd), C.ink, 4);
+    stroke(g, 'M' + (L.x1 + 18) + ' ' + (y - 9) + ' L' + (L.x1 + 32) + ' ' + y + ' L' + (L.x1 + 18) + ' ' + (y + 9), C.ink, 4, .6);
+    (a.marks || []).forEach(function(m, k){
+      var x = L.X(m.at), label = cellText(m.label), value = cellText(m.value);
+      stroke(g, wobbly(x, y - 12, x, y + 12, sd + 3 + k, .5), C.ink, 4, .5 + .1 * k);
+      if(label) text(g, lineX(label, x, NL.label), y + 20 + .75 * NL.label, label, NL.label, C.ink, 'middle', '', .7 + .1 * n++);
+      if(value && L.slots[m.at]){
+        var sl = L.slots[m.at];
+        fade(el('path', { d:'M' + x + ' ' + (sl[1] + 10) + ' L' + x + ' ' + (y - 16), stroke:GREY, 'stroke-width':2, 'stroke-dasharray':'5 6', fill:'none' }, g), .8);
+        var e = text(g, sl[0], sl[1], value, NL.label, value === '?' ? C.red : C.ink, 'middle', value === '?' ? 'q' : '', .9 + .1 * n++);
+        if(value === '?') L.q[m.at] = e;
+      }
+    });
+    (a.jumps || []).forEach(function(h, k){
+      var d = h.to > h.from ? 1 : -1, xa = L.X(h.from) + 3 * d, xb = L.X(h.to) - 3 * d, span = Math.abs(xb - xa);
+      var hop = Math.min(NL.hop, 10 + span * .35), label = cellText(h.label);
+      stroke(g, 'M' + xa + ' ' + (y - 6) + ' C' + (xa + (xb - xa) * .2) + ' ' + (y - hop) + ' ' + (xb - (xb - xa) * .2) + ' ' + (y - hop) + ' ' + xb + ' ' + (y - 6), C.green, 3, 1 + .3 * k);
+      stroke(g, 'M' + (xb - 9 * d) + ' ' + (y - 16) + ' L' + xb + ' ' + (y - 6) + ' L' + (xb - 13 * d) + ' ' + (y - 5), C.green, 3, 1.3 + .3 * k);
+      if(label){ var size = fitOne(label, Math.max(60, span), 26, 18) || 18; text(g, (xa + xb) / 2, y - hop * .75 - 10, label, size, C.green, 'middle', '', 1.3 + .3 * k); }
+    });
+  }
+  function markPointV2(g, a){  // rub out the mark's "?" and write its value in blue, in the same slot
+    var L = B.nline; if(!L || L.id !== a.line || !L.slots[a.at]) return;
+    var q = L.q[a.at]; if(q) q.remove();
+    text(g, L.slots[a.at][0], L.slots[a.at][1], cellText(a.text), NL.label + 2, C.blue, 'middle');
+  }
+
+  // Template F (renderer layout_percent): on a percentage board, each all-unit bar gets its % at its right end.
+  function layoutPercentV2(spec){
+    if(spec.board !== 'percentage' || spec.timeline.some(function(a){ return a.do === 'move_part' || (a.do === 'bracket' && isRight(a)); })) return {};
+    var counts = [], tags = {};
+    Object.keys(B.bars).forEach(function(id){
+      var segs = B.bars[id].segs.filter(function(s){ return s.style !== 'removed'; }), names = {};
+      if(segs.some(function(s){ return !s.unit; })) return;
+      segs.forEach(function(s){ names[s.unit[1]] = 1; });
+      if(Object.keys(names).length !== 1) return;
+      counts.push([id, segs.reduce(function(t, s){ return t + s.unit[0]; }, 0)]);
+    });
+    if(!counts.length) return {};
+    for(var i = 0; i < counts.length; i++){
+      var pct = counts[i][1] / counts[0][1] * 100, t = (Math.round(pct * 100) / 100) + '%', x = B.bars[counts[i][0]].xe + 10;
+      if(Math.abs(pct * 2 - Math.round(pct * 2)) > 1e-9 || x + textW(t, 24) > V2.divider - 6) return {};
+      tags[counts[i][0]] = [x, t];
+    }
+    return tags;
+  }
+
+  function hatchPath(x0, y0, x1, y1, gap){
+    var d = '', c = x0 + y0 + gap / 2;
+    for(; c < x1 + y1; c += gap){
+      var xa = Math.max(x0, c - y1), xb = Math.min(x1, c - y0);
+      if(xb - xa > 3) d += 'M' + xa.toFixed(1) + ' ' + (c - xa).toFixed(1) + ' L' + xb.toFixed(1) + ' ' + (c - xb).toFixed(1) + ' ';
+    }
+    return d;
+  }
+
+  function drawBarV2(g, bar, sd){
+    var y0 = bar.y, y1 = bar.y + B.bh, mid = (y0 + y1) / 2, size = Math.min(46, Math.floor(B.bh * .9)), segs = bar.segs;
+    while(size > 22 && textW(bar.label, size) > V2.bx - 20 - 24) size -= 2;
+    text(g, V2.bx - 20, mid + .3 * size, bar.label, size, C.blue, 'end');
+    segs.forEach(function(s){  // marks under the ink: hatching, a light blue tint
+      if(s.style === 'marked') fade(el('path', { d:hatchPath(s.x0 + 4, y0 + 4, s.x1 - 4, y1 - 4, 11), stroke:HATCH, 'stroke-width':2, fill:'none' }, g), .9);
+      else if(s.style === 'added') fade(el('rect', { x:s.x0 + 3, y:y0 + 3, width:Math.max(0, s.x1 - s.x0 - 6), height:Math.max(0, B.bh - 6), fill:TINT }, g), .9);
+    });
+    // Outline: runs of segments drawn alike (plain ink, blue added, dashed removed).
+    var runs = [], t = 0;
+    segs.forEach(function(s, i){
+      var kind = s.style === 'added' || s.style === 'removed' ? s.style : 'ink';
+      if(runs.length && runs[runs.length - 1][0] === kind) runs[runs.length - 1][2] = i; else runs.push([kind, i, i]);
+    });
+    runs.forEach(function(run, r){
+      var kind = run[0], xa = segs[run[1]].x0, xb = segs[run[2]].x1, s0 = sd + 10 * r;
+      var edges = [[xa, y0, xb, y0], [xb, y0, xb, y1], [xb, y1, xa, y1]].concat(r === 0 ? [[xa, y1, xa, y0]] : []);
+      var cuts = []; for(var i = run[1]; i < run[2]; i++) cuts.push([segs[i].x1, y0 + 2, segs[i].x1, y1 - 2]);
+      if(kind === 'removed'){
+        edges.concat(cuts).forEach(function(e){
+          fade(el('path', { d:'M' + e[0] + ' ' + e[1] + ' L' + e[2] + ' ' + e[3], 'class':'ink', stroke:C.ink, 'stroke-width':3, 'stroke-dasharray':'10 7' }, g), .3 * t++);
+        });
+      } else {
+        var col = kind === 'added' ? C.blue : C.ink;
+        edges.forEach(function(e, n){ stroke(g, wobbly(e[0], e[1], e[2], e[3], s0 + n), col, 4, Math.min(1.4, .3 * t++)); });
+        cuts.forEach(function(e, n){ stroke(g, wobbly(e[0], e[1], e[2], e[3], s0 + 5 + n, .8), col, 3, 1); });
+      }
+    });
+    segs.forEach(function(s){
+      if(s.style === 'removed'){
+        stroke(g, wobbly(s.x0 + 8, y0 + 8, s.x1 - 8, y1 - 8, sd + 40 + s.i, .6), C.red, 3, 1.3);
+        stroke(g, wobbly(s.x0 + 8, y1 - 8, s.x1 - 8, y0 + 8, sd + 50 + s.i, .6), C.red, 3, 1.5);
+      }
+      var place = B.segLabel[bar.id + '|' + s.i]; if(!place) return;
+      var color = s.style === 'added' ? C.blue : C.ink, cx = (s.x0 + s.x1) / 2;
+      if(place[0] === 'in'){
+        var si = Math.min(place[1], Math.floor(B.bh * .62)), e = text(g, cx, mid + .3 * si, s.label, si, color, 'middle', '', 1.1);
+        if(s.style === 'marked') halo(e, 6);
+        return;
+      }
+      var L = layer(bar.id, place[0]), ls = Math.max(18, Math.min(ROOM.label, Math.floor((L[1] - 4) / .9))), sp = labelSpan(s.label, s.x0, s.x1, ls);
+      text(g, (sp[0] + sp[1]) / 2, place[0] === 'above' ? L[0] - 4 - .22 * ls : L[0] + 4 + .68 * ls, s.label, ls, color, 'middle', '', 1.1);
+    });
+  }
+
+  function percentTagV2(g, bar){ var t = (B.pct || {})[bar.id]; if(t) text(g, t[0], bar.y + B.bh / 2 + 8, t[1], 24, GREY, 'start', '', 1.2); }
+
+  function divideV2(g, bar, sd){
+    var y0 = bar.y, y1 = bar.y + B.bh, n = 0;
+    bar.segs.forEach(function(s){
+      if(!s.unit) return;
+      var k = s.unit[0], w = (s.x1 - s.x0) / k, size = Math.min(34, Math.floor(B.bh * .7), Math.floor(w * .9));
+      for(var j = 1; j < k; j++) stroke(g, wobbly(s.x0 + j * w, y0 + 2, s.x0 + j * w, y1 - 2, sd + s.i * 10 + j, .8), C.red, 3, (n++) * .1);
+      if(s.style !== 'removed' && size >= 16)
+        for(var m = 0; m < k; m++) text(g, s.x0 + (m + .5) * w, (y0 + y1) / 2 + .3 * size, s.unit[1], size, C.red, 'middle', '', .3 + m * .06);
+    });
+  }
+
+  function moveV2(g, a){  // a curved blue arrow from the removed part to the added part, round the right of the bars
+    var fb = B.bars[a.from], tb = B.bars[a.to]; if(!fb || !tb) return;
+    var fs = fb.segs[a.from_segment], ts = tb.segs[a.to_segment]; if(!fs || !ts) return;
+    var mid = function(b){ return b.y + B.bh / 2; }, p0, c1, c2, p3;
+    if(fb === tb){
+      var top = fb.y - 4, fx = (fs.x0 + fs.x1) / 2, tx = (ts.x0 + ts.x1) / 2;
+      p0 = [fx, top]; c1 = [fx, top - 40]; c2 = [tx, top - 40]; p3 = [tx, top];
+    } else {
+      var lo = Math.min(mid(fb), mid(tb)), hi = Math.max(mid(fb), mid(tb));
+      var reach = Math.max.apply(null, Object.keys(B.bars).map(function(id){ var b = B.bars[id]; return mid(b) >= lo && mid(b) <= hi ? b.xe : 0; }));
+      p0 = [fs.x1 + 6, mid(fb)]; p3 = [ts.x1 + 8, mid(tb)];
+      var rx = Math.max(p0[0], p3[0], reach) + 36; c1 = [rx, p0[1]]; c2 = [rx, p3[1]];
+    }
+    stroke(g, 'M' + p0[0] + ' ' + p0[1] + ' C' + c1[0] + ' ' + c1[1] + ' ' + c2[0] + ' ' + c2[1] + ' ' + p3[0] + ' ' + p3[1], C.blue, 4);
+    var ang = Math.atan2(p3[1] - c2[1], p3[0] - c2[0]);  // the curve arrives along c2 -> p3
+    var head = [.5, -.5].map(function(s){ return (p3[0] - 15 * Math.cos(ang + s)).toFixed(1) + ' ' + (p3[1] - 15 * Math.sin(ang + s)).toFixed(1); });
+    stroke(g, 'M' + head[0] + ' L' + p3[0] + ' ' + p3[1] + ' L' + head[1], C.blue, 4, .9);
+  }
+
+  function bracketV2(g, a, idx){
+    if(isRight(a)){
+      var bars = (a.bars && a.bars.length ? a.bars : [a.bar]).map(function(id){ return B.bars[id]; }).filter(Boolean); if(!bars.length) return;
+      var top = Math.min.apply(null, bars.map(function(b){ return b.y; })), bot = Math.max.apply(null, bars.map(function(b){ return b.y + B.bh; }));
+      var x = Math.max.apply(null, bars.map(function(b){ return b.xe; })) + 22;
+      stroke(g, braceV(x, top, bot, 26), C.green, 4); text(g, x + 40, (top + bot) / 2 + 12, a.text || '', 40, C.green, 'start', '', .6);
+      return;
+    }
+    var bar = B.bars[a.bar]; if(!bar) return;
+    var sp = segSpan(a, bar), x0 = bar.segs[sp[0]].x0 + 2, x1 = bar.segs[sp[1]].x1 - 2, L = layer(bar.id, idx);
+    var h = Math.min(16, L[1] * .33), size = Math.max(18, Math.min(34, Math.floor((L[1] - h - 13) / .62)));
+    if((a.side || 'top') === 'top'){
+      stroke(g, braceH(L[0] - 8, x0, x1, -h), C.green, 4); text(g, (x0 + x1) / 2, L[0] - h - 13, a.text || '', size, C.green, 'middle', '', .6);
+    } else {
+      stroke(g, braceH(L[0] + 8, x0, x1, h), C.green, 4); text(g, (x0 + x1) / 2, L[0] + h + 13 + .62 * size, a.text || '', size, C.green, 'middle', '', .6);
+    }
+  }
+
+  function questionV2(g, a, idx){
+    var bar = B.bars[a.bar]; if(!bar) return;
+    var sp = segSpan(a, bar), r = a.segments ? [bar.segs[sp[0]].x0, bar.segs[sp[1]].x1] : counted(bar), L = layer(bar.id, idx);
+    var h = Math.min(16, L[1] * .3), size = Math.max(18, Math.min(48, Math.floor((L[1] - h - 14) / .75)));
+    stroke(g, braceH(L[0] + 8, r[0] + 2, r[1] - 2, h), C.red, 4);
+    text(g, (r[0] + r[1]) / 2, L[0] + h + 12 + .74 * size, '?', size, C.red, 'middle', 'q', .5);  // Patrick Hand: Caveat's "?" reads as "2"
+  }
+
+  function labelUnitV2(g, a, idx){
+    var bar = B.bars[a.bar]; if(!bar) return;
+    var s = bar.segs.filter(function(x){ return x.unit; })[0] || bar.segs[0], x0 = s.x0, x1 = s.x1;
+    if(s.unit) x1 = x0 + (B.solved.units[s.unit[1]] || 0) * B.scale;
+    var L = layer(bar.id, idx), size = Math.max(18, Math.min(32, Math.floor((L[1] - 4) / .9)));
+    text(g, (x0 + x1) / 2, L[0] - 4 - .22 * size, a.text || '', size, C.blue, 'middle');
+  }
+
+  function highlightV2(g, phrase){  // across a line break if the phrase wraps
+    var want = String(phrase || '').replace(/\s+/g, ' ').trim(), joined = B.qLines.join(' '), start = 0, n = 0;
+    var at = want ? joined.toLowerCase().indexOf(want.toLowerCase()) : -1; if(at < 0) return;
+    B.qLines.forEach(function(ln, j){
+      var a0 = Math.max(at, start), a1 = Math.min(at + want.length, start + ln.length);
+      if(a0 < a1){
+        var x0 = 60 + textW(ln.slice(0, a0 - start), B.qSize, 'Patrick Hand'), x1 = 60 + textW(ln.slice(0, a1 - start), B.qSize, 'Patrick Hand'), y = 120 + j * (B.qSize + 10);
+        var r = el('rect', { x:x0 - 4, y:y - B.qSize + 4, width:0, height:B.qSize + 6, fill:'rgba(255,221,64,.55)', rx:4 }, g);
+        r.style.transition = 'width .6s ease ' + (n++ * .5) + 's'; later(function(){ r.setAttribute('width', x1 - x0 + 8); });
+      }
+      start += ln.length + 1;
+    });
+    B.under.appendChild(g);
+  }
+
+  function answerV2(g, t, sd){  // one line, shrinking to 40; a longer answer takes two lines rather than tiny writing
+    var maxW = B.workW - 24, size = 54, lines = [t];
+    while(size > 40 && textW(t, size) > maxW) size -= 2;
+    if(textW(t, size) > maxW){
+      size = 46; lines = wrapF(t, size, maxW, 'Caveat');
+      while(size > 30 && lines.length > 2){ size -= 2; lines = wrapF(t, size, maxW, 'Caveat'); }
+    }
+    var lh = size * 1.05, y = B.workY + 20, w = Math.max.apply(null, lines.map(function(ln){ return textW(ln, size); }));
+    lines.forEach(function(ln, j){ text(g, B.workX, y + j * lh, ln, size, C.green); });
+    var X0 = B.workX - 12, X1 = B.workX + w + 12, Y0 = y - size * .96, Y1 = y + (lines.length - 1) * lh + size * .26;
+    stroke(g, wobbly(X0, Y0, X1, Y0, sd, 1) + wobbly(X1, Y0, X1, Y1, sd + 1, 1).replace('M', ' L') +
+              wobbly(X1, Y1, X0, Y1, sd + 2, 1).replace('M', ' L') + wobbly(X0, Y1, X0, Y0, sd + 3, 1).replace('M', ' L'), C.green, 3, .5);
+  }
+
+  function writeV2(g, t, y){  // a working line; beat 8's "Check: ... ✓" is green with a hand-drawn tick, as the renderer
+    var tick = /[✓✔]\s*$/.test(t); t = t.replace(/[✓✔\s]+$/, '');
+    var check = tick || /^check/i.test(t), e = text(g, B.workX, y, t, B.fWork, check ? C.green : C.ink);
+    if(tick){ var x = B.workX + textW(t, B.fWork) + 10, h = B.fWork;
+      stroke(g, 'M' + x + ' ' + (y - .3 * h) + ' L' + (x + .18 * h) + ' ' + (y - .05 * h) + ' L' + (x + .5 * h) + ' ' + (y - .62 * h), C.green, 4, .5); }
+    return e;
+  }
+
+  function drawStepV2(i, a){
+    var g = el('g', { id:'step-' + i }); B.steps[i] = g; B.seed++; var sd = B.seed * 31, k = a.do, bar = B.bars[a.bar];
+    if(k === 'write_question'){
+      B.qLines.forEach(function(ln, j){ text(g, 60, 120 + j * (B.qSize + 10), ln, B.qSize, C.ink, 'start', 'q', j * .25); });
+    } else if(k === 'highlight'){
+      highlightV2(g, a.text);
+    } else if(k === 'draw_stage'){
+      var st = (B.spec.stages || []).filter(function(s){ return s.id === a.stage; })[0], first = st && st.bars && st.bars[0] && B.bars[st.bars[0].id];
+      if(first) text(g, 60, first.y - 10, st.label, Math.max(22, Math.round(30 * B.k)), GREY);
+    } else if(k === 'draw_bar'){
+      if(bar){ drawBarV2(g, bar, sd); percentTagV2(g, bar); }
+    } else if(k === 'divide_units'){
+      if(bar) divideV2(g, bar, sd);
+    } else if(k === 'move_part'){
+      moveV2(g, a);
+    } else if(k === 'bracket'){
+      bracketV2(g, a, i);
+    } else if(k === 'question_mark'){
+      questionV2(g, a, i);
+    } else if(k === 'label_unit'){
+      labelUnitV2(g, a, i);
+    } else if(k === 'table'){
+      tableV2(g, a, sd);
+    } else if(k === 'fill_cell'){
+      fillCellV2(g, a);
+    } else if(k === 'number_line'){
+      lineV2(g, a, sd);
+    } else if(k === 'mark_point'){
+      markPointV2(g, a);
+    } else if(k === 'write'){
+      writeV2(g, a.text || '', B.workY); B.workY += B.workStep;
+    } else if(k === 'answer'){
+      answerV2(g, a.text || '', sd);
+    }
+    return g;
+  }
+
+  // ---------------------------------------------------------------- lesson socket
+  var ws = null, spec = null, audio = null, playing = false, waiting = false, held = false, stars = [], afterAudio = null, starIndex = 0;
+  function caption(who, t){ $('caption').classList.toggle('child', who !== 'Teacher'); $('caption').querySelector('.who').textContent = who; $('captionText').textContent = t; }
+  var playId = 0;
+  function play(ev, then){
+    stopAudio();
+    afterAudio = then || null;
+    var id = ++playId, estimate = Math.max(1200, (ev.say || '').length * 70) / rate();
+    var done = function(){ if(id === playId) finishAudio(); };
+    if(!ev.audio){ setTimeout(done, estimate); return; }
+    // One persistent element (window.Sound), so a phone that was unlocked by a tap stays unlocked.
+    audio = window.Sound ? Sound.el : new Audio(); playing = true; micUi();
+    audio.src = 'data:' + (ev.audio_type || 'audio/wav') + ';base64,' + ev.audio;
+    audio.defaultPlaybackRate = audio.playbackRate = rate();  // adaptive pacing: 1x / 1.5x / 2x (pitch is preserved)
+    audio.onended = done;
+    audio.onplaying = function(){ vt.mark('audio'); };
+    // Watchdog: some devices (locked iPads, sleeping laptops, blocked autoplay) never fire "ended",
+    // which would freeze the lesson. Move on once the clip must have finished.
+    var watch = function(ms){ setTimeout(function(){ if(id === playId && playing) done(); }, ms); };
+    audio.onloadedmetadata = function(){ if(isFinite(audio.duration)) watch(audio.duration / (audio.playbackRate || 1) * 1000 + 1500); };
+    watch(estimate + 4000);
+    audio.play().catch(function(err){
+      if(err && err.name === 'NotAllowedError' && window.Sound) Sound.blocked();  // phone wants a tap: show "Tap for sound"
+      playing = false; micUi(); setTimeout(done, estimate);
+    });
+  }
+  function finishAudio(){ playing = false; micUi(); var f = afterAudio; afterAudio = null; if(f) f(); }
+  function stopAudio(){ playId++; if(audio){ audio.onended = null; audio.onloadedmetadata = null; audio.onplaying = null; audio.pause(); audio = null; } playing = false; afterAudio = null; micUi(); flushPrep(); }
+  function next(){ if(held || waiting) { $('goBtn').hidden = waiting || !held; return; } send({ type:'next' }); }
+  function send(o){ if(ws && ws.readyState === 1) ws.send(JSON.stringify(o)); }
+  // The text box takes focus only where it is already on screen (desktop, or the child opened the keyboard):
+  // on a phone a focus would pop the keyboard over the board.
+  function typing(){ return !document.body.classList.contains('voice-first') || document.body.classList.contains('kb-open'); }
+  function setWaiting(on){ waiting = on; $('askBox').classList.toggle('on', on); $('showBtn').hidden = !on; if(on && typing() && !micOn) $('answerInput').focus({ preventScroll:true }); micUi(); }
+
+  // ---------------------------------------------------------------- adaptive pacing (speed toggle, challenge, recap)
+  var autoRate = 1, manualRate = null;
+  function rate(){ return manualRate || autoRate || 1; }
+  function fmtRate(r){ return (Math.round(r * 100) / 100) + '×'; }
+  function showSpeed(){
+    $('speedAuto').textContent = 'Auto ' + fmtRate(autoRate);
+    document.querySelectorAll('#speedBox button').forEach(function(b){
+      var on = b.dataset.rate === 'auto' ? manualRate === null : parseFloat(b.dataset.rate) === manualRate;
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    $('speedBtn').textContent = manualRate === null ? (autoRate === 1 ? 'Auto' : 'A ' + fmtRate(autoRate)) : fmtRate(manualRate);
+    if(audio) audio.playbackRate = rate();
+  }
+  $('speedBtn').addEventListener('click', function(){  // the top bar's speed: Auto -> 1x -> 1.5x -> 2x -> Auto
+    var bs = Array.prototype.slice.call(document.querySelectorAll('#speedBox button'));
+    var i = bs.findIndex(function(b){ return b.getAttribute('aria-pressed') === 'true'; });
+    bs[(i + 1) % bs.length].click();
+  });
+  document.querySelectorAll('#speedBox button').forEach(function(b){
+    b.addEventListener('click', function(){
+      manualRate = b.dataset.rate === 'auto' ? null : parseFloat(b.dataset.rate);
+      try { localStorage.setItem('bmt.speed', manualRate === null ? 'auto' : String(manualRate)); } catch(e){}
+      showSpeed();
+    });
+  });
+  try { var savedRate = localStorage.getItem('bmt.speed'); if(savedRate && savedRate !== 'auto') manualRate = parseFloat(savedRate) || null; } catch(e){}
+  showSpeed();
+  function pacingText(p){
+    var mode = p.mode === 'challenge_first' ? '⚡ Challenge first' : '🧭 Step by step';
+    var cps = p.checkpoints === 'key' ? 'key steps only' : 'every step, with hints';
+    return mode + ' · ' + cps + ' · ' + fmtRate(p.speed);
+  }
+  function setPacing(p, child){
+    autoRate = (p && p.speed) || 1; showSpeed();
+    var note = $('paceNote');
+    if(!p){ note.classList.remove('on'); note.textContent = ''; return; }
+    var who = child ? child.avatar + ' ' + child.nickname + ': ' : '';
+    note.textContent = who + pacingText(p) + ((p.reasons && p.reasons.length) ? '  (' + p.reasons.join('; ') + ')' : '');
+    note.classList.add('on');
+  }
+  function drawRecap(ev){
+    (ev.steps || []).forEach(function(s){ drawStep(s.index, s.step); });
+    var w = document.querySelector('.board-wrap'); w.classList.remove('recap'); void w.offsetWidth; w.classList.add('recap');
+    Array.prototype.forEach.call($('stars').children, function(s){ s.classList.add('won'); });
+  }
+  function addStars(n){ var have = $('stars').children.length - starIndex; for(var i = have; i < n; i++){ var s = document.createElement('span'); s.textContent = '★'; $('stars').appendChild(s); } }
+
+  function badgeText(meta){
+    return 'Bar model checked ✓' + (meta.check === 'agreed' ? ' · 2 models agree' : '')
+      + (meta.planner === 'glimmer' ? ' · planned by our fine-tuned Muse Glimmer' : '');
+  }
+  function setBadge(t){  // the top bar says it short; the menu says it all
+    $('checkBadge').textContent = /^Bar model checked/.test(t) ? '✓ Checked' : t.replace(/ the bar model/, '');
+    $('checkBadge').title = t; $('checkBadgeFull').textContent = t;
+  }
+  function questionSheet(text){  // the "📷" button in the top bar: the child's own photo, and the question as read
+    $('qPhoto').hidden = !lessonPhoto; if(lessonPhoto) $('qPhoto').src = lessonPhoto;
+    $('qText').textContent = text || '';
+  }
+  // Prepare: the read steps drawn before the plan (redrawn at once when the real board is laid out), and the
+  // events that arrive while the "what must we find?" prompt is still being spoken (played after it, not over it).
+  var prepSteps = null, prepBuf = null;
+  function prepareLesson(msg){
+    var q = msg.question || (msg.problem && msg.problem.question) || '';
+    var stub = { version:2, title:'Your problem', level:'checking the bar model…', question:q, stages:[], timeline:[], units:[] };
+    var first = { type:'prepare' };
+    if(msg.problem){ first.problem = msg.problem; first.timings = msg.timings; } else first.question = q;
+    startLesson(stub, { first:first });
+    prepSteps = [];
+    setBadge('Checking the bar model…'); $('mine').hidden = true;
+    caption('Teacher', 'Let’s read the problem together…');
+  }
+  function redrawPrep(){  // instantly: the child has already seen these drawn
+    (prepSteps || []).forEach(function(a, j){
+      var idx = 'p' + j; drawStep(idx, a); var g = B.steps[idx]; if(!g) return;
+      Array.prototype.forEach.call(g.querySelectorAll('*'), function(e){ e.style.transition = 'none'; if(e.classList.contains('appear')) e.classList.add('on'); });
+    });
+  }
+  function flushPrep(){ var q = prepBuf; prepBuf = null; if(q) setTimeout(function(){ q.forEach(onEvent); }, 0); }
+
+  function startLesson(s, meta){
+    spec = s; meta = meta || {}; prepSteps = null; prepBuf = null; micBuf = null; $('renderBtn').hidden = false;
+    if(!meta.first && !meta.problem) lessonPhoto = null;  // a twin, an example or a replay: no photo of it
+    questionSheet(s.question);
+    Stage.go('lesson');
+    document.dispatchEvent(new CustomEvent('bmt:lesson-start', { detail: { spec:s, twin:!!meta.twin } }));
+    $('lesson').classList.add('on'); $('lesson').classList.remove('ended'); $('after').classList.remove('on'); $('resVideo').hidden = true; $('renderMsg').textContent = '';
+    setBadge(badgeText(meta));
+    // v2 boards are drawn true to scale from the server's solve; the "lesson" event brings it if meta has none.
+    if(isV2(spec)) setupBoardV2(spec, meta.solved); else setupBoard(spec);
+    $('mine').hidden = isV2(spec);  // "Check my bar model" reads v1 bar models only, for now
+    if(micOn) muteLocal();  // the mic never stays on into a new lesson: the child taps for each turn
+    setWaiting(false); held = false; $('goBtn').hidden = true; $('verdict').textContent = ''; $('heard').textContent = '';
+    try { if(localStorage.getItem('bmt.mic') === 'denied') kb(true, false); } catch(e){}
+    caption('Teacher', 'Connecting…');
+    setPacing(null); $('nextPace').textContent = ''; $('askBox').classList.remove('challenge');
+    if(ws){ ws.onclose = null; ws.close(); }
+    fetch('/api/lesson/token').then(function(r){ return r.json(); }).then(function(j){
+      ws = new WebSocket((location.protocol === 'https:' ? 'wss://' : 'ws://') + location.host + '/ws/lesson?token=' + encodeURIComponent(j.token));
+      var start = meta.first || { type:'start', spec:spec };
+      start.board = true;  // this page draws "build it yourself" board tasks (ui/builder.js)
+      if(meta.twin) start.twin = meta.twin;
+      if(meta.lesson_id) start.lesson_id = meta.lesson_id;  // a replay from My lessons updates that saved lesson
+      ws.onopen = function(){ send(start); };
+      ws.onmessage = function(m){ onEvent(JSON.parse(m.data)); };
+      ws.onclose = function(){ setMic(false, true); };
+    }).catch(function(e){ setError('Could not start the lesson: ' + e.message); });
+  }
+
+  window.BoardAPI = { flashBar:flashBar, flashStep:flashStep, caption:caption };  // for room.js
+  function stopLesson(){  // leaving the lesson stage (or a My lessons replay) stops the voice and the socket
+    stopAudio(); setMic(false, true);
+    if(ws){ ws.onclose = null; ws.close(); ws = null; }
+    setWaiting(false); $('lesson').classList.remove('on'); Stage.unzoom(); kb(false, false); Builder.close();
+  }
+  Stage.onLeave('lesson', function(){
+    if(document.body.classList.contains('cinema') && $('cineClose')) $('cineClose').click(); else stopLesson();
+  });
+  window.LessonAPI = { start:startLesson, spec:function(){ return spec; },
+    stop:function(){ stopLesson(); if(Stage.current() === 'lesson') Stage.back(); } };  // for the practice section and My lessons
+  var micBuf = null;  // lesson steps that arrive while the child is talking: played when the turn is over
+  function onEvent(ev){
+    if(prepBuf && ev.type !== 'heard' && ev.type !== 'mic'){ prepBuf.push(ev); return; }
+    if(micOn && (ev.type === 'step' || ev.type === 'recap' || ev.type === 'ask')){ (micBuf = micBuf || []).push(ev); return; }
+    document.dispatchEvent(new CustomEvent('bmt:lesson-event', { detail: ev }));  // My lessons: chapter progress
+    if(ev.type === 'prepare'){
+      spec.question = ev.question; setupBoardV2(spec); questionSheet(ev.question);  // the server's plain text of the question; nothing drawn yet
+    } else if(ev.type === 'plan'){
+      spec = ev.spec; questionSheet(spec.question);
+      setBadge(badgeText(ev)); $('mine').hidden = isV2(spec);
+      setWaiting(false);
+    } else if(ev.type === 'plan_failed'){
+      prepSteps = null; setWaiting(false); caption('Teacher', ev.say); play(ev);
+      setError(ev.message); setBadge('Not checked, so no answer is shown');
+      $('lesson').classList.add('ended'); $('after').classList.add('on'); $('renderBtn').hidden = true; $('resSteps').innerHTML = '';
+      $('endSay').textContent = 'Let’s try another problem.'; $('endStars').innerHTML = '';
+    } else if(ev.type === 'lesson'){
+      if(ev.prepared){  // the question (and its key facts) are already up: lay out the real board, keep them
+        if(isV2(spec)) setupBoardV2(spec, ev.solved); else setupBoard(spec);
+        redrawPrep(); prepSteps = null;
+      } else if(isV2(spec) && ev.solved) setupBoardV2(spec, ev.solved);  // nothing is drawn yet, so redoing the layout is safe
+      stars = []; var h = ''; for(var i = 0; i < ev.checkpoints; i++) h += '<span>★</span>'; $('stars').innerHTML = h; starIndex = 0;
+      setPacing(ev.pacing || null, ev.child);
+    } else if(ev.type === 'step'){
+      if(ev.prep && prepSteps) prepSteps.push(ev.step);
+      caption('Teacher', ev.say); drawStep(ev.index, ev.step);
+      var drawMs = (ev.step.do === 'write_question' ? 600 : 1300) / rate(), t0 = Date.now();
+      play(ev, function(){ setTimeout(next, Math.max(250, drawMs - (Date.now() - t0))); });
+    } else if(ev.type === 'recap'){
+      caption('Teacher', ev.say); drawRecap(ev);
+      play(ev, function(){ setTimeout(next, 900); });
+    } else if(ev.type === 'ask'){
+      var challenge = ev.key === 'challenge';
+      $('askBox').classList.toggle('challenge', challenge);
+      caption('Teacher', ev.say); $('askText').textContent = (challenge ? '⚡ ' : 'Your turn ✏️  ') + ev.say; $('verdict').textContent = ''; $('verdict').className = 'verdict';
+      setWaiting(true); micUi();
+      if(ev.board){ Stage.unzoom(); Builder.open(ev.board, send); } else Builder.close();  // a board task: build it
+      if(ev.key === 'prepare'){ $('askText').textContent = '💭 ' + ev.say; $('showBtn').hidden = true; play(ev, flushPrep); prepBuf = []; }
+      else play(ev);
+    } else if(ev.type === 'verdict'){
+      vt.mark('reply', ev.ts); caption('Teacher', ev.say); $('verdict').textContent = ev.say; $('verdict').className = 'verdict ' + ev.result;
+      held = false; $('goBtn').hidden = true;  // the child's turn has its answer
+      if(Builder.active()) Builder.show(ev.board, ev.result);  // what was checked (or, shown, the right model)
+      if(!ev.waiting && Builder.active()){  // the real board takes over and draws the teacher's version
+        var b = $('stars').children[starIndex++]; if(b && ev.result === 'correct') b.classList.add('won');
+        setWaiting(false); play(ev, function(){ setTimeout(function(){ Builder.close(); next(); }, 500); });
+      } else if(!ev.waiting){
+        var s = ev.result === 'noted' ? null : $('stars').children[starIndex++]; if(s && ev.result === 'correct') s.classList.add('won');
+        if(ev.result === 'guided' && ev.checkpoints != null) addStars(ev.checkpoints);  // challenge missed: every step is back
+        setWaiting(false); play(ev, next);
+      } else play(ev);
+    } else if(ev.type === 'tutor'){
+      vt.mark('reply', ev.ts); caption('Teacher', ev.say);
+      if(ev.go_to_step != null) flashStep(ev.go_to_step);
+      if(ev.highlight) flashBar(ev.highlight);
+      held = false; $('goBtn').hidden = true;
+      play(ev, ev.waiting ? null : next);
+    } else if(ev.type === 'thinking'){
+      caption('Teacher', 'Hmm, let me think…');
+      if(ev.audio) play(ev);  // a short cached "Hmm, let me think." straight away; the reply interrupts it
+    } else if(ev.type === 'heard'){
+      if(ev.final){ $('heard').textContent = 'You said: ' + ev.text; caption('You', ev.text); vt.heard(ev); }
+      else if(micOn) $('heard').textContent = '… ' + ev.text;  // the live transcript, under the mic
+    } else if(ev.type === 'mic'){
+      if(ev.ack){ micReady = !!ev.on && micOn; micUi(); return; }  // the server is listening (the first tap opens its stream, ~1.5 s)
+      if(ev.turn){  // the server ended the child's turn (a clear answer, 3 s of silence, or the tap to stop)
+        if(micOn) muteLocal();
+        if(ev.turn === 'empty'){
+          $('heard').textContent = 'I didn’t hear anything. Tap the mic and talk, or type.';
+          if(held && !waiting) $('goBtn').hidden = false;
+        }
+      } else if(micOn){  // voice input is gone (no voice service, or the lesson is over)
+        setMic(false, true);
+        if(!$('lesson').classList.contains('ended')) kb(true, false);
+      }
+    } else if(ev.type === 'end'){
+      caption('Teacher', ev.say); setWaiting(false); Builder.close(); play(ev); showAfter(ev);
+      $('nextPace').textContent = ev.next_pacing ? 'Next time on this kind of problem: ' + pacingText(ev.next_pacing) : '';
+      document.dispatchEvent(new CustomEvent('bmt:lesson-end', { detail: ev }));
+    } else if(ev.type === 'error'){
+      if(ev.sign_in && window.Access){ Access.handle(401, ev.message); return; }
+      caption('Teacher', ev.message);
+      if(micOn && /voice/i.test(ev.message || '')){ setMic(false, true); kb(true, false); }
+    }
+  }
+  function showAfter(ev){
+    $('lesson').classList.add('ended'); Stage.unzoom(); kb(false, false);
+    $('endStars').innerHTML = $('stars').innerHTML; $('endSay').textContent = (ev && ev.say) || 'Well done!';
+    $('endLessons').hidden = !(window.Access && Access.child());
+    $('after').classList.add('on');
+    $('resSteps').innerHTML = spec.timeline.map(function(s){ return '<li>' + esc(s.say) + (s.text ? ' <b>' + esc(s.text) + '</b>' : '') + '</li>'; }).join('');
+  }
+
+  // ---------------------------------------------------------------- answer bar: voice first on phones and tablets
+  function kb(open, focus){
+    document.body.classList.toggle('kb-open', open);
+    $('kbBtn').setAttribute('aria-pressed', open ? 'true' : 'false');
+    if(open && focus !== false) $('answerInput').focus({ preventScroll:true });
+  }
+  $('kbBtn').addEventListener('click', function(){ kb(!document.body.classList.contains('kb-open')); });
+  function childSays(t){
+    t = (t || '').trim(); if(!t) return;
+    stopAudio(); caption('You', t); send({ type:'text', text:t }); $('answerInput').value = '';
+    if(document.body.classList.contains('voice-first')){ $('answerInput').blur(); kb(false); }  // the keyboard closes after Send
+  }
+  $('sendBtn').addEventListener('click', function(){ childSays($('answerInput').value); });
+  $('answerInput').addEventListener('keydown', function(e){ if(e.key === 'Enter') childSays(this.value); });
+  $('handBtn').addEventListener('click', function(){
+    stopAudio(); held = true; $('goBtn').hidden = waiting; caption('Teacher', 'Yes? Ask me anything about the bars.');
+    if(typing()) $('answerInput').focus({ preventScroll:true });
+  });
+  $('goBtn').addEventListener('click', function(){ held = false; $('goBtn').hidden = true; send({ type:'next' }); });
+  $('showBtn').addEventListener('click', function(){ stopAudio(); send({ type:'show_me' }); });
+  $('againBtn').addEventListener('click', function(){ Stage.go(Stage.home()); });
+
+  // ---------------------------------------------------------------- microphone -> 24 kHz PCM -> socket
+  // A toggle the child taps for each turn: Off ("Tap to talk") / Listening (tap to stop) / Teacher talking (a tap
+  // stops the teacher and listens: barge-in). It never turns itself on. The server ends the turn on a clear number
+  // answer, after TURN_SILENCE_S (3 s) without new words, or after the tap to stop (app/lesson_ws.py VoiceTurn),
+  // and says so ({"type": "mic", "turn": ...}); the teacher's own voice is never sent (the "playing" guard).
+  var micOn = false, micReady = false, actx = null, micStream = null, node = null;
+  var WORKLET = "class P extends AudioWorkletProcessor{constructor(){super();this.b=new Int16Array(1920);this.n=0;}" +
+    "process(i){var c=i[0]&&i[0][0];if(c){for(var k=0;k<c.length;k++){var s=Math.max(-1,Math.min(1,c[k]));this.b[this.n++]=s<0?s*32768:s*32767;" +
+    "if(this.n===this.b.length){this.port.postMessage(this.b.buffer.slice(0));this.n=0;}}}return true;}}registerProcessor('pcm',P);";
+  var MIC_UI = {
+    off:['Tap to talk', 'then say your answer'], listening:['Listening…', 'tap to stop'],
+    wait:['Starting the mic…', 'one moment'], teacher:['Teacher talking', 'tap to talk now']
+  };
+  var MIC_ICON = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>';
+  function micUi(){
+    var b = $('micBtn'); if(!b) return;
+    var st = micOn ? (node && micReady ? 'listening' : 'wait') : (playing ? 'teacher' : 'off');
+    var key = st + (waiting ? 'w' : '');
+    if(b.dataset.key === key) return;
+    b.dataset.state = st; b.dataset.key = key;
+    $('micLabel').textContent = MIC_UI[st][0];
+    $('micSub').textContent = st === 'off' && !waiting ? 'ask the teacher anything' : MIC_UI[st][1];
+    $('micDot').innerHTML = st === 'teacher' ? '<span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>' : MIC_ICON;
+    b.setAttribute('aria-pressed', micOn ? 'true' : 'false');
+    b.setAttribute('aria-label', 'Microphone: ' + MIC_UI[st][0] + ', ' + MIC_UI[st][1]);
+  }
+  function flushMic(){ var q = micBuf; micBuf = null; if(q) setTimeout(function(){ q.forEach(onEvent); }, 0); }
+  function muteLocal(){  // the turn is over (the server said so, or a new lesson): mute without another message
+    micOn = false; micReady = false;
+    if(micStream) micStream.getAudioTracks().forEach(function(t){ t.enabled = false; });
+    micUi(); flushMic();
+  }
+  // The stream opens once (getUserMedia + server ASR, ~1.4 s); after that a tap only unmutes, so it is instant.
+  // fromServer: voice is gone (or the lesson closed), so tear everything down.
+  var lastVoice = 0;  // client clock of the last loud mic frame: roughly when the child stopped speaking
+  function setMic(on, fromServer){
+    if(on === micOn && !fromServer) return;
+    micOn = on; micReady = false; micUi();
+    if(on && node){
+      micStream.getAudioTracks().forEach(function(t){ t.enabled = true; });
+      send({ type:'mic', on:true }); $('heard').textContent = 'Listening… talk to the teacher.';
+    } else if(on){
+      // The AudioContext is made here, inside the tap: iOS keeps one made later (after the permission prompt) suspended.
+      try { actx = actx || new AudioContext({ sampleRate:24000 }); if(actx.state === 'suspended') actx.resume(); } catch(e){ actx = null; }
+      if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){ micOn = false; micUi(); caption('Teacher', 'There is no microphone here. You can type your answers.'); kb(true, false); return; }
+      navigator.mediaDevices.getUserMedia({ audio:{ echoCancellation:true, noiseSuppression:true, channelCount:1 } }).then(function(s){
+        micStream = s; actx = actx || new AudioContext({ sampleRate:24000 });
+        if(actx.state === 'suspended') actx.resume();
+        return actx.audioWorklet.addModule(URL.createObjectURL(new Blob([WORKLET], { type:'application/javascript' }))).then(function(){
+          node = new AudioWorkletNode(actx, 'pcm');
+          node.port.onmessage = function(e){
+            if(!micOn || playing || !ws || ws.readyState !== 1) return;  // muted, or the teacher's own voice: never sent
+            var a = new Int16Array(e.data), peak = 0;
+            for(var k = 0; k < a.length; k += 4){ var v = a[k] < 0 ? -a[k] : a[k]; if(v > peak) peak = v; }
+            if(peak > 1500) lastVoice = performance.now();
+            ws.send(e.data);
+          };
+          actx.createMediaStreamSource(s).connect(node);
+          s.getAudioTracks().forEach(function(t){ t.enabled = micOn; });
+          micUi();
+          if(micOn){ send({ type:'mic', on:true }); $('heard').textContent = 'Listening… talk to the teacher.'; }
+        });
+      }).catch(function(){
+        micOn = false; micUi(); caption('Teacher', 'The microphone is blocked. You can type your answers.');
+        if(window.Sound) Sound.micDenied();
+        kb(true, false);
+        if(actx && !node){ actx.close(); actx = null; }
+      });
+    } else if(!fromServer){
+      if(micStream) micStream.getAudioTracks().forEach(function(t){ t.enabled = false; });
+      send({ type:'mic', on:false }); flushMic();
+    } else {
+      if(node) node.disconnect(); if(actx) actx.close(); if(micStream) micStream.getTracks().forEach(function(t){ t.stop(); });
+      node = actx = micStream = null; micUi(); flushMic();
+    }
+  }
+  $('micBtn').addEventListener('click', function(){
+    if(micOn){ setMic(false); return; }  // tap to stop: the server ends the turn once the last words are in
+    if(playing) stopAudio();  // barge-in: the teacher stops at once and listens
+    if(!waiting && !$('lesson').classList.contains('ended')) held = true;  // the lesson waits for the child's turn
+    setMic(true);
+  });
+  micUi();
+
+  // ---------------------------------------------------------------- voice timing overlay (?debug=1)
+  // Per spoken turn: speech end (last loud mic frame) -> final text -> reply event -> teacher audio starts,
+  // on the client clock, plus the server's own heard -> reply time from the events' "ts".
+  var vt = { on: /[?&]debug=1\b/.test(location.search), turn: null, rows: [],
+    heard: function(ev){
+      if(!this.on) return;
+      var now = performance.now();
+      this.turn = { end: lastVoice && now - lastVoice < 10000 ? lastVoice : null, heard: now, how: ev.how || 'final', sHeard: ev.ts };
+    },
+    mark: function(what, ts){
+      var t = this.turn; if(!this.on || !t || t[what]) return;
+      t[what] = performance.now(); if(what === 'reply') t.sReply = ts;
+      if(what === 'audio'){ this.show(); this.turn = null; }  // the first teacher audio (an acknowledgement or the reply)
+    },
+    show: function(){
+      var t = this.turn, f = function(a, b){ return a && b ? Math.round(b - a) + ' ms' : '?'; };
+      this.rows.unshift('[' + t.how + '] speech end→text ' + f(t.end, t.heard) + ' | text→reply ' + f(t.heard, t.reply) +
+        ' (server ' + (t.sHeard && t.sReply ? t.sReply - t.sHeard + ' ms' : '?') + ') | reply→audio ' + f(t.reply, t.audio) +
+        ' | speech end→audio ' + f(t.end, t.audio));
+      this.rows = this.rows.slice(0, 6); $('vtiming').hidden = false; $('vtiming').textContent = this.rows.join('\n');
+    } };
+
+  // ---------------------------------------------------------------- check my own bar model
+  $('mineInput').addEventListener('change', function(){
+    var f = this.files[0]; if(!f || !spec) return;
+    $('mineChecks').innerHTML = ''; $('mineSay').textContent = 'Looking at your bar model…';
+    var fd = new FormData(); fd.append('file', f); fd.append('spec', JSON.stringify(spec));
+    fetch('/api/check-drawing', { method:'POST', body: fd })
+      .then(function(r){ return r.json().then(function(j){ if(!r.ok) throw new Error(j.detail || 'Could not check the photo'); return j; }); })
+      .then(function(j){
+        $('mineChecks').innerHTML = (j.checks || []).map(function(c){
+          var cls = c.ok === true ? 'ok' : c.ok === false ? 'bad' : 'todo', mark = c.ok === true ? '✓' : c.ok === false ? '✗' : '○';
+          return '<li class="' + cls + '">' + mark + ' ' + esc(c.name) + '</li>';
+        }).join('');
+        $('mineSay').textContent = j.say; caption('Teacher', j.say); Stage.sheet('sheet-menu', true);
+        var bad = (j.checks || []).filter(function(c){ return c.ok === false; })[0];
+        if(bad && spec.model && (bad.step === 'units' || bad.step === 'question')) flashBar(spec.model.asked);
+        // Speaking the hint interrupts the lesson; hold it and let the child press Continue.
+        var mid = !waiting && !$('after').classList.contains('on');
+        if(mid) held = true;
+        play({ say:j.say, audio:j.audio }, function(){ if(mid) $('goBtn').hidden = false; });
+      })
+      .catch(function(e){ $('mineSay').textContent = e.message; })
+      .finally(function(){ $('mineInput').value = ''; });
+  });
+
+  // ---------------------------------------------------------------- video download
+  $('renderBtn').addEventListener('click', function(){
+    if(!spec) return; $('renderMsg').textContent = 'Drawing the video, about a minute…';
+    fetch('/api/render', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ spec:spec }) })
+      .then(function(r){ return r.json().then(function(j){ if(!r.ok) throw new Error(j.detail || 'Render failed'); return j; }); })
+      .then(function(j){ $('resVideo').src = j.video_url; $('resVideo').hidden = false; $('renderMsg').textContent = 'Ready. Press play or right-click to save.'; })
+      .catch(function(e){ $('renderMsg').textContent = e.message; });
+  });
+})();
+</script>
+<script>
+// ---------------------------------------------------------------- accounts: parent sign-in, child picker, parent panel
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  function esc(t){ return String(t).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  var ME = null, gsiLoaded = false;
+  function api(method, url, body){
+    return fetch(url, { method:method, headers: body ? {'Content-Type':'application/json'} : {}, body: body ? JSON.stringify(body) : undefined, credentials:'same-origin' })
+      .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(j){ if(!r.ok){ var e = new Error(j.detail || ('Request failed (' + r.status + ')')); e.status = r.status; throw e; } return j; }); });
+  }
+  function refresh(){
+    return api('GET', '/api/me').then(function(me){ ME = me; render(); })
+      .catch(function(){ ME = ME || { parent:null, child:null, family:null }; Stage.account(null); });  // no answer: the sign-in landing
+  }
+  function kidBtn(c){ return '<button type="button" class="kid" data-kid="' + c.id + '" title="Start as ' + esc(c.nickname) + '"><span class="av">' + esc(c.avatar) + '</span>' + esc(c.nickname) + '</button>'; }
+
+  // The account sheet (#acct, behind the top bar's chip), the chip itself, and the landing's sign-in.
+  function render(){
+    var a = $('acct'), me = ME, h = '', chip = $('acctChip');
+    if(me.child){
+      h = '<span class="who-am-i" id="childBadge"><span class="av">' + esc(me.child.avatar) + '</span><b>' + esc(me.child.code_name || me.child.nickname) + '</b> · ' + esc(me.child.level) + '</span>' +
+          '<button type="button" class="mini myl-open" id="myLessonsBtn">🎬 My lessons</button>' +
+          '<button type="button" class="mini" id="switchBtn">Sign out</button>';
+      chip.innerHTML = '<span class="av">' + esc(me.child.avatar) + '</span><b>' + esc(me.child.code_name || me.child.nickname) + '</b>';
+    } else if(me.parent){
+      h = '<span class="who-am-i"><span class="av">👋</span>' + esc(me.parent.name) + '</span>' +
+          (me.family && me.family.length ? '<span class="kids" style="width:100%"><span class="hint">Learn as:</span>' + me.family.map(kidBtn).join('') + '</span>' : '') +
+          '<button type="button" class="mini" id="panelBtn">Children &amp; progress</button><button type="button" class="mini" id="signOutBtn">Sign out</button>';
+      chip.innerHTML = '<span class="av">👋</span><b>' + esc(me.parent.name || 'Parent') + '</b>';
+    } else {
+      h = '<button type="button" class="mini go" id="toLanding">Sign in</button>';
+      chip.innerHTML = '<span class="av">🙂</span><b>Sign in</b>';
+    }
+    a.innerHTML = h + '<span class="acct-msg" id="acctMsg"></span>';
+    // the landing: a family device shows its children; Google sign-in for parents
+    var fp = $('familyPick');
+    if(!me.parent && !me.child && me.family && me.family.length){
+      fp.innerHTML = '<div class="land-card"><h3>Who’s learning?</h3><div class="kids">' + me.family.map(kidBtn).join('') + '</div></div>';
+      fp.hidden = false;
+    } else { fp.innerHTML = ''; fp.hidden = true; }
+    if(!me.parent && !me.child) signInButton($('signInSlot'));
+    document.querySelectorAll('#acct [data-kid], #familyPick [data-kid]').forEach(function(b){ b.addEventListener('click', function(){ childLogin({ child_id: parseInt(b.dataset.kid, 10) }); }); });
+    if($('toLanding')) $('toLanding').addEventListener('click', function(){ Stage.go('landing'); });
+    if($('switchBtn')) $('switchBtn').addEventListener('click', function(){ api('POST', '/api/auth/logout').then(refresh); });
+    if($('signOutBtn')) $('signOutBtn').addEventListener('click', function(){ api('POST', '/api/auth/logout').then(function(){ $('parentPanel').hidden = true; refresh(); }); });
+    if($('panelBtn')) $('panelBtn').addEventListener('click', function(){ openPanel(); });
+    if(me.child){ $('kidIn').hidden = true; $('landingMain').hidden = false; } else { $('kidHello').hidden = true; }
+    if(!me.parent){ onboarding = false; $('onboard').hidden = true; $('parentPanel').hidden = true; }
+    $('needParent').hidden = true;
+    Stage.account(me);
+    // a parent must agree to the (current) terms before anything else; a new parent then sets up the family
+    if(me.parent && !me.parent.consented) startConsent();
+    else if(me.parent && me.parent.kids === 0 && !onboarding && !onboardSkipped) startOnboarding();
+  }
+  function msg(t){ var m = $('acctMsg'); if(m) m.textContent = t || ''; var l = $('landMsg'); if(l) l.textContent = t || ''; }
+  function childLogin(body){
+    msg(''); api('POST', '/api/child/login', body).then(function(){ $('parentPanel').hidden = true; Stage.closeSheets(); refresh(); }).catch(function(e){ msg(e.message); });
+  }
+  function openPanel(){
+    $('onboard').hidden = true; $('parentPanel').hidden = false; $('panelMsg').textContent = '';
+    Stage.go('family'); loadPanel();
+  }
+
+  // Server access rules (app/access.py), for every script on the page: true when handled here.
+  window.Access = {
+    child:function(){ return !!(ME && ME.child); },
+    handle:function(status, detail){
+      if(status === 401){  // not signed in (or signed out elsewhere): the sign-in landing
+        refresh().then(function(){
+          if(!(ME && (ME.parent || ME.child))) Stage.go('landing', { replace:true });
+          $('landMsg').textContent = 'Sign in first, then snap your question.';
+        });
+        return true;
+      }
+      if(status === 403){  // the family's parent hasn't agreed to the terms yet
+        if(ME && ME.parent){ ME.parent.consented = false; startConsent(); }
+        else { Stage.go('start'); $('needParent').hidden = false; }
+        return true;
+      }
+      if(status === 429){  // the daily limit
+        $('error').innerHTML = '<div class="err" role="alert">' + esc(detail || 'That’s all the new problems for today.') +
+          (ME && ME.child ? ' <button type="button" class="mini myl-open">🎬 My lessons</button>' : '') +
+          '<button class="x" type="button" aria-label="Dismiss">✕</button></div>';
+        if(Stage.current() === 'lesson' && !document.getElementById('lesson').classList.contains('ended')) Stage.go(Stage.home());
+        return true;
+      }
+      return false;
+    }
+  };
+
+  // ---- kids: hero name + password on any device. /k/Thor987 or /?kid=Thor987 only fills in the name.
+  function kidIn(hero){
+    Stage.go('landing');
+    $('landingMain').hidden = true; $('kidIn').hidden = false; $('kidMsg').textContent = '';
+    if(hero) $('kidHero').value = hero;
+    ($('kidHero').value ? $('kidPw') : $('kidHero')).focus({ preventScroll:true });
+  }
+  function kidOut(){ $('kidIn').hidden = true; $('landingMain').hidden = false; }
+  function hello(child){
+    $('kidHelloText').textContent = 'Hi ' + (child.code_name || child.nickname) + '! ' + child.avatar;
+    $('kidHello').hidden = false;
+  }
+  function kidGo(){
+    var hero = $('kidHero').value.trim(), pw = $('kidPw').value;
+    if(!hero || !pw){ $('kidMsg').textContent = 'Type your hero name and your password.'; return; }
+    $('kidGo').disabled = true;
+    api('POST', '/api/kid/login', { hero:hero, password:pw }).then(function(j){
+      $('kidPw').value = ''; kidOut(); hello(j.child); refresh();
+    }).catch(function(e){ $('kidMsg').textContent = e.message; }).finally(function(){ $('kidGo').disabled = false; });
+  }
+  $('kidInBtn').addEventListener('click', function(){ kidIn(''); });
+  $('kidGo').addEventListener('click', kidGo);
+  $('kidPw').addEventListener('keydown', function(e){ if(e.key === 'Enter') kidGo(); });
+  $('kidHero').addEventListener('keydown', function(e){ if(e.key === 'Enter') $('kidPw').focus(); });
+  $('kidPwShow').addEventListener('click', function(){
+    var show = $('kidPw').type === 'password'; $('kidPw').type = show ? 'text' : 'password';
+    this.textContent = show ? 'Hide' : 'Show'; this.setAttribute('aria-pressed', show ? 'true' : 'false');
+  });
+  $('kidInClose').addEventListener('click', kidOut);
+  document.addEventListener('bmt:stage', function(e){ if(e.detail.stage !== 'landing') kidOut(); });
+
+  // ---- a child's hero name, sign-in link and password: onboarding step 3 and the family panel share this box
+  function copy(text, btn){
+    var done = function(){ var t = btn.textContent; btn.textContent = 'Copied ✓'; setTimeout(function(){ btn.textContent = t; }, 1500); };
+    if(navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, function(){ prompt('Copy this:', text); });
+    else prompt('Copy this:', text);
+  }
+  function heroLink(c){ return location.origin + '/k/' + encodeURIComponent(c.code_name); }
+  var qrLib = null;
+  function loadQR(){  // qrcodejs from cdnjs, pinned and checked (SRI); without it the link and Copy/Share still work
+    if(!qrLib) qrLib = new Promise(function(ok, no){
+      if(window.QRCode) return ok();
+      var s = document.createElement('script');
+      s.src = 'https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';
+      s.integrity = 'sha384-3zSEDfvllQohrq0PHL1fOXJuC/jSOO34H46t6UQfobFOmxE5BpjjaIJY5F2/bMnU'; s.crossOrigin = 'anonymous';
+      s.onload = function(){ ok(); }; s.onerror = no; document.head.appendChild(s);
+    });
+    return qrLib;
+  }
+  function accessBox(box, c, done){
+    var link = heroLink(c), share = !!navigator.share;
+    box.innerHTML = '<div class="hero-card"><div class="hero-name"><span class="av">' + esc(c.avatar) + '</span><span>' + esc(c.code_name) + '</span></div>' +
+      '<p class="hint" style="margin:2px 0 6px">' + esc(c.nickname) + '’s hero name. They sign in with it and a password on any phone, tablet or computer.</p>' +
+      '<div class="copy-row"><code class="aLink">' + esc(link) + '</code><button type="button" class="mini aCopyLink">Copy link</button>' +
+      (share ? '<button type="button" class="mini aShare">Share</button>' : '') + '</div>' +
+      '<p class="hint" style="margin:0">The link only fills in the hero name; the password is still needed.</p>' +
+      '<div class="qr" aria-hidden="true"></div>' +
+      '<p style="margin:10px 0 4px"><b>' + (c.has_password ? 'Reset the password' : 'Set a password') + '</b> <span class="hint">(4 or more letters or numbers; easy for them to type)</span></p>' +
+      '<div class="pw-row"><input class="aPw" maxlength="40" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="New password">' +
+      '<button type="button" class="mini go aSet" style="min-height:48px">' + (c.has_password ? 'Reset password' : 'Set password') + '</button></div>' +
+      '<div class="aDone" aria-live="polite"></div></div>';
+    var q = function(s){ return box.querySelector(s); };
+    q('.aCopyLink').addEventListener('click', function(){ copy(link, this); });
+    if(share) q('.aShare').addEventListener('click', function(){
+      navigator.share({ title:'Bar Model Tutor', text:'Your hero name is ' + c.code_name + '. Open this and type your password:', url:link }).catch(function(){});
+    });
+    loadQR().then(function(){ new QRCode(q('.qr'), { text:link, width:132, height:132, correctLevel:QRCode.CorrectLevel.M }); }).catch(function(){});
+    api('GET', '/api/children/password-suggestion').then(function(j){ if(!q('.aPw').value) q('.aPw').value = j.password; }).catch(function(){});
+    q('.aSet').addEventListener('click', function(){
+      if(c.has_password && !confirm('Make a new password for ' + c.nickname + '? The old one stops working, and they are signed out on other devices.')) return;
+      api('POST', '/api/children/' + c.id + '/password', { password: q('.aPw').value }).then(function(j){
+        c.has_password = true; q('.aSet').textContent = 'Reset password';
+        q('.aDone').innerHTML = '<div class="copy-row">Password: <code class="aPwShown">' + esc(j.password) + '</code><button type="button" class="mini aCopyPw">Copy</button></div>' +
+          '<p class="hint" style="margin:0">Write it down or copy it now: we only keep a scrambled (hashed) copy, so we can’t show it again. You can reset it anytime.</p>';
+        q('.aCopyPw').addEventListener('click', function(){ copy('Hero name: ' + c.code_name + '\nPassword: ' + j.password + '\n' + link, this); });
+        if(done) done(c);
+      }).catch(function(e){ q('.aDone').textContent = e.message; });
+    });
+  }
+
+  // ---- parent onboarding: (0) consent to the terms, (1) your name, (2) add children, (3) hero names, passwords and links.
+  // Consent comes first, every time the terms change (GET /api/me: parent.consented for terms_version).
+  var onboarding = false, onboardSkipped = false, added = [], obSteps = 3;
+  function startConsent(){ if(onboarding === 'consent') return; onboarding = 'consent'; obConsent(); }
+  function startOnboarding(){ onboarding = true; added = []; obSteps = 3; $('parentPanel').hidden = true; obName(); }
+  function obEnd(){ onboarding = false; onboardSkipped = true; $('onboard').hidden = true; refresh(); Stage.go('start', { replace:true }); }
+  function obShell(n, inner){
+    var o = $('onboard'); o.hidden = false; $('parentPanel').hidden = true;
+    o.innerHTML = '<p class="step-dots">Step ' + n + ' of ' + obSteps + '</p>' + inner;
+    if(Stage.current() !== 'family') Stage.go('family'); else window.scrollTo(0, 0);
+    return function(s){ return o.querySelector(s); };
+  }
+  var AGREE = [  // docs/terms.md "What you agree to", items 1-3
+    'I am the child’s parent or legal guardian, and I am 18 or over.',
+    'I agree that my child’s questions, photos, voice (while the microphone is on) and typed answers are sent to Meta’s AI services, and question text to Fireworks AI, to run the lessons.',
+    'I will supervise my child’s use, and I understand the AI can make mistakes.'
+  ];
+  function obConsent(){
+    var fresh = ME.parent.kids === 0;
+    obSteps = fresh ? 4 : 1;
+    var q = obShell(1, '<h2>Before we start: how this tutor uses AI 🤝</h2>' +
+      '<ul class="terms-sum">' +
+      '<li>This is a <b>prototype</b> made for the Meta hackathon, not a finished product.</li>' +
+      '<li>It uses <b>Meta AI</b> models (Muse Spark, and Meta speech recognition) and our own fine-tuned <b>Muse Glimmer</b>, hosted on <b>Fireworks AI</b>.</li>' +
+      '<li>To run a lesson, your child’s <b>questions, photos, voice</b> (only while the mic is on) and <b>typed answers</b> are sent to them.</li>' +
+      '<li>We <b>don’t</b> send them your name, email, your child’s name or their progress.</li>' +
+      '<li>AI can make mistakes. Every number the tutor shows is <b>checked by code</b> first.</li>' +
+      '<li>You must be the child’s parent or guardian, <b>18 or over</b>, and supervise their use.</li></ul>' +
+      '<p style="margin:6px 0 10px"><a href="/terms" target="_blank" rel="noopener">Read the full terms</a> · <a href="/privacy" target="_blank" rel="noopener">What we store</a></p>' +
+      AGREE.map(function(t, i){ return '<label class="tick"><input type="checkbox" class="obTick" data-i="' + i + '"> <span>' + esc(t) + '</span></label>'; }).join('') +
+      '<button type="button" class="big-btn obAgree" disabled>Agree and continue</button>' +
+      '<p class="acct-msg obMsg" aria-live="polite"></p>' +
+      '<p style="margin:8px 0 0"><button type="button" class="mini obOut">Not now: sign out</button></p>');
+    var ticks = Array.prototype.slice.call($('onboard').querySelectorAll('.obTick'));
+    ticks.forEach(function(t){ t.addEventListener('change', function(){ q('.obAgree').disabled = !ticks.every(function(x){ return x.checked; }); }); });
+    q('.obAgree').addEventListener('click', function(){
+      var btn = this; btn.disabled = true;
+      api('POST', '/api/me/consent', { version: ME.terms_version, agree: true }).then(function(){
+        ME.parent.consented = true; onboarding = false;
+        if(fresh){ onboarding = true; added = []; obName(2); } else obEnd();
+      }).catch(function(e){ q('.obMsg').textContent = e.message; btn.disabled = false; });
+    });
+    q('.obOut').addEventListener('click', function(){ onboarding = false; $('onboard').hidden = true; api('POST', '/api/auth/logout').then(refresh); });
+  }
+  function obName(n){
+    var base = obSteps === 4 ? 1 : 0;
+    var q = obShell(n || 1 + base, '<h2>Welcome! What should we call you? 👋</h2>' +
+      '<label class="field">Your name<input class="obName" maxlength="40" autocomplete="given-name"></label>' +
+      '<button type="button" class="big-btn obNext">Next</button> <p class="acct-msg obMsg"></p>');
+    q('.obName').value = ME.parent.name || '';
+    q('.obNext').addEventListener('click', function(){
+      api('PATCH', '/api/me', { name: q('.obName').value }).then(function(j){ ME.parent.name = j.parent.name; render(); obKid(); })
+        .catch(function(e){ q('.obMsg').textContent = e.message; });
+    });
+  }
+  function chipsHTML(list, sel, cls){ return '<div class="chips ' + cls + '">' + list.map(function(v){ return '<button type="button" data-v="' + esc(v) + '" aria-pressed="' + (v === sel) + '">' + esc(v) + '</button>'; }).join('') + '</div>'; }
+  function wireChips(box){
+    box.querySelectorAll('button').forEach(function(b){ b.addEventListener('click', function(){
+      box.querySelectorAll('button').forEach(function(x){ x.setAttribute('aria-pressed', 'false'); }); b.setAttribute('aria-pressed', 'true');
+    }); });
+  }
+  function picked(box){ var b = box.querySelector('[aria-pressed="true"]'); return b ? b.dataset.v : null; }
+  function obKid(){
+    var max = ME.max_children || 8, levels = ME.levels.filter(function(l){ return l >= 'P3'; }), base = obSteps === 4 ? 1 : 0;
+    var q = obShell(2 + base, '<h2>Add your child ✏️</h2>' +
+      (added.length ? '<p>Added: ' + added.map(function(c){ return esc(c.avatar + ' ' + c.nickname); }).join(', ') + '</p>' : '') +
+      '<label class="field">First name or nickname<input class="obKid" maxlength="20" autocomplete="off" placeholder="e.g. Kai"></label>' +
+      '<p class="hint" style="margin:-6px 0 8px">First name or nickname only, please: no surname.</p>' +
+      '<div class="field">School level' + chipsHTML(levels, 'P4', 'obLevel') + '</div>' +
+      '<div class="field">Pick an avatar' + chipsHTML(ME.avatars, ME.avatars[0], 'obAv') + '</div>' +
+      '<div class="field">Pick a look <span class="hint">(optional, you can change it later)</span>' + Stage.skinPicker() + '</div>' +
+      '<button type="button" class="big-btn obAdd">Add ' + (added.length ? 'this child' : 'my child') + '</button>' +
+      (added.length ? ' <button type="button" class="big-btn secondary obDone" style="margin-top:8px">Done, next step</button>' : '') +
+      '<p class="acct-msg obMsg"></p><p style="margin:8px 0 0"><button type="button" class="mini obSkip">Skip for now</button></p>');
+    wireChips(q('.obLevel')); wireChips(q('.obAv'));
+    q('.obAdd').addEventListener('click', function(){
+      api('POST', '/api/children', { nickname: q('.obKid').value, level: picked(q('.obLevel')), avatar: picked(q('.obAv')) }).then(function(j){
+        added.push(j.child); ME.parent.kids = added.length;
+        if(added.length >= max) obLinks(); else obKid();
+      }).catch(function(e){ if(e.status === 403){ ME.parent.consented = false; startConsent(); } else q('.obMsg').textContent = e.message; });
+    });
+    if(q('.obDone')) q('.obDone').addEventListener('click', obLinks);
+    q('.obSkip').addEventListener('click', function(){ if(added.length) obLinks(); else obEnd(); });
+  }
+  function obLinks(){
+    var q = obShell(obSteps, '<h2>Your hero names 🦸</h2>' +
+      '<p style="margin:0">Each child gets a hero name. Set a simple password for each one, then copy or share it with them.</p>' +
+      '<div class="obBoxes"></div><button type="button" class="big-btn obFinish">Finish</button>');
+    added.forEach(function(c){ var d = document.createElement('div'); q('.obBoxes').appendChild(d); accessBox(d, c); });
+    q('.obFinish').addEventListener('click', obEnd);
+  }
+  Stage.onLeave('family', function(to){  // leaving the consent step any way but "Agree" keeps it waiting
+    if(onboarding === 'consent' && to !== 'landing') setTimeout(function(){ if(ME && ME.parent && !ME.parent.consented){ onboarding = false; startConsent(); } }, 0);
+  });
+
+  // Parent sign-in: Google Identity Services when GOOGLE_CLIENT_ID is set; a plain form only in local dev mode.
+  var gsiReady = false;
+  function signInButton(slot){
+    if(ME.google_client_id){
+      var draw = function(){
+        if(!gsiReady){
+          gsiReady = true;
+          google.accounts.id.initialize({ client_id: ME.google_client_id, callback: function(r){
+            api('POST', '/api/auth/google', { credential: r.credential }).then(refresh).catch(function(e){ msg(e.message); });
+          } });
+        }
+        slot.innerHTML = '';
+        google.accounts.id.renderButton(slot, { theme:'outline', size:'large', text:'continue_with', shape:'pill', width:280 });
+      };
+      if(window.google && google.accounts) return draw();
+      if(!gsiLoaded){ gsiLoaded = true; var s = document.createElement('script'); s.src = 'https://accounts.google.com/gsi/client'; s.async = true; s.onload = function(){ render(); }; document.head.appendChild(s); }
+      return;
+    }
+    if(ME.dev_login){
+      slot.innerHTML = '<div><input id="devName" placeholder="Parent name (dev)" value="Dev Parent" aria-label="Parent name"><button type="button" class="mini go" id="devBtn">Parent sign in (dev)</button></div>';
+      $('devBtn').addEventListener('click', function(){ api('POST', '/api/auth/dev', { name: $('devName').value }).then(refresh).catch(function(e){ msg(e.message); }); });
+    } else slot.innerHTML = '<p class="hint" style="margin:0">Parent sign-in isn’t set up on this server.</p>';
+  }
+
+  // ---- parent panel: children CRUD and progress
+  function options(list, sel){ return list.map(function(v){ return '<option' + (v === sel ? ' selected' : '') + '>' + esc(v) + '</option>'; }).join(''); }
+  function loadPanel(){
+    $('newKidLevel').innerHTML = options(ME.levels, 'P4'); $('newKidAvatar').innerHTML = options(ME.avatars, ME.avatars[0]);
+    api('GET', '/api/children').then(function(j){
+      $('kidRows').innerHTML = j.children.length ? j.children.map(function(c){
+        return '<tr data-id="' + c.id + '"><td><select class="kAv" aria-label="Avatar">' + options(ME.avatars, c.avatar) + '</select></td>' +
+          '<td><input class="kName" maxlength="20" value="' + esc(c.nickname) + '"></td><td><select class="kLevel">' + options(ME.levels, c.level) + '</select></td>' +
+          '<td><code>' + esc(c.code_name) + '</code></td>' +
+          '<td><button type="button" class="mini kSave">Save</button> <button type="button" class="mini kAcc">' + (c.has_password ? 'Password &amp; link' : '⚠️ Set password') + '</button> <button type="button" class="mini kProg">Progress</button> <button type="button" class="mini kDel" style="color:#dc2626">Delete</button></td></tr>' +
+          '<tr class="accRow" data-acc="' + c.id + '" hidden><td colspan="5"><div></div></td></tr>' +
+          '<tr class="progRow" data-for="' + c.id + '" hidden><td colspan="5"><div class="progress-box">…</div></td></tr>';
+      }).join('') : '<tr><td colspan="5" class="hint">No children yet. Add one below.</td></tr>';
+      var byId = {}; j.children.forEach(function(c){ byId[c.id] = c; });
+      $('kidRows').querySelectorAll('tr[data-id]').forEach(function(tr){
+        var id = tr.dataset.id;
+        tr.querySelector('.kAcc').addEventListener('click', function(){
+          var row = $('kidRows').querySelector('tr[data-acc="' + id + '"]'); row.hidden = !row.hidden;
+          if(!row.hidden) accessBox(row.querySelector('div'), byId[id], function(){ tr.querySelector('.kAcc').textContent = 'Password & link'; });
+        });
+        tr.querySelector('.kSave').addEventListener('click', function(){
+          api('PATCH', '/api/children/' + id, { nickname: tr.querySelector('.kName').value, level: tr.querySelector('.kLevel').value, avatar: tr.querySelector('.kAv').value })
+            .then(function(){ $('panelMsg').textContent = 'Saved.'; refresh(); }).catch(function(e){ $('panelMsg').textContent = e.message; });
+        });
+        tr.querySelector('.kDel').addEventListener('click', function(){
+          if(!confirm('Delete ' + tr.querySelector('.kName').value + ' and all their progress? This cannot be undone.')) return;
+          api('DELETE', '/api/children/' + id).then(function(){ loadPanel(); refresh(); }).catch(function(e){ $('panelMsg').textContent = e.message; });
+        });
+        tr.querySelector('.kProg').addEventListener('click', function(){
+          var row = $('kidRows').querySelector('tr[data-for="' + id + '"]'); row.hidden = !row.hidden; if(!row.hidden) showProgress(id, row.querySelector('.progress-box'));
+        });
+      });
+    }).catch(function(e){ $('panelMsg').textContent = e.message; });
+  }
+  function showProgress(id, box){
+    api('GET', '/api/child/progress?child_id=' + id).then(function(j){
+      if(!j.progress.length){ box.textContent = 'No lessons yet. Progress appears after ' + j.child.nickname + ' finishes a lesson while signed in.'; return; }
+      box.innerHTML = '<table><thead><tr><th>Problem type</th><th>Rating</th><th>Steps</th><th>Avg. answer time</th></tr></thead><tbody>' +
+        j.progress.map(function(p){ return '<tr><td>' + esc(p.heuristic.replace(/_/g, ' ')) + '</td><td>' + p.rating + '</td><td>' + p.n + '</td><td>' + (p.avg_seconds == null ? '–' : p.avg_seconds + ' s') + '</td></tr>'; }).join('') +
+        '</tbody></table><span class="hint">Rating 1000 = P3 level, +100 per level. Above the problem\'s level → challenge first and faster playback.</span>';
+    }).catch(function(e){ box.textContent = e.message; });
+  }
+  $('addKidBtn').addEventListener('click', function(){
+    api('POST', '/api/children', { nickname: $('newKidName').value, level: $('newKidLevel').value, avatar: $('newKidAvatar').value })
+      .then(function(j){ $('newKidName').value = ''; $('panelMsg').textContent = 'Added ' + j.child.nickname + '. Hero name: ' + j.child.code_name + '. Tap “Set password” to let them sign in on other devices.'; loadPanel(); refresh(); })
+      .catch(function(e){ $('panelMsg').textContent = e.message; });
+  });
+  $('forgetBtn').addEventListener('click', function(){ api('POST', '/api/auth/logout', { forget_device: true }).then(function(){ $('parentPanel').hidden = true; refresh(); }); });
+  $('deleteMeBtn').addEventListener('click', function(){
+    if(!confirm('Delete your account, every child profile and all progress? This cannot be undone.')) return;
+    api('DELETE', '/api/me').then(function(){ $('parentPanel').hidden = true; refresh(); }).catch(function(e){ $('panelMsg').textContent = e.message; });
+  });
+  document.addEventListener('bmt:lesson-end', function(){ if(!$('parentPanel').hidden) loadPanel(); });
+  // /k/Thor987 lands here as /?kid=Thor987: greet the child if it's them, otherwise open the sign-in with the name in.
+  var kidParam = (location.search.match(/[?&]kid=([\w-]{1,40})/) || [])[1] || '';
+  refresh().then(function(){
+    if(!kidParam || !ME) return;
+    if(ME.child && (ME.child.code_name || '').toLowerCase() === kidParam.toLowerCase()) hello(ME.child);
+    else kidIn(kidParam);
+    try { history.replaceState(null, '', location.pathname); } catch(e){}
+  });
+})();
+</script>
+<!-- ---- practice: badge celebration -->
+<div class="celebrate" id="celebrate" hidden role="status" aria-live="polite" aria-labelledby="celebrateName">
+  <div class="confetti" id="confetti"></div>
+  <div class="card">
+    <p class="hint" style="margin:0">New badge!</p>
+    <img class="stamp" id="celebrateImg" alt="">
+    <h2 id="celebrateName"></h2>
+    <p class="why" id="celebrateWhy"></p>
+    <p class="note" id="celebrateNote"></p>
+    <button class="btn" id="celebrateOk" type="button">Yay! ✨</button>
+  </div>
+</div>
+<script>
+// ---------------------------------------------------------------- practice: twins, mastery levels, method badges
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  function esc(t){ return String(t == null ? '' : t).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function api(method, url, body){
+    return fetch(url, { method:method, headers: body ? {'Content-Type':'application/json'} : {}, body: body ? JSON.stringify(body) : undefined, credentials:'same-origin' })
+      .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(j){ if(!r.ok) throw new Error(j.detail || ('Request failed (' + r.status + ')')); return j; }); });
+  }
+
+  // ---- "Try one like this": the twin is made in the background while the lesson plays.
+  var twinFor = null, twinReq = null, twinMeta = null, isTwin = false, twinN = 0;
+  function askTwin(spec){
+    if(twinFor === spec && twinReq) return twinReq;
+    twinFor = spec; twinReq = api('POST', '/api/twin', { spec: spec, n: twinN }).catch(function(){ return { available:false }; });
+    return twinReq;
+  }
+  document.addEventListener('bmt:lesson-start', function(e){
+    $('practiceBox').hidden = true; isTwin = !!(e.detail && e.detail.twin);
+    var top = document.getElementById('lessonTop'), tag = $('twinTag');
+    if(isTwin && top && !tag){ tag = document.createElement('span'); tag.id = 'twinTag'; tag.className = 'twin-tag'; tag.textContent = '✏️ One like this'; $('checkBadge').after(tag); }
+    if(tag) tag.hidden = !isTwin;
+  });
+  document.addEventListener('bmt:lesson-end', function(e){
+    var ev = e.detail || {}, spec = window.LessonAPI && LessonAPI.spec();
+    if(ev.badges && ev.badges.length) celebrate(ev.badges, ev.mastery);
+    if(ev.mastery || (ev.badges && ev.badges.length)) loadMethods();
+    if(!ev.twin || !ev.twin.offer || !spec || spec.version !== 2) return;
+    twinMeta = { after_miss: !!ev.twin.after_miss };
+    if(!isTwin) twinN = 0; else twinN += 1;
+    $('practiceSay').textContent = ev.twin.after_miss ? 'That one had a tricky step. Want to try one like it, with new numbers?'
+      : (isTwin ? 'Nice work. Another one like this?' : 'Want to try one like this, with new numbers?');
+    $('twinBtn').disabled = false; $('twinBtn').textContent = isTwin ? 'Another one like this ✏️' : 'Try one like this ✏️';
+    $('practiceWhy').textContent = 'Same kind of problem, new numbers. Every number is checked by code before you see it.';
+    $('practiceBox').hidden = false;
+    askTwin(spec);
+  });
+  $('twinBtn').addEventListener('click', function(){
+    var spec = window.LessonAPI && LessonAPI.spec(); if(!spec) return;
+    var btn = this; btn.disabled = true; btn.textContent = 'Making one and checking it…';
+    askTwin(spec).then(function(j){
+      if(!j || !j.available){
+        btn.textContent = 'Not available'; $('practiceWhy').textContent = 'I couldn’t make one I’m sure is right for this problem, so I won’t show one. Try another problem!';
+        return;
+      }
+      twinReq = null; twinFor = null;
+      LessonAPI.start(j.spec, { solved: j.solved, check: j.check, planner: j.planner, twin: twinMeta || { after_miss:false } });
+    });
+  });
+
+  // ---- celebration: one badge at a time, short, and quiet with reduced motion.
+  var queue = [];
+  function celebrate(list, mastery){
+    queue = queue.concat(list);
+    if($('celebrate').hidden) showNext(mastery);
+  }
+  function showNext(mastery){
+    var b = queue.shift(); if(!b){ $('celebrate').hidden = true; return; }
+    $('celebrateImg').src = b.icon; $('celebrateImg').alt = b.name + ' badge';
+    $('celebrateName').textContent = b.name; $('celebrateWhy').textContent = b.why;
+    $('celebrateNote').textContent = ME_CHILD ? (mastery ? 'Your ' + mastery.label + ' level: ' + mastery.level + (mastery.next ? ' (next: ' + mastery.next + ')' : '') + '.' : '') : 'Sign in as a child to keep your badges.';
+    var c = $('confetti'); c.innerHTML = '';
+    if(!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)){
+      var colors = ['#f5b301', '#2563eb', '#15803d', '#dc2626'];
+      for(var i = 0; i < 28; i++){ var d = document.createElement('i'); d.style.left = (Math.random() * 100) + '%'; d.style.background = colors[i % 4]; d.style.animationDelay = (Math.random() * .4) + 's'; c.appendChild(d); }
+    }
+    if(!ME_CHILD) sessionBadges[b.id] = b;
+    $('celebrate').hidden = false;
+    clearTimeout(celebrateTimer); celebrateTimer = setTimeout(function(){ queue = []; $('celebrate').hidden = true; renderSession(); }, 9000);
+  }
+  var celebrateTimer = null;
+  $('celebrateOk').addEventListener('click', function(){ showNext(); if($('celebrate').hidden) renderSession(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && !$('celebrate').hidden){ queue = []; $('celebrate').hidden = true; renderSession(); } });
+
+  // ---- "My methods": levels per kind of problem, and every badge (earned in colour, still to earn in grey).
+  var ME_CHILD = null, sessionBadges = {};
+  function lvlBar(l, names){
+    return '<div class="lvl-bar" aria-label="' + esc(l.level) + '">' + names.map(function(n, i){
+      var cls = i < l.index ? 'step done' : i === l.index ? 'step done now' : 'step', fill = '';
+      if(i === l.index + 1) fill = '<i style="width:' + Math.round((l.progress || 0) * 100) + '%"></i>';
+      if(i <= l.index) fill = '<i></i>';
+      return '<span class="' + cls + '">' + fill + '<span>' + esc(n) + '</span></span>';
+    }).join('') + '</div>';
+  }
+  function badgeTile(b, fresh){
+    return '<button type="button" class="bdg ' + (b.earned_at ? 'got' : 'locked') + (fresh ? ' new' : '') + '" title="' + esc(b.earned_at ? b.why : 'Still to earn: ' + b.why) + '">' +
+      '<img src="' + esc(b.icon) + '" alt="">' + esc(b.name) + '</button>';
+  }
+  function methodsHTML(j, compact){
+    var names = j.levels_names || ['Starting', 'Growing', 'Strong', 'Master'];
+    var lv = j.levels.length ? j.levels.map(function(l){
+      return '<div class="lvl"><b>' + esc(l.label) + '</b>' + lvlBar(l, names) + '<span class="tip">' +
+        (l.refresher ? '<span class="refresh">Time for a refresher! </span>' : '') + esc(l.tip) + '</span></div>';
+    }).join('') : '<p class="hint">Levels appear after a lesson.</p>';
+    var got = j.badges.filter(function(b){ return b.earned_at; }), rest = j.badges.filter(function(b){ return !b.earned_at; });
+    return { levels: lv, badges: got.concat(compact ? [] : rest).map(function(b){ return badgeTile(b); }).join('') +
+      (compact && !got.length ? '<span class="hint">No badges yet.</span>' : '') };
+  }
+  function loadMethods(){
+    if(!ME_CHILD){ renderSession(); return; }
+    api('GET', '/api/child/methods').then(function(j){
+      var h = methodsHTML(j, false); $('methodsLevels').innerHTML = h.levels; $('methodsBadges').innerHTML = h.badges;
+      $('methodsIntro').textContent = 'Each badge is a method you have used, ' + j.child.nickname + '. Levels grow as you work out steps on your own.';
+      $('methodsCard').hidden = false;
+    }).catch(function(){ $('methodsCard').hidden = true; });
+  }
+  function renderSession(){  // anonymous: this visit's badges only, never stored
+    if(ME_CHILD) return;
+    var list = Object.keys(sessionBadges).map(function(k){ return Object.assign({}, sessionBadges[k], { earned_at: 1 }); });
+    if(!list.length){ $('methodsCard').hidden = true; return; }
+    $('methodsLevels').innerHTML = '';
+    $('methodsIntro').textContent = 'Badges from this visit. They are not saved: ask a parent to sign in and pick your name to keep them.';
+    $('methodsBadges').innerHTML = list.map(function(b){ return badgeTile(b); }).join('');
+    $('methodsCard').hidden = false;
+  }
+  function who(){
+    return api('GET', '/api/me').then(function(me){
+      var id = me.child ? me.child.id : null;
+      if(id !== (ME_CHILD && ME_CHILD.id)){ ME_CHILD = me.child || null; sessionBadges = {}; }
+      if(ME_CHILD) loadMethods(); else renderSession();
+    }).catch(function(){});
+  }
+  // The account bar redraws on sign-in, switch and sign-out: follow it.
+  var acct = $('acct'), t = null;
+  if(acct && window.MutationObserver) new MutationObserver(function(){ clearTimeout(t); t = setTimeout(who, 150); }).observe(acct, { childList:true });
+  who();
+
+  // ---- parent panel: the same levels and badges under each child's Progress.
+  var kids = $('kidRows');
+  if(kids) kids.addEventListener('click', function(e){
+    var btn = e.target.closest && e.target.closest('.kProg'); if(!btn) return;
+    var tr = btn.closest('tr[data-id]'), id = tr && tr.dataset.id;
+    var row = kids.querySelector('tr[data-for="' + id + '"]'); if(!row) return;
+    var cell = row.querySelector('td'), box = cell.querySelector('.methods-parent');
+    if(!box){ box = document.createElement('div'); box.className = 'methods-parent'; cell.appendChild(box); }
+    box.textContent = '…';
+    api('GET', '/api/child/methods?child_id=' + encodeURIComponent(id)).then(function(j){
+      var h = methodsHTML(j, true);
+      box.innerHTML = '<b>Methods and badges</b>' + h.levels + '<div class="badge-grid">' + h.badges + '</div>' +
+        '<span class="hint">Badges are earned by using a method (a step worked out first time), never at random. No points, no leaderboard.</span>';
+    }).catch(function(err){ box.textContent = err.message; });
+  });
+})();
+</script>
+<script src="/lessons-assets/lessons.js"></script>
+<script>
+// ---------------------------------------------------------------- "Report a problem" (app/admin.py) and the admin link
+(function(){
+  var $ = function(id){ return document.getElementById(id); }, lessonId = null;
+  document.addEventListener('bmt:lesson-event', function(e){
+    var ev = e.detail || {};
+    if(ev.type === 'prepare') lessonId = null;
+    if(ev.type === 'lesson') lessonId = ev.lesson_id || null;
+    if(ev.type === 'prepare' || ev.type === 'lesson'){ $('reportBox').hidden = true; $('reportBtn').hidden = false; $('reportBtn').setAttribute('aria-expanded', 'false'); }
+    if(ev.type === 'plan_failed') $('reportReason').value = 'declined';
+  });
+  $('reportBtn').addEventListener('click', function(){
+    var box = $('reportBox'); box.hidden = !box.hidden; this.setAttribute('aria-expanded', String(!box.hidden));
+    $('reportMsg').textContent = 'We keep the question and your note to improve the tutor. No photo or voice is sent.';
+    if(!box.hidden) $('reportNote').focus();
+  });
+  $('reportBox').addEventListener('submit', function(e){
+    e.preventDefault();
+    var spec = (window.LessonAPI && LessonAPI.spec()) || {};
+    var body = { reason: $('reportReason').value, note: $('reportNote').value.trim(), question: String(spec.question || ''),
+                 spec: (spec && (spec.model || spec.version)) ? spec : null, lesson_id: lessonId };
+    $('reportSend').disabled = true;
+    fetch('/api/flags', { method:'POST', headers:{'Content-Type':'application/json'}, credentials:'same-origin', body: JSON.stringify(body) })
+      .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(j){ if(!r.ok) throw new Error(j.detail || 'Could not send'); return j; }); })
+      .then(function(){ $('reportMsg').textContent = 'Thank you! The team will look at it.'; $('reportNote').value = '';
+                        setTimeout(function(){ $('reportBox').hidden = true; $('reportBtn').hidden = true; }, 1600); })
+      .catch(function(err){ $('reportMsg').textContent = err.message; })
+      .then(function(){ $('reportSend').disabled = false; });
+  });
+  fetch('/api/me', { credentials:'same-origin' }).then(function(r){ return r.json(); })
+    .then(function(me){ if(me && me.admin) $('adminLink').hidden = false; }).catch(function(){});
+})();
+</script>
+</body>
+</html>

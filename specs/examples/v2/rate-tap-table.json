@@ -1,0 +1,34 @@
+{
+  "version": 2,
+  "title": "Rate: the unitary method",
+  "level": "P5",
+  "heuristic": "rate",
+  "template": "working",
+  "board": "rate_speed",
+  "question": "A tap fills 18 litres of water in 3 minutes. At the same rate, how many litres of water does it fill in 10 minutes?",
+  "units": [],
+  "quantities": [
+    {"id": "per_minute", "label": "Litres in 1 minute"},
+    {"id": "water", "label": "Litres in 10 minutes"}
+  ],
+  "relations": [
+    {"eq": "per_minute*3 = 18", "from": "A tap fills 18 litres of water in 3 minutes"},
+    {"eq": "water = per_minute*10", "from": "how many litres of water does it fill in 10 minutes"}
+  ],
+  "asked": {"expr": "water", "label": "Litres in 10 minutes"},
+  "answer": 60,
+  "stages": [],
+  "timeline": [
+    {"do": "write_question", "say": "A tap fills 18 litres of water in 3 minutes. At the same rate, how many litres of water does it fill in 10 minutes?"},
+    {"do": "highlight", "text": "18 litres of water in 3 minutes", "say": "In 3 minutes, the tap fills 18 litres."},
+    {"do": "highlight", "text": "in 10 minutes", "say": "We want the water in 10 minutes."},
+    {"do": "table", "id": "rate", "columns": ["Time", "Water"],
+     "rows": [["3 min", "18 litres"], ["1 min", "?"], ["10 min", "?"]],
+     "say": "Let's make a table. First find the water in 1 minute."},
+    {"do": "pause", "seconds": 2, "say": "Pause and think. How much water in 1 minute?"},
+    {"do": "fill_cell", "table": "rate", "row": 1, "col": 1, "text": "18 ÷ 3 = 6", "say": "18 litres in 3 minutes. 18 divided by 3 is 6 litres a minute."},
+    {"do": "fill_cell", "table": "rate", "row": 2, "col": 1, "text": "10 × 6 = 60", "say": "In 10 minutes, 10 times 6 is 60 litres."},
+    {"do": "write", "text": "Check: 60 ÷ 10 = 6 = 18 ÷ 3 ✓", "say": "Let's check: 6 litres a minute both ways. It works!"},
+    {"do": "answer", "text": "It fills 60 litres in 10 minutes.", "say": "So, the tap fills 60 litres in 10 minutes. Well done!"}
+  ]
+}

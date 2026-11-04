@@ -1,0 +1,33 @@
+{
+  "version": 2,
+  "title": "Assumption: suppose they were all the same",
+  "level": "P5",
+  "heuristic": "assumption",
+  "template": "working",
+  "board": "assume_adjust",
+  "question": "There are 32 cars and motorcycles in a car park. Each car has 4 wheels and each motorcycle has 2 wheels. There are 98 wheels altogether. How many cars are there?",
+  "units": [],
+  "quantities": [
+    {"id": "cars", "label": "Number of cars"},
+    {"id": "motorcycles", "label": "Number of motorcycles"}
+  ],
+  "relations": [
+    {"eq": "cars + motorcycles = 32", "from": "There are 32 cars and motorcycles in a car park"},
+    {"eq": "4*cars + 2*motorcycles = 98", "from": "Each car has 4 wheels and each motorcycle has 2 wheels. There are 98 wheels altogether"}
+  ],
+  "asked": {"expr": "cars", "label": "Number of cars"},
+  "answer": 17,
+  "stages": [],
+  "timeline": [
+    {"do": "write_question", "say": "There are 32 cars and motorcycles in a car park. Each car has 4 wheels and each motorcycle has 2 wheels. There are 98 wheels altogether. How many cars are there?"},
+    {"do": "highlight", "text": "32 cars and motorcycles", "say": "There are 32 vehicles, cars and motorcycles together."},
+    {"do": "highlight", "text": "98 wheels altogether", "say": "Together they have 98 wheels."},
+    {"do": "pause", "seconds": 2.0, "say": "Pause and think. What if every vehicle were a motorcycle?"},
+    {"do": "write", "text": "Wheels if all were motorcycles = 32 × 2 = 64", "say": "If all 32 were motorcycles, there would be 32 times 2, which is 64 wheels."},
+    {"do": "write", "text": "Extra wheels = 98 - 64 = 34", "say": "But there are 98 wheels, so 34 wheels are extra."},
+    {"do": "write", "text": "Extra wheels for each car = 4 - 2 = 2", "say": "Each car has 2 more wheels than a motorcycle."},
+    {"do": "write", "text": "Number of cars = 34 ÷ 2 = 17", "say": "So there are 34 divided by 2, which is 17 cars."},
+    {"do": "write", "text": "Check: 17 × 4 + (32 - 17) × 2 = 98 ✓", "say": "Let's check: 17 cars and 15 motorcycles give 98 wheels. It works!"},
+    {"do": "answer", "text": "There are 17 cars.", "say": "So, there are 17 cars in the car park. Well done!"}
+  ]
+}

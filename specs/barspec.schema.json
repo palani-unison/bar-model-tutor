@@ -1,0 +1,176 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "barspec.schema.json",
+  "title": "BarSpec",
+  "description": "Verified bar-model spec. plan.py must output JSON validating against this schema. See specs/examples/marbles.json.",
+  "type": "object",
+  "required": [
+    "title",
+    "level",
+    "problem_type",
+    "question",
+    "model",
+    "timeline"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "level": {
+      "type": "string",
+      "minLength": 1
+    },
+    "problem_type": {
+      "type": "string",
+      "enum": [
+        "part-whole",
+        "comparison",
+        "multiples",
+        "before-after",
+        "ratio",
+        "fractions",
+        "part-whole with multiples"
+      ]
+    },
+    "question": {
+      "type": "string",
+      "minLength": 1
+    },
+    "model": {
+      "type": "object",
+      "required": [
+        "bars",
+        "asked",
+        "answer"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "bars": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "label",
+              "units"
+            ],
+            "additionalProperties": true,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1
+              },
+              "units": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "extra": {
+                "type": "number",
+                "minimum": 0,
+                "description": "A known amount on top of the bar's units, e.g. 'Ali has 20 more than Ben' gives Ali units 1, extra 20."
+              }
+            }
+          }
+        },
+        "total": {
+          "type": "number"
+        },
+        "asked": {
+          "type": "string",
+          "minLength": 1
+        },
+        "answer": {
+          "type": "number"
+        },
+        "difference": {
+          "type": "object",
+          "required": [
+            "more",
+            "less",
+            "value"
+          ],
+          "additionalProperties": false,
+          "description": "Use instead of total when the question gives how much more one bar is than another.",
+          "properties": {
+            "more": {
+              "type": "string"
+            },
+            "less": {
+              "type": "string"
+            },
+            "value": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            }
+          }
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "total"
+          ]
+        },
+        {
+          "required": [
+            "difference"
+          ]
+        }
+      ]
+    },
+    "timeline": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "do",
+          "say"
+        ],
+        "additionalProperties": true,
+        "properties": {
+          "do": {
+            "type": "string",
+            "enum": [
+              "write_question",
+              "highlight",
+              "draw_bar",
+              "divide_units",
+              "bracket_total",
+              "question_mark",
+              "pause",
+              "write",
+              "label_unit",
+              "answer",
+              "cut_bar",
+              "shade_part",
+              "move_units",
+              "bracket_difference"
+            ]
+          },
+          "say": {
+            "type": "string",
+            "minLength": 1
+          },
+          "text": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "seconds": {
+            "type": "number",
+            "minimum": 0
+          }
+        }
+      }
+    }
+  }
+}

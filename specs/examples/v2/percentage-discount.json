@@ -1,0 +1,46 @@
+{
+  "version": 2,
+  "title": "Percentage: sale price after a discount",
+  "level": "P5",
+  "heuristic": "percentage",
+  "template": "bar",
+  "board": "percentage",
+  "question": "A school bag costs $56. During a sale, it is sold at a 25% discount. What is the sale price of the bag?",
+  "units": [{"name": "u", "meaning": "1 unit"}],
+  "quantities": [
+    {"id": "price", "label": "Usual price of the bag"},
+    {"id": "discount", "label": "Discount"},
+    {"id": "sale_price", "label": "Sale price of the bag"}
+  ],
+  "relations": [
+    {"eq": "price = 56", "from": "A school bag costs $56"},
+    {"eq": "discount = 25/100*price", "from": "a 25% discount"},
+    {"eq": "sale_price = price - discount", "from": "the sale price of the bag"}
+  ],
+  "asked": {"expr": "sale_price", "label": "Sale price of the bag"},
+  "answer": 42,
+  "stages": [
+    {"id": "all", "label": "School bag", "bars": [
+      {"id": "bag_bar", "quantity": "price", "label": "Usual price", "segments": [
+        {"expr": "u", "style": "marked", "label": "25% off"},
+        {"expr": "3*u", "label": "sale price"}
+      ]}
+    ]}
+  ],
+  "timeline": [
+    {"do": "write_question", "say": "A school bag costs $56. During a sale, it is sold at a 25% discount. What is the sale price of the bag?"},
+    {"do": "highlight", "text": "costs $56", "say": "The bag usually costs $56."},
+    {"do": "draw_bar", "bar": "bag_bar", "say": "Let's draw the usual price as one bar."},
+    {"do": "highlight", "text": "25% discount", "say": "25% is one quarter, so we cut the bar into 4 equal units."},
+    {"do": "divide_units", "bar": "bag_bar", "say": "1 unit is the discount. The other 3 units are the sale price."},
+    {"do": "bracket", "bar": "bag_bar", "segments": [0, 1], "side": "top", "text": "$56", "say": "All 4 units make $56."},
+    {"do": "question_mark", "bar": "bag_bar", "segments": [1, 1], "say": "We want the sale price, which is 3 units."},
+    {"do": "pause", "seconds": 2.0, "say": "Pause and think. What is 1 unit worth?"},
+    {"do": "write", "text": "4 units = 56", "say": "4 units are worth $56."},
+    {"do": "write", "text": "1 unit = 56 ÷ 4 = 14", "say": "So 1 unit is 56 divided by 4, which is 14."},
+    {"do": "label_unit", "bar": "bag_bar", "text": "$14", "say": "Each unit is $14."},
+    {"do": "write", "text": "3 units = 3 × 14 = 42", "say": "The sale price is 3 units. 3 times 14 is 42."},
+    {"do": "write", "text": "Check: 42 + 14 = 56 ✓", "say": "Let's check: the sale price plus the $14 discount makes $56. It works!"},
+    {"do": "answer", "text": "The sale price is $42.", "say": "So, the sale price of the bag is $42. Well done!"}
+  ]
+}

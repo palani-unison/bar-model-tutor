@@ -1,0 +1,21 @@
+[
+  {"id": "mult-stickers", "problem_type": "multiples", "question": "Siti has 4 times as many stickers as Raju. They have 250 stickers altogether. How many stickers does Siti have?", "answer": 200},
+  {"id": "mult-rice-beans", "problem_type": "multiples", "question": "A bag of rice is 5 times as heavy as a bag of beans. Together they weigh 18 kg. How heavy is the bag of beans?", "answer": 3},
+  {"id": "mult-car-money", "problem_type": "multiples", "question": "Mr Tan's car costs 3 times as much as his motorcycle. Together they cost $48,000. How much does the motorcycle cost?", "answer": 12000},
+  {"id": "mult-dog-decimal", "problem_type": "multiples", "question": "A dog is 9 times as heavy as a kitten. Together they weigh 22.5 kg. How heavy is the dog?", "answer": 20.25},
+  {"id": "ratio-two", "problem_type": "ratio", "question": "Ann and Bala share 150 stickers in the ratio 2 : 3. How many stickers does Bala get?", "answer": 90},
+  {"id": "ratio-hall", "problem_type": "ratio", "question": "The ratio of boys to girls in a hall is 4 : 5. There are 360 children in the hall. How many girls are there?", "answer": 200},
+  {"id": "ratio-three", "problem_type": "ratio", "question": "Ali, Ben and Chong share $240 in the ratio 1 : 2 : 5. How much money does Chong get?", "answer": 150},
+  {"id": "ratio-string", "problem_type": "ratio", "question": "A string 84 cm long is cut into two pieces in the ratio 3 : 4. How long is the shorter piece?", "answer": 36},
+  {"id": "more-total", "problem_type": "comparison", "question": "Ali has 20 more marbles than Ben. Together they have 100 marbles. How many marbles does Ali have?", "answer": 60},
+  {"id": "fewer-total", "problem_type": "comparison", "question": "Jia Hui has 15 fewer beads than Mei. They have 85 beads altogether. How many beads does Jia Hui have?", "answer": 35},
+  {"id": "more-money", "problem_type": "comparison", "question": "A pen costs $3 more than a pencil. Together they cost $7. How much does the pencil cost?", "answer": 2},
+  {"id": "more-three-boxes", "problem_type": "comparison", "question": "Box A has 12 more apples than Box B. Box C has 6 more apples than Box B. There are 93 apples altogether. How many apples are in Box B?", "answer": 25},
+  {"id": "times-diff", "problem_type": "comparison", "question": "Ali has 3 times as many marbles as Ben. Ali has 40 more marbles than Ben. How many marbles does Ben have?", "answer": 20},
+  {"id": "times-diff-cards", "problem_type": "comparison", "question": "Peter has 5 times as many cards as Sam. Peter has 64 more cards than Sam. How many cards does Peter have?", "answer": 80},
+  {"id": "times-diff-heavier", "problem_type": "comparison", "question": "A watermelon is 4 times as heavy as a pineapple. The watermelon is 4.5 kg heavier than the pineapple. How heavy is the pineapple?", "answer": 1.5},
+  {"id": "twice-diff", "problem_type": "comparison", "question": "Hall A has twice as many chairs as Hall B. Hall A has 48 more chairs than Hall B. How many chairs are there in Hall B?", "answer": 48},
+  {"id": "fraction-left", "problem_type": "fractions", "question": "Mrs Lee baked 120 cookies. She sold 3/5 of them. How many cookies were left?", "answer": 48},
+  {"id": "decline-before-after", "problem_type": "before-after", "question": "Ali had 3 times as many stamps as Ben. After Ali gave 20 stamps to Ben, they had the same number of stamps. How many stamps did Ben have at first?", "answer": 20, "may_decline": true},
+  {"id": "decline-how-many-more", "problem_type": "multiples", "question": "Ali has 3 times as many marbles as Ben. They have 120 marbles altogether. How many more marbles does Ali have than Ben?", "answer": 60, "may_decline": true}
+]

@@ -1,0 +1,46 @@
+{
+  "version": 2,
+  "title": "Fraction of a set: what is left",
+  "level": "P4",
+  "heuristic": "fraction_of",
+  "template": "bar",
+  "board": "part_whole",
+  "question": "Mrs Rao baked 72 muffins. She sold 5/8 of them at a school fair. How many muffins did she have left?",
+  "units": [{"name": "u", "meaning": "1 unit"}],
+  "quantities": [
+    {"id": "muffins", "label": "Muffins baked"},
+    {"id": "sold", "label": "Muffins sold"},
+    {"id": "left", "label": "Muffins left"}
+  ],
+  "relations": [
+    {"eq": "muffins = 72", "from": "Mrs Rao baked 72 muffins"},
+    {"eq": "sold = 5/8*muffins", "from": "She sold 5/8 of them"},
+    {"eq": "left = muffins - sold", "from": "How many muffins did she have left"}
+  ],
+  "asked": {"expr": "left", "label": "Muffins left"},
+  "answer": 27,
+  "stages": [
+    {"id": "all", "label": "Muffins", "bars": [
+      {"id": "muffin_bar", "quantity": "muffins", "label": "Muffins", "segments": [
+        {"expr": "5*u", "style": "marked", "label": "sold"},
+        {"expr": "3*u", "label": "left"}
+      ]}
+    ]}
+  ],
+  "timeline": [
+    {"do": "write_question", "say": "Mrs Rao baked 72 muffins. She sold 5/8 of them at a school fair. How many muffins did she have left?"},
+    {"do": "highlight", "text": "72 muffins", "say": "Mrs Rao baked 72 muffins."},
+    {"do": "draw_bar", "bar": "muffin_bar", "say": "Let's draw all her muffins as one bar."},
+    {"do": "highlight", "text": "5/8 of them", "say": "She sold 5/8 of them."},
+    {"do": "divide_units", "bar": "muffin_bar", "say": "So we cut the bar into 8 equal units. 5 units were sold."},
+    {"do": "bracket", "bar": "muffin_bar", "segments": [0, 1], "side": "top", "text": "72", "say": "All 8 units make 72 muffins."},
+    {"do": "question_mark", "bar": "muffin_bar", "segments": [1, 1], "say": "The 3 units left are what we want."},
+    {"do": "pause", "seconds": 2.0, "say": "Pause and think. What is 1 unit worth?"},
+    {"do": "write", "text": "8 units = 72", "say": "8 units are 72 muffins."},
+    {"do": "write", "text": "1 unit = 72 ÷ 8 = 9", "say": "So 1 unit is 72 divided by 8, which is 9."},
+    {"do": "label_unit", "bar": "muffin_bar", "text": "9", "say": "Each unit is 9 muffins."},
+    {"do": "write", "text": "3 units = 3 × 9 = 27", "say": "3 units are left. 3 times 9 is 27."},
+    {"do": "write", "text": "Check: 72 - 27 = 45 = 5 × 9 ✓", "say": "Let's check: 72 take away 27 leaves 45, the 5 units sold. It works!"},
+    {"do": "answer", "text": "She had 27 muffins left.", "say": "So, Mrs Rao had 27 muffins left. Well done!"}
+  ]
+}

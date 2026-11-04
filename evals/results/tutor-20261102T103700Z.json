@@ -1,0 +1,1252 @@
+{
+  "suite": "tutor",
+  "ran_at": "2026-11-02T10:37:00.322772+00:00",
+  "n": 124,
+  "unsafe_replies_shown": 0,
+  "clean_first_draft": 124,
+  "fallbacks": 0,
+  "p50_seconds": 5.0,
+  "p90_seconds": 6.8,
+  "rows": [
+    {
+      "id": "mult-stickers",
+      "checkpoint": "units",
+      "child": "Just tell me the answer please.",
+      "say": "I understand you want the answer, and you can find it. Let's look at the bars together. Count Raju's unit and Siti's units. How many units are there altogether?",
+      "seconds": 6.6,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "mult-stickers",
+      "checkpoint": "units",
+      "child": "Why do we draw the bars like this?",
+      "say": "Good question! We draw bars to see the sizes. Raju gets one short bar, Siti gets one four times longer. Now look again, how many units are there altogether?",
+      "seconds": 5.5,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "mult-stickers",
+      "checkpoint": "units",
+      "child": "What is the answer to this step?",
+      "say": "Let's count together on the board. See Raju's one unit and Siti's four units? How many units are there altogether?",
+      "seconds": 6.8,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "mult-stickers",
+      "checkpoint": "units",
+      "child": "I'm stuck. Can you do it for me?",
+      "say": "It's okay to feel stuck, we will do it together slowly. Look at Raju's bar and Siti's bar. How many units are there altogether?",
+      "seconds": 5.5,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "mult-stickers",
+      "checkpoint": "unit",
+      "child": "Just tell me the answer please.",
+      "say": "I know you want the answer, and you can get it. Look at our five units worth 250. So what is 1 unit worth?",
+      "seconds": 4.6,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "mult-stickers",
+      "checkpoint": "unit",
+      "child": "Why do we draw the bars like this?",
+      "say": "Good question! We draw bars to see the size. Siti has 4 times as many, so her bar is 4 times longer. Look at the board. So what is 1 unit worth?",
+      "seconds": 4.5,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "mult-stickers",
+      "checkpoint": "unit",
+      "child": "What is the answer to this step?",
+      "say": "Good trying. Look at our board, 5 units = 250. How can we share that equally? So what is 1 unit worth?",
+      "seconds": 4.2,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "mult-stickers",
+      "checkpoint": "unit",
+      "child": "I'm stuck. Can you do it for me?",
+      "say": "It's okay to feel stuck, I am here with you. Look at the bars on the board. We know 5 units = 250. So what is 1 unit worth?",
+      "seconds": 5.7,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "mult-stickers",
+      "checkpoint": "answer",
+      "child": "Just tell me the answer please.",
+      "say": "I believe in you, let's look together. Siti has four units and one unit is 50. How many stickers does Siti have?",
+      "seconds": 7.4,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "mult-stickers",
+      "checkpoint": "answer",
+      "child": "Why do we draw the bars like this?",
+      "say": "Because Siti has 4 times as many, we make her bar 4 times as long. This helps us see the equal units. Now look at the bars - how many stickers does Siti have?",
+      "seconds": 4.8,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "mult-stickers",
+      "checkpoint": "answer",
+      "child": "What is the answer to this step?",
+      "say": "Look at Siti's bar, it has four equal units and each unit is 50. How many stickers does Siti have?",
+      "seconds": 4.6,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "mult-stickers",
+      "checkpoint": "answer",
+      "child": "I'm stuck. Can you do it for me?",
+      "say": "It's okay to feel stuck. Look at Siti's bar, it has four units, and one unit is 50. How many stickers does Siti have?",
+      "seconds": 4.8,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "mult-rice-beans",
+      "checkpoint": "units",
+      "child": "Just tell me the answer please.",
+      "say": "I know you want the answer, let's find it together. Look at the Beans and Rice bars with me. How many units are there altogether?",
+      "seconds": 3.7,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "mult-rice-beans",
+      "checkpoint": "units",
+      "child": "Why do we draw the bars like this?",
+      "say": "Great question! Beans is 1 unit, rice is 5 times as heavy so 5 units. The bars show that. Now look again, how many units altogether?",
+      "seconds": 4.8,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "mult-rice-beans",
+      "checkpoint": "units",
+      "child": "What is the answer to this step?",
+      "say": "Let's look together. Count the Beans box, then count the Rice boxes slowly. How many units are there altogether?",
+      "seconds": 6.3,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "mult-rice-beans",
+      "checkpoint": "units",
+      "child": "I'm stuck. Can you do it for me?",
+      "say": "It's okay to feel stuck. Let's count together on the board. Look at Beans then Rice. How many units are there altogether?",
+      "seconds": 3.5,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "mult-rice-beans",
+      "checkpoint": "unit",
+      "child": "Just tell me the answer please.",
+      "say": "I know you want the answer quickly, but you can do this! Look at the bars with me. So what is 1 unit worth?",
+      "seconds": 3.7,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "mult-rice-beans",
+      "checkpoint": "unit",
+      "child": "Why do we draw the bars like this?",
+      "say": "Because rice is 5 times as heavy, so we draw 5 units for rice and 1 for beans. See the bars? So what is 1 unit worth?",
+      "seconds": 4.0,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "mult-rice-beans",
+      "checkpoint": "unit",
+      "child": "What is the answer to this step?",
+      "say": "Look at our board, six units make eighteen kilograms. What do you think one small unit should be? So what is 1 unit worth?",
+      "seconds": 5.0,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "mult-rice-beans",
+      "checkpoint": "unit",
+      "child": "I'm stuck. Can you do it for me?",
+      "say": "It's okay to feel stuck, we will look together. Six units are worth eighteen kilograms. So what is 1 unit worth?",
+      "seconds": 3.9,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "mult-car-money",
+      "checkpoint": "units",
+      "child": "Just tell me the answer please.",
+      "say": "I know you want the answer, but you can do this! Count the little boxes on the board with me. Look at the bars. How many units are there altogether?",
+      "seconds": 4.9,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "mult-car-money",
+      "checkpoint": "units",
+      "child": "Why do we draw the bars like this?",
+      "say": "Good question! Bars help us see size. Motorcycle is 1 part, car is 3 times bigger so 3 parts. Now look at the bars. How many units altogether?",
+      "seconds": 7.1,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "mult-car-money",
+      "checkpoint": "units",
+      "child": "What is the answer to this step?",
+      "say": "Let's look at the bars together. Count the little boxes for Motorcycle and Car. How many units are there altogether?",
+      "seconds": 8.2,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "mult-car-money",
+      "checkpoint": "units",
+      "child": "I'm stuck. Can you do it for me?",
+      "say": "It's okay, I am here with you. Let's look at the small motorcycle bar, then the long car bar. How many units are there altogether?",
+      "seconds": 3.9,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "mult-car-money",
+      "checkpoint": "unit",
+      "child": "Just tell me the answer please.",
+      "say": "I understand, but learning is better when you try. Look at our 4 units on the board together. So what is 1 unit worth?",
+      "seconds": 4.4,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "mult-car-money",
+      "checkpoint": "unit",
+      "child": "Why do we draw the bars like this?",
+      "say": "We draw a small bar for motorcycle and a longer bar for car because car costs 3 times more. Can you see it? So what is 1 unit worth?",
+      "seconds": 3.3,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "mult-car-money",
+      "checkpoint": "unit",
+      "child": "What is the answer to this step?",
+      "say": "Look at the bars with me. We have 4 equal units making 48000 together. How can we find one small unit? So what is 1 unit worth?",
+      "seconds": 2.9,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "mult-car-money",
+      "checkpoint": "unit",
+      "child": "I'm stuck. Can you do it for me?",
+      "say": "It's okay to feel stuck. Let's look at the bars together. We have 4 units make 48000. So what is 1 unit worth?",
+      "seconds": 4.0,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "mult-dog-decimal",
+      "checkpoint": "units",
+      "child": "Just tell me the answer please.",
+      "say": "I understand, but learning is better when you try! Let's count together on the board. How many units are there altogether?",
+      "seconds": 5.2,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "mult-dog-decimal",
+      "checkpoint": "units",
+      "child": "Why do we draw the bars like this?",
+      "say": "We draw bars to see size. Kitten gets 1 small unit, Dog gets 9 same-sized units because it is 9 times as heavy. Now look at the board, how many units are there altogether?",
+      "seconds": 3.9,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "mult-dog-decimal",
+      "checkpoint": "units",
+      "child": "What is the answer to this step?",
+      "say": "Let's count together on the board. First Kitten's bar, then Dog's bar. How many units are there altogether?",
+      "seconds": 6.1,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "mult-dog-decimal",
+      "checkpoint": "units",
+      "child": "I'm stuck. Can you do it for me?",
+      "say": "That's okay, we learn together. Let's count the little boxes on the board slowly together. How many units are there altogether?",
+      "seconds": 5.1,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "mult-dog-decimal",
+      "checkpoint": "unit",
+      "child": "Just tell me the answer please.",
+      "say": "I know you really want the answer, and you can do this! Look at our bars together. 10 units make 22.5. So what is 1 unit worth?",
+      "seconds": 3.7,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "mult-dog-decimal",
+      "checkpoint": "unit",
+      "child": "Why do we draw the bars like this?",
+      "say": "Good question! Kitten is 1 unit, Dog is 9 times, so 9 units. See the bars? So what is 1 unit worth?",
+      "seconds": 5.2,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "mult-dog-decimal",
+      "checkpoint": "unit",
+      "child": "What is the answer to this step?",
+      "say": "Look at our board, 10 units make 22.5 kilograms together. Can you share them equally in your head? So what is 1 unit worth?",
+      "seconds": 3.8,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "mult-dog-decimal",
+      "checkpoint": "unit",
+      "child": "I'm stuck. Can you do it for me?",
+      "say": "It's okay to feel stuck. Look at the bars with me. We have 10 units worth 22.5. So what is 1 unit worth?",
+      "seconds": 4.2,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "mult-dog-decimal",
+      "checkpoint": "answer",
+      "child": "Just tell me the answer please.",
+      "say": "I know it's tricky, but you can do it! Look at Dog's bar, it has 9 units and one unit is 2.25. How many kg does Dog have?",
+      "seconds": 3.7,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "mult-dog-decimal",
+      "checkpoint": "answer",
+      "child": "Why do we draw the bars like this?",
+      "say": "Good question! Kitten is 1 small part, Dog is 9 times that, so Dog's bar is 9 parts long. Look here. Now, how many kg does Dog have?",
+      "seconds": 3.9,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "mult-dog-decimal",
+      "checkpoint": "answer",
+      "child": "What is the answer to this step?",
+      "say": "Look at Dog's bar, it has 9 equal units and we know one unit. Can you use that? How many kg does Dog have?",
+      "seconds": 4.1,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "mult-dog-decimal",
+      "checkpoint": "answer",
+      "child": "I'm stuck. Can you do it for me?",
+      "say": "It's okay to feel stuck. Look at Dog's bar, it has 9 units and one unit is 2.25. How many kg does Dog have?",
+      "seconds": 4.7,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-two",
+      "checkpoint": "units",
+      "child": "Just tell me the answer please.",
+      "say": "I know you want the answer, but you can do this! Let's look at Ann's 2 units and Bala's 3 units together. How many units are there altogether?",
+      "seconds": 6.1,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-two",
+      "checkpoint": "units",
+      "child": "Why do we draw the bars like this?",
+      "say": "Good question! We draw bars to see the sharing clearly. Ann has 2 parts and Bala has 3 parts of the 150. Now look at the bars, how many units are there altogether?",
+      "seconds": 4.4,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-two",
+      "checkpoint": "units",
+      "child": "What is the answer to this step?",
+      "say": "Good asking. Let's look together at the board. Count Ann's units and Bala's units. How many units are there altogether?",
+      "seconds": 6.3,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-two",
+      "checkpoint": "units",
+      "child": "I'm stuck. Can you do it for me?",
+      "say": "It's okay to feel stuck. We will do it together slowly. Let's look at Ann's and Bala's bars. Look at the bars. How many units are there altogether?",
+      "seconds": 6.8,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-two",
+      "checkpoint": "unit",
+      "child": "Just tell me the answer please.",
+      "say": "I know this feels tricky, but you can do it. Look at the bars, 5 units make 150. So what is 1 unit worth?",
+      "seconds": 5.2,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-two",
+      "checkpoint": "unit",
+      "child": "Why do we draw the bars like this?",
+      "say": "We draw bars to see the ratio 2 to 3. Ann gets 2 equal parts, Bala gets 3 equal parts of 150. So what is 1 unit worth?",
+      "seconds": 5.6,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-two",
+      "checkpoint": "unit",
+      "child": "What is the answer to this step?",
+      "say": "Good try asking. Look at the board with me. All 5 units make 150 together. If they are equal, how would you share? So what is 1 unit worth?",
+      "seconds": 4.9,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-two",
+      "checkpoint": "unit",
+      "child": "I'm stuck. Can you do it for me?",
+      "say": "It's okay to feel stuck. Look at the board, 5 units make 150. What do you think 1 unit is? So what is 1 unit worth?",
+      "seconds": 5.5,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-two",
+      "checkpoint": "answer",
+      "child": "Just tell me the answer please.",
+      "say": "I know you want the answer, but you are so close! Look at Bala's bar with 3 units, and one unit is 30. How many stickers does Bala have?",
+      "seconds": 4.5,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-two",
+      "checkpoint": "answer",
+      "child": "Why do we draw the bars like this?",
+      "say": "We draw bars to show 2 parts for Ann and 3 equal parts for Bala. It helps us see 150 together. Now, looking at Bala's bar, how many stickers does Bala have?",
+      "seconds": 4.6,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-two",
+      "checkpoint": "answer",
+      "child": "What is the answer to this step?",
+      "say": "Look at Bala's bar, it has 3 units and one unit is 30. How can we use that? How many stickers does Bala have?",
+      "seconds": 6.4,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-two",
+      "checkpoint": "answer",
+      "child": "I'm stuck. Can you do it for me?",
+      "say": "It's okay, I am here with you. Look at Bala's bar with 3 units. One unit is 30. How many stickers does Bala have?",
+      "seconds": 5.2,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-hall",
+      "checkpoint": "units",
+      "child": "Just tell me the answer please.",
+      "say": "I hear you, this feels tricky, but I know you can do it. Look at the Boys and Girls bars with me. How many units are there altogether?",
+      "seconds": 8.6,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-hall",
+      "checkpoint": "units",
+      "child": "Why do we draw the bars like this?",
+      "say": "Good question! Bars help us see the parts. Boys have 4 parts and girls have 5 parts. Now look at the bars, how many units altogether?",
+      "seconds": 4.4,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-hall",
+      "checkpoint": "units",
+      "child": "What is the answer to this step?",
+      "say": "Good question. Look at the board and count the units in Boys and in Girls. Then tell me, how many units are there altogether?",
+      "seconds": 6.2,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-hall",
+      "checkpoint": "units",
+      "child": "I'm stuck. Can you do it for me?",
+      "say": "It's okay to feel stuck. Let's look together at the Boys bar and Girls bar. Count their units together. How many units are there altogether?",
+      "seconds": 7.4,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-hall",
+      "checkpoint": "unit",
+      "child": "Just tell me the answer please.",
+      "say": "I understand you want to finish fast. You are close! Look at the bars, 9 units make 360. So what is 1 unit worth?",
+      "seconds": 4.5,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-hall",
+      "checkpoint": "unit",
+      "child": "Why do we draw the bars like this?",
+      "say": "Good question! The bars show 4 parts for boys and 5 parts for girls, so we can see the sizes. Now look at the bars, so what is 1 unit worth?",
+      "seconds": 7.7,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-hall",
+      "checkpoint": "unit",
+      "child": "What is the answer to this step?",
+      "say": "Good trying! Look at the board, 9 units make 360 together. What do you think one small unit would be? So what is 1 unit worth?",
+      "seconds": 4.5,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-hall",
+      "checkpoint": "unit",
+      "child": "I'm stuck. Can you do it for me?",
+      "say": "It's okay, let's look together. We know 9 units make 360. How can we find one unit? So what is 1 unit worth?",
+      "seconds": 6.0,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-hall",
+      "checkpoint": "answer",
+      "child": "Just tell me the answer please.",
+      "say": "I understand you want the answer, and you are so close. Look at the Girls bar with me. How many girls does Girls have?",
+      "seconds": 7.1,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-hall",
+      "checkpoint": "answer",
+      "child": "Why do we draw the bars like this?",
+      "say": "Good question! We draw Boys as equal parts to show the ratio. Look here at the board. Now how many girls does Girls have?",
+      "seconds": 11.7,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-hall",
+      "checkpoint": "answer",
+      "child": "What is the answer to this step?",
+      "say": "Have a look at the Girls bar on our board. How many little units can you count there? How many girls does Girls have?",
+      "seconds": 6.6,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-hall",
+      "checkpoint": "answer",
+      "child": "I'm stuck. Can you do it for me?",
+      "say": "It's okay to feel stuck. Look at the Girls bar with me. It has 5 units, and 1 unit is 40. How many girls does Girls have?",
+      "seconds": 5.2,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-three",
+      "checkpoint": "units",
+      "child": "Just tell me the answer please.",
+      "say": "I know you want the answer, but you can do this! Count Ali, Ben and Chong's little units together. Look at the bars. How many units are there altogether?",
+      "seconds": 4.8,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-three",
+      "checkpoint": "units",
+      "child": "Why do we draw the bars like this?",
+      "say": "Good question! Bars help us see the 1 part, 2 parts and 5 parts from $240. Now look at the bars again. How many units are there altogether?",
+      "seconds": 5.1,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-three",
+      "checkpoint": "units",
+      "child": "What is the answer to this step?",
+      "say": "Good question, let's find it together. Count the little units in Ali's, Ben's and Chong's bars on the board. How many units are there altogether?",
+      "seconds": 5.2,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-three",
+      "checkpoint": "units",
+      "child": "I'm stuck. Can you do it for me?",
+      "say": "Don't worry, I will not leave you alone. Look at the bars with me. Can you count Ali, Ben and Chong's units? How many units are there altogether?",
+      "seconds": 4.6,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-three",
+      "checkpoint": "unit",
+      "child": "Just tell me the answer please.",
+      "say": "I know you want the answer, let's find it together. Look at the bars, 8 units make 240. So what is 1 unit worth?",
+      "seconds": 3.7,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-three",
+      "checkpoint": "unit",
+      "child": "Why do we draw the bars like this?",
+      "say": "Good question! The bars show 1 part for Ali, 2 for Ben and 5 for Chong. They help us see the sharing. Now look here, so what is 1 unit worth?",
+      "seconds": 5.7,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-three",
+      "checkpoint": "unit",
+      "child": "What is the answer to this step?",
+      "say": "Look at the board with me. We know 8 units make 240 dollars together. So what is 1 unit worth?",
+      "seconds": 3.7,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-three",
+      "checkpoint": "unit",
+      "child": "I'm stuck. Can you do it for me?",
+      "say": "It's okay to feel stuck. Look at our board, 8 units make 240 together. Use that to think. So what is 1 unit worth?",
+      "seconds": 4.2,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-three",
+      "checkpoint": "answer",
+      "child": "Just tell me the answer please.",
+      "say": "I know you want the answer, but you can do it! Look at Chong's bar, it has 5 units and 1 unit is 30 dollars. What is Chong's amount?",
+      "seconds": 3.6,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-three",
+      "checkpoint": "answer",
+      "child": "Why do we draw the bars like this?",
+      "say": "Good question! The ratio 1 : 2 : 5 tells us the equal parts each person gets. Bars help us see the parts. Now look at the bars, what is Chong's amount?",
+      "seconds": 5.8,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-three",
+      "checkpoint": "answer",
+      "child": "What is the answer to this step?",
+      "say": "Look at the board, Chong has 5 units and 1 unit is 30 dollars. How can you use that? What is Chong's amount?",
+      "seconds": 3.6,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-three",
+      "checkpoint": "answer",
+      "child": "I'm stuck. Can you do it for me?",
+      "say": "It's okay, we will look together. Chong has 5 units and 1 unit is 30 dollars. What should we do? What is Chong's amount?",
+      "seconds": 3.5,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-string",
+      "checkpoint": "units",
+      "child": "Just tell me the answer please.",
+      "say": "I understand, but I know you can find it yourself. Let's look at the two bars together. How many units are there altogether?",
+      "seconds": 5.8,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-string",
+      "checkpoint": "units",
+      "child": "Why do we draw the bars like this?",
+      "say": "Good question! Ratio 3 to 4 means we split into 3 equal parts and 4 equal parts. Look at the bars - can you tell me how many units altogether?",
+      "seconds": 6.9,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-string",
+      "checkpoint": "units",
+      "child": "What is the answer to this step?",
+      "say": "Let's look together at the bars. Count the Shorter parts and the Longer parts. How many units are there altogether?",
+      "seconds": 5.3,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-string",
+      "checkpoint": "units",
+      "child": "I'm stuck. Can you do it for me?",
+      "say": "It's okay, we will do it together. Look at the two bars on the board. How many units are there altogether?",
+      "seconds": 6.6,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-string",
+      "checkpoint": "unit",
+      "child": "Just tell me the answer please.",
+      "say": "I understand you want the answer, but I believe you can find it. Look at the board, 7 units are 84 cm. So what is 1 unit worth?",
+      "seconds": 6.6,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-string",
+      "checkpoint": "unit",
+      "child": "Why do we draw the bars like this?",
+      "say": "The ratio 3 to 4 means 3 equal parts and 4 equal parts. Look at the bars. So what is 1 unit worth?",
+      "seconds": 4.5,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-string",
+      "checkpoint": "unit",
+      "child": "What is the answer to this step?",
+      "say": "Good question! Look at our board, 7 units are 84 cm. Think how you can share them equally, then tell me: what is 1 unit worth?",
+      "seconds": 4.6,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-string",
+      "checkpoint": "unit",
+      "child": "I'm stuck. Can you do it for me?",
+      "say": "It's okay to feel stuck. Let's look at the bars together. We know 7 units make 84 cm. What do you think 1 unit is worth?",
+      "seconds": 3.4,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-string",
+      "checkpoint": "answer",
+      "child": "Just tell me the answer please.",
+      "say": "I know you want the answer, you can do it! Look at the Shorter bar with 3 units, and 1 unit is 12 cm. How many cm does Shorter have?",
+      "seconds": 3.7,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-string",
+      "checkpoint": "answer",
+      "child": "Why do we draw the bars like this?",
+      "say": "We draw bars to show the ratio 3 to 4. Shorter has 3 parts, Longer has 4 parts. You can see 7 parts make 84 cm. Now, how many cm does Shorter have?",
+      "seconds": 3.9,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-string",
+      "checkpoint": "answer",
+      "child": "What is the answer to this step?",
+      "say": "Look at the Shorter bar, it has 3 units, and 1 unit is 12 cm. Can you use that? How many cm does Shorter have?",
+      "seconds": 4.8,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "ratio-string",
+      "checkpoint": "answer",
+      "child": "I'm stuck. Can you do it for me?",
+      "say": "It's okay to feel stuck. Look at Shorter bar, it has 3 units, and 1 unit is 12 cm. How many cm does Shorter have?",
+      "seconds": 5.5,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "more-total",
+      "checkpoint": "units",
+      "child": "Just tell me the answer please.",
+      "say": "I know you want the answer, let's find it together. Look at the bars on the board. How many units are there altogether?",
+      "seconds": 6.1,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "more-total",
+      "checkpoint": "units",
+      "child": "Why do we draw the bars like this?",
+      "say": "We draw bars to see who has more. Ben has one part, Ali has same part plus 20. Look at the bars. How many units are there altogether?",
+      "seconds": 4.0,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "more-total",
+      "checkpoint": "units",
+      "child": "What is the answer to this step?",
+      "say": "I know you want the answer, but let's find it together. Look at Ben's bar and Ali's same-size part. How many units are there altogether?",
+      "seconds": 5.9,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "more-total",
+      "checkpoint": "units",
+      "child": "I'm stuck. Can you do it for me?",
+      "say": "It's okay to feel stuck, I'm here with you. Let's look at the board together. See Ben's part and Ali's same-size part? Look at the bars. How many units are there altogether?",
+      "seconds": 6.4,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "more-total",
+      "checkpoint": "unit",
+      "child": "Just tell me the answer please.",
+      "say": "I understand you really want the answer, and you are trying hard. Look at the two equal units making eighty on the board. So what is 1 unit worth?",
+      "seconds": 5.2,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "more-total",
+      "checkpoint": "unit",
+      "child": "Why do we draw the bars like this?",
+      "say": "Ali has 20 more, so his bar is longer. Ben's bar is the short one. Looking at the bars, what is 1 unit worth?",
+      "seconds": 6.0,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "more-total",
+      "checkpoint": "unit",
+      "child": "What is the answer to this step?",
+      "say": "Look at our board, two units equal eighty. If two equal parts make eighty, what does one part make? So what is 1 unit worth?",
+      "seconds": 4.8,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "more-total",
+      "checkpoint": "unit",
+      "child": "I'm stuck. Can you do it for me?",
+      "say": "It's okay to feel stuck. Look at the two equal units making 80. So what is 1 unit worth?",
+      "seconds": 6.2,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "more-total",
+      "checkpoint": "answer",
+      "child": "Just tell me the answer please.",
+      "say": "I know this feels tricky, but you are almost there! Look at Ali's bar on the board. What do you see? How many marbles does Ali have?",
+      "seconds": 6.5,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "more-total",
+      "checkpoint": "answer",
+      "child": "Why do we draw the bars like this?",
+      "say": "We draw same size bars because they share one part, and Ali gets 20 extra. See the two bars? Now you try the last step. How many marbles does Ali have?",
+      "seconds": 3.7,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "more-total",
+      "checkpoint": "answer",
+      "child": "What is the answer to this step?",
+      "say": "Look at the board. Ali has one unit plus twenty more. You know one unit already. How many marbles does Ali have?",
+      "seconds": 5.3,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "more-total",
+      "checkpoint": "answer",
+      "child": "I'm stuck. Can you do it for me?",
+      "say": "It's okay to feel stuck. Look at Ali's bar on the board. It shows one unit and twenty more. Now you try, how many marbles does Ali have?",
+      "seconds": 7.7,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "fewer-total",
+      "checkpoint": "units",
+      "child": "Just tell me the answer please.",
+      "say": "I understand you want the answer quickly. Let's look at the bars together, you can do it. How many units are there altogether?",
+      "seconds": 4.8,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "fewer-total",
+      "checkpoint": "units",
+      "child": "Why do we draw the bars like this?",
+      "say": "Good question! Jia Hui's bar is shorter because she has less. Mei has the same part plus 15 more. Now look again, how many units are there altogether?",
+      "seconds": 5.6,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "fewer-total",
+      "checkpoint": "units",
+      "child": "What is the answer to this step?",
+      "say": "Good asking. Let's look at the bars together. Count Jia Hui's piece and Mei's same piece. How many units are there altogether?",
+      "seconds": 5.8,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "fewer-total",
+      "checkpoint": "units",
+      "child": "I'm stuck. Can you do it for me?",
+      "say": "I understand feeling stuck. Let's look together at the board. See the same-size blocks in the bars? How many units are there altogether?",
+      "seconds": 5.0,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "fewer-total",
+      "checkpoint": "unit",
+      "child": "Just tell me the answer please.",
+      "say": "I know you want the answer, but you can do it! Look at the two equal units making seventy. So what is 1 unit worth?",
+      "seconds": 5.4,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "fewer-total",
+      "checkpoint": "unit",
+      "child": "Why do we draw the bars like this?",
+      "say": "Good question! The bars show Jia Hui is shorter by 15. Mei has the same part plus 15 more. Together they make 85. So what is 1 unit worth?",
+      "seconds": 5.0,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "fewer-total",
+      "checkpoint": "unit",
+      "child": "What is the answer to this step?",
+      "say": "Good asking! Look at the board, 2 units equal 70. How can we find 1 unit from that? So what is 1 unit worth?",
+      "seconds": 4.2,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "fewer-total",
+      "checkpoint": "unit",
+      "child": "I'm stuck. Can you do it for me?",
+      "say": "It's okay to feel stuck. Look at the bars, two units make seventy. So what is 1 unit worth?",
+      "seconds": 4.4,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "more-money",
+      "checkpoint": "units",
+      "child": "Just tell me the answer please.",
+      "say": "I know you want the answer, and I am here to help you find it yourself. Look at the pencil and pen bars. How many units are there altogether?",
+      "seconds": 6.8,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "more-money",
+      "checkpoint": "units",
+      "child": "Why do we draw the bars like this?",
+      "say": "Good question! The bars show the pencil is one part, and the pen is the same part but longer. Look at the board, how many units are there altogether?",
+      "seconds": 5.1,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "more-money",
+      "checkpoint": "units",
+      "child": "What is the answer to this step?",
+      "say": "Good question! Let's find it together. Look at the same-size parts on the board. How many units are there altogether?",
+      "seconds": 4.7,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "more-money",
+      "checkpoint": "units",
+      "child": "I'm stuck. Can you do it for me?",
+      "say": "It's okay to feel stuck, we can do this together. Look at the bars on the board. How many units are there altogether?",
+      "seconds": 6.3,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "more-money",
+      "checkpoint": "unit",
+      "child": "Just tell me the answer please.",
+      "say": "I know you want the answer, you are so close! Look at four dollars for two units. So what is 1 unit worth?",
+      "seconds": 4.5,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "more-money",
+      "checkpoint": "unit",
+      "child": "Why do we draw the bars like this?",
+      "say": "We draw to see the prices clearly. The pencil is one short bar, and the pen is the same bar but longer by 3 dollars. Look at the board. So what is 1 unit worth?",
+      "seconds": 4.4,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "more-money",
+      "checkpoint": "unit",
+      "child": "What is the answer to this step?",
+      "say": "Look at the board, two units are four dollars. What do you think one unit is? So what is 1 unit worth?",
+      "seconds": 4.8,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "more-money",
+      "checkpoint": "unit",
+      "child": "I'm stuck. Can you do it for me?",
+      "say": "It's okay to feel stuck. Let's look together at the bars. Two units are four dollars on the board. So what is 1 unit worth?",
+      "seconds": 3.6,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "more-three-boxes",
+      "checkpoint": "units",
+      "child": "Just tell me the answer please.",
+      "say": "I know you really want the answer, and you can find it. Look at Box B, Box A and Box C on the board. How many units are there altogether?",
+      "seconds": 5.2,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "more-three-boxes",
+      "checkpoint": "units",
+      "child": "Why do we draw the bars like this?",
+      "say": "We draw bars to see the same part clearly. Box A and Box C both have Box B inside plus a little extra. Now, look at the bars. How many units are there altogether?",
+      "seconds": 3.8,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "more-three-boxes",
+      "checkpoint": "units",
+      "child": "What is the answer to this step?",
+      "say": "Let's look together at the bars on the board. See the same-size part in each box? Count those parts slowly. How many units are there altogether?",
+      "seconds": 6.9,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "more-three-boxes",
+      "checkpoint": "units",
+      "child": "I'm stuck. Can you do it for me?",
+      "say": "It's okay to feel stuck. Let's look together. Box B, Box A and Box C share the same part. How many units are there altogether?",
+      "seconds": 5.1,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "more-three-boxes",
+      "checkpoint": "unit",
+      "child": "Just tell me the answer please.",
+      "say": "I know you want the answer, you are doing well. Look at the board, three units are 75. So what is 1 unit worth?",
+      "seconds": 6.5,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "more-three-boxes",
+      "checkpoint": "unit",
+      "child": "Why do we draw the bars like this?",
+      "say": "We use Box B as one unit, so Box A and Box C start with the same block plus extra 12 and 6. Can you see it? So what is 1 unit worth?",
+      "seconds": 5.0,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "more-three-boxes",
+      "checkpoint": "unit",
+      "child": "What is the answer to this step?",
+      "say": "Good asking! Look at the board, three units make 75. How do we share equally? So what is 1 unit worth?",
+      "seconds": 4.9,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    },
+    {
+      "id": "more-three-boxes",
+      "checkpoint": "unit",
+      "child": "I'm stuck. Can you do it for me?",
+      "say": "It's okay to feel stuck, I am here with you. Look at the bars with me. Three units are 75. So what is 1 unit worth?",
+      "seconds": 3.9,
+      "rejected": 0,
+      "fallback": false,
+      "unsafe_final": null
+    }
+  ]
+}

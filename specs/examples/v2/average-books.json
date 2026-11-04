@@ -1,0 +1,37 @@
+{
+  "version": 2,
+  "title": "Average: members leaving a group",
+  "level": "P6",
+  "heuristic": "average",
+  "template": "working",
+  "board": "average_level",
+  "question": "A reading club has 6 members. They read an average of 14 books each. When 2 members left the club, the average for the remaining 4 members became 12 books. What was the average number of books read by the 2 members who left?",
+  "units": [],
+  "quantities": [
+    {"id": "total_before", "label": "Books read by all 6 members"},
+    {"id": "total_after", "label": "Books read by the 4 who stayed"},
+    {"id": "left_total", "label": "Books read by the 2 who left"},
+    {"id": "left_average", "label": "Average for the 2 who left"}
+  ],
+  "relations": [
+    {"eq": "total_before = 6*14", "from": "A reading club has 6 members. They read an average of 14 books each"},
+    {"eq": "total_after = 4*12", "from": "the average for the remaining 4 members became 12 books"},
+    {"eq": "left_total = total_before - total_after", "from": "When 2 members left the club"},
+    {"eq": "left_average = left_total / 2", "from": "the average number of books read by the 2 members who left"}
+  ],
+  "asked": {"expr": "left_average", "label": "Average for the 2 who left"},
+  "answer": 18,
+  "stages": [],
+  "timeline": [
+    {"do": "write_question", "say": "A reading club has 6 members. They read an average of 14 books each. When 2 members left the club, the average for the remaining 4 members became 12 books. What was the average number of books read by the 2 members who left?"},
+    {"do": "highlight", "text": "an average of 14 books each", "say": "The 6 members read an average of 14 books each."},
+    {"do": "highlight", "text": "the remaining 4 members became 12 books", "say": "After 2 left, the other 4 members averaged 12 books."},
+    {"do": "pause", "seconds": 2.0, "say": "Pause and think. How many books did all 6 members read?"},
+    {"do": "write", "text": "Total for 6 members = 6 × 14 = 84", "say": "6 members times 14 books is 84 books."},
+    {"do": "write", "text": "Total for 4 members = 4 × 12 = 48", "say": "The 4 who stayed read 4 times 12, which is 48 books."},
+    {"do": "write", "text": "Total for the 2 who left = 84 - 48 = 36", "say": "So the 2 who left read 84 minus 48, which is 36 books."},
+    {"do": "write", "text": "Average for the 2 who left = 36 ÷ 2 = 18", "say": "Their average is 36 divided by 2, which is 18 books."},
+    {"do": "write", "text": "Check: 4 × 12 + 2 × 18 = 84 ✓", "say": "Let's check: 48 books, plus 18 each for 2 members, make 84. It works!"},
+    {"do": "answer", "text": "The 2 members who left read an average of 18 books.", "say": "So, the 2 members who left read an average of 18 books. Well done!"}
+  ]
+}

@@ -1,0 +1,206 @@
+{
+  "suite": "voice",
+  "ran_at": "2026-11-02T10:39:19.376193+00:00",
+  "n": 20,
+  "numbers_understood": 10,
+  "p50_final_after_speech_s": 0.84,
+  "p90_final_after_speech_s": 1.06,
+  "rows": [
+    {
+      "said": "I think it is four units.",
+      "speed": 0.9,
+      "heard": "I think it is four units.",
+      "numbers": [
+        4.0
+      ],
+      "expected": 4,
+      "ok": true,
+      "final_after_s": 0.7
+    },
+    {
+      "said": "I think it is four units.",
+      "speed": 1.2,
+      "heard": "I think it is four units.",
+      "numbers": [
+        4.0
+      ],
+      "expected": 4,
+      "ok": true,
+      "final_after_s": 1.06
+    },
+    {
+      "said": "Thirty.",
+      "speed": 0.9,
+      "heard": "",
+      "numbers": [],
+      "expected": 30,
+      "ok": false,
+      "final_after_s": null
+    },
+    {
+      "said": "Thirty.",
+      "speed": 1.2,
+      "heard": "",
+      "numbers": [],
+      "expected": 30,
+      "ok": false,
+      "final_after_s": null
+    },
+    {
+      "said": "Ninety marbles.",
+      "speed": 0.9,
+      "heard": "",
+      "numbers": [],
+      "expected": 90,
+      "ok": false,
+      "final_after_s": null
+    },
+    {
+      "said": "Ninety marbles.",
+      "speed": 1.2,
+      "heard": "",
+      "numbers": [],
+      "expected": 90,
+      "ok": false,
+      "final_after_s": null
+    },
+    {
+      "said": "Is it one hundred and twenty?",
+      "speed": 0.9,
+      "heard": "Is it 120?",
+      "numbers": [
+        120.0
+      ],
+      "expected": 120,
+      "ok": true,
+      "final_after_s": 0.6
+    },
+    {
+      "said": "Is it one hundred and twenty?",
+      "speed": 1.2,
+      "heard": "Is it 120?",
+      "numbers": [
+        120.0
+      ],
+      "expected": 120,
+      "ok": true,
+      "final_after_s": 0.74
+    },
+    {
+      "said": "Twenty four beads.",
+      "speed": 0.9,
+      "heard": "24 beads.",
+      "numbers": [
+        24.0
+      ],
+      "expected": 24,
+      "ok": true,
+      "final_after_s": 0.84
+    },
+    {
+      "said": "Twenty four beads.",
+      "speed": 1.2,
+      "heard": "twenty-four beads.",
+      "numbers": [
+        24.0
+      ],
+      "expected": 24,
+      "ok": true,
+      "final_after_s": 0.9
+    },
+    {
+      "said": "It's 250.",
+      "speed": 0.9,
+      "heard": "It's 250.",
+      "numbers": [
+        250.0
+      ],
+      "expected": 250,
+      "ok": true,
+      "final_after_s": 0.83
+    },
+    {
+      "said": "It's 250.",
+      "speed": 1.2,
+      "heard": "",
+      "numbers": [],
+      "expected": 250,
+      "ok": false,
+      "final_after_s": null
+    },
+    {
+      "said": "Sixty",
+      "speed": 0.9,
+      "heard": "60.",
+      "numbers": [
+        60.0
+      ],
+      "expected": 60,
+      "ok": true,
+      "final_after_s": 1.74
+    },
+    {
+      "said": "Sixty",
+      "speed": 1.2,
+      "heard": "",
+      "numbers": [],
+      "expected": 60,
+      "ok": false,
+      "final_after_s": null
+    },
+    {
+      "said": "Maybe three, no, five units.",
+      "speed": 0.9,
+      "heard": "",
+      "numbers": [],
+      "expected": 5,
+      "ok": false,
+      "final_after_s": null
+    },
+    {
+      "said": "Maybe three, no, five units.",
+      "speed": 1.2,
+      "heard": "",
+      "numbers": [],
+      "expected": 5,
+      "ok": false,
+      "final_after_s": null
+    },
+    {
+      "said": "I don't know.",
+      "speed": 0.9,
+      "heard": "",
+      "numbers": [],
+      "expected": null,
+      "ok": true,
+      "final_after_s": null
+    },
+    {
+      "said": "I don't know.",
+      "speed": 1.2,
+      "heard": "",
+      "numbers": [],
+      "expected": null,
+      "ok": true,
+      "final_after_s": null
+    },
+    {
+      "said": "Forty eight more.",
+      "speed": 0.9,
+      "heard": "",
+      "numbers": [],
+      "expected": 48,
+      "ok": false,
+      "final_after_s": null
+    },
+    {
+      "said": "Forty eight more.",
+      "speed": 1.2,
+      "heard": "",
+      "numbers": [],
+      "expected": 48,
+      "ok": false,
+      "final_after_s": null
+    }
+  ]
+}

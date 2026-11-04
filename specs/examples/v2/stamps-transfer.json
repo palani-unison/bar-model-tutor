@@ -1,0 +1,54 @@
+{
+  "version": 2,
+  "title": "Before and after: equal in the end",
+  "level": "P4",
+  "heuristic": "before_after",
+  "template": "bar-stages",
+  "board": "before_after",
+  "question": "Ali had 3 times as many stamps as Ben. After Ali gave 20 stamps to Ben, they had the same number of stamps. How many stamps did Ben have at first?",
+  "units": [{"name": "u", "meaning": "1 unit"}],
+  "quantities": [
+    {"id": "ali_before", "label": "Ali's stamps at first"},
+    {"id": "ben_before", "label": "Ben's stamps at first"},
+    {"id": "ali_after", "label": "Ali's stamps in the end"},
+    {"id": "ben_after", "label": "Ben's stamps in the end"}
+  ],
+  "relations": [
+    {"eq": "ali_before = 3*ben_before", "from": "Ali had 3 times as many stamps as Ben"},
+    {"eq": "ali_after = ali_before - 20", "from": "Ali gave 20 stamps to Ben"},
+    {"eq": "ben_after = ben_before + 20", "from": "Ali gave 20 stamps to Ben"},
+    {"eq": "ali_after = ben_after", "from": "they had the same number of stamps"}
+  ],
+  "asked": {"expr": "ben_before", "label": "Ben's stamps at first"},
+  "answer": 20,
+  "stages": [
+    {"id": "before", "label": "At first", "bars": [
+      {"id": "ali_b", "quantity": "ali_before", "label": "Ali", "segments": [{"expr": "3*u"}]},
+      {"id": "ben_b", "quantity": "ben_before", "label": "Ben", "segments": [{"expr": "u"}]}
+    ]},
+    {"id": "after", "label": "In the end", "bars": [
+      {"id": "ali_a", "quantity": "ali_after", "label": "Ali", "segments": [{"expr": "2*u"}, {"expr": "u", "style": "removed", "label": "gave 20"}]},
+      {"id": "ben_a", "quantity": "ben_after", "label": "Ben", "segments": [{"expr": "u"}, {"expr": "u", "style": "added", "label": "+20"}]}
+    ]}
+  ],
+  "timeline": [
+    {"do": "write_question", "say": "Ali had 3 times as many stamps as Ben. After Ali gave 20 stamps to Ben, they had the same number of stamps. How many stamps did Ben have at first?"},
+    {"do": "highlight", "text": "3 times as many", "say": "At first, Ali had 3 times as many stamps as Ben."},
+    {"do": "draw_stage", "stage": "before", "say": "Let's draw their stamps at first."},
+    {"do": "draw_bar", "bar": "ben_b", "say": "Ben's bar is 1 unit."},
+    {"do": "draw_bar", "bar": "ali_b", "say": "Ali has 3 times as many, so Ali's bar is 3 units."},
+    {"do": "divide_units", "bar": "ali_b", "say": "Let's mark Ali's 3 equal units."},
+    {"do": "highlight", "text": "gave 20 stamps to Ben", "say": "Then Ali gave 20 stamps to Ben."},
+    {"do": "highlight", "text": "the same number of stamps", "say": "After that, they had the same number of stamps."},
+    {"do": "draw_stage", "stage": "after", "say": "Now let's draw their stamps in the end."},
+    {"do": "draw_bar", "bar": "ali_a", "say": "Ali gives away 1 unit, so Ali has 2 units left."},
+    {"do": "draw_bar", "bar": "ben_a", "say": "Ben gets that unit, so Ben also has 2 units."},
+    {"do": "move_part", "from": "ali_a", "from_segment": 1, "to": "ben_a", "to_segment": 1, "say": "The unit Ali gave away is the 20 stamps Ben received."},
+    {"do": "question_mark", "bar": "ben_b", "say": "We want Ben's stamps at first."},
+    {"do": "pause", "seconds": 2.0, "say": "Pause and think. What is 1 unit worth?"},
+    {"do": "write", "text": "1 unit = 20", "say": "The unit Ali gave away is 20 stamps, so 1 unit is 20."},
+    {"do": "label_unit", "bar": "ben_b", "text": "20", "say": "Ben had 1 unit at first."},
+    {"do": "write", "text": "Check: 60 - 20 = 40 = 20 + 20 ✓", "say": "Let's check: Ali has 40 and Ben has 40 in the end. The same!"},
+    {"do": "answer", "text": "Ben had 20 stamps at first.", "say": "So, Ben had 20 stamps at first. Well done!"}
+  ]
+}

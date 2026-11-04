@@ -1,0 +1,38 @@
+{
+  "version": 2,
+  "title": "Assume and adjust: chickens and rabbits",
+  "level": "P5",
+  "heuristic": "assumption",
+  "template": "working",
+  "board": "assume_adjust",
+  "question": "A farmer has 20 chickens and rabbits. They have 56 legs altogether. How many rabbits are there?",
+  "units": [],
+  "quantities": [
+    {"id": "chickens", "label": "Number of chickens"},
+    {"id": "rabbits", "label": "Number of rabbits"}
+  ],
+  "relations": [
+    {"eq": "chickens + rabbits = 20", "from": "A farmer has 20 chickens and rabbits"},
+    {"eq": "2*chickens + 4*rabbits = 56", "from": "They have 56 legs altogether"}
+  ],
+  "asked": {"expr": "rabbits", "label": "Number of rabbits"},
+  "answer": 8,
+  "stages": [],
+  "timeline": [
+    {"do": "write_question", "say": "A farmer has 20 chickens and rabbits. They have 56 legs altogether. How many rabbits are there?"},
+    {"do": "highlight", "text": "20 chickens and rabbits", "say": "There are 20 animals: some chickens, some rabbits."},
+    {"do": "highlight", "text": "56 legs altogether", "say": "Together they have 56 legs."},
+    {"do": "table", "id": "assume", "columns": ["", "Chickens", "Rabbits", "Legs"],
+     "rows": [["Assume", "20", "0", "?"], ["Actual", "?", "?", "56"]],
+     "say": "Let's assume all 20 animals are chickens, and compare with the real 56 legs."},
+    {"do": "pause", "seconds": 2, "say": "Pause and think. How many legs do 20 chickens have?"},
+    {"do": "fill_cell", "table": "assume", "row": 0, "col": 3, "text": "20 × 2 = 40", "say": "Each chicken has 2 legs. 20 times 2 is 40 legs."},
+    {"do": "write", "text": "Extra legs = 56 - 40 = 16", "say": "We are short of 56 minus 40, which is 16 legs."},
+    {"do": "write", "text": "Extra legs for each rabbit = 4 - 2 = 2", "say": "Swapping a chicken for a rabbit adds 2 legs."},
+    {"do": "write", "text": "Rabbits = 16 ÷ 2 = 8", "say": "So we swap 16 divided by 2, which is 8 animals."},
+    {"do": "fill_cell", "table": "assume", "row": 1, "col": 2, "text": "8", "say": "There are 8 rabbits."},
+    {"do": "fill_cell", "table": "assume", "row": 1, "col": 1, "text": "20 - 8 = 12", "say": "And 20 minus 8, which is 12 chickens."},
+    {"do": "write", "text": "Check: 12 × 2 + 8 × 4 = 56 ✓", "say": "Let's check: 12 chickens and 8 rabbits have 56 legs. It works!"},
+    {"do": "answer", "text": "There are 8 rabbits.", "say": "So, there are 8 rabbits. Well done!"}
+  ]
+}
